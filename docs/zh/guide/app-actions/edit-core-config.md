@@ -1,27 +1,27 @@
-# 编辑核心配置
+# Edit Core Config
 
-打开应用的 **类型专属** 设置 —— 其来源与运行时配置。点击应用卡片上的 ⋮,再点 **编辑核心配置**。每种应用类型的核心配置都不同;每个类型页都在一个详细的 **核心配置** 分区中记录自己的配置。
+Opens an app's **type-specific** settings — its source and runtime configuration. Tap ⋮ on an app card, then **Edit Core Config**. Each app type has a different core config; every type page documents its own in a detailed **Core config** section.
 
-## 编辑什么
+## What it edits
 
-类型专属的创建表单,复用为编辑器。点各链接看完整的、按小类组织的字段参考:
+The type-specific creation form, reused as an editor. Follow each link to the full, sub-categorized field reference:
 
-| 应用类型 | 核心配置涵盖 |
+| App type | Core config covers |
 | --- | --- |
-| [网页](/zh/guide/app-types/web) | 目标与引擎、User-Agent 与显示、注入、弹窗 *(网页有单一合并编辑器 —— 见说明)* |
-| [多站点](/zh/guide/app-types/multi-web) | 站点(名称/URL/类型/图标/主题色/选择器)、布局与显示、刷新、共享注入 |
-| [HTML](/zh/guide/app-types/html) | 来源、入口文件、加载模式与端口、能力、外观 |
-| [离线包](/zh/guide/app-types/offline-pack) | 爬取范围、过滤、网络 |
-| [前端](/zh/guide/app-types/frontend) | 构建输出、框架、工具链 |
-| [PHP](/zh/guide/app-types/php) | 项目、服务器(端口/环境变量)、依赖与扩展 |
-| [WordPress](/zh/guide/app-types/wordpress) | 站点、管理员账户、主题与插件、来源与安装、服务器 |
-| [Node.js](/zh/guide/app-types/nodejs) | 项目、构建模式、服务器(入口/端口/环境变量)、原生插件 |
-| [Python](/zh/guide/app-types/python) | 项目、入口与服务器、依赖与扩展 |
-| [Go](/zh/guide/app-types/go) | 项目、构建(二进制/架构)、服务器(端口/静态/环境变量) |
-| [媒体](/zh/guide/app-types/media) | 来源、播放、显示 |
-| [画廊](/zh/guide/app-types/gallery) | 内容、播放、视图、显示 |
+| [Web](/zh/guide/app-types/web) | Target & engine, user agent & display, injection, popups *(Web has a single combined editor — see note)* |
+| [Multi-Web](/zh/guide/app-types/multi-web) | Sites (name/URL/type/icon/theme/selectors), layout & display, refresh, shared injection |
+| [HTML](/zh/guide/app-types/html) | Source, entry file, load mode & port, capabilities, appearance |
+| [Offline Pack](/zh/guide/app-types/offline-pack) | Crawl scope, filtering, network |
+| [Frontend](/zh/guide/app-types/frontend) | Build output, framework, toolchain |
+| [PHP](/zh/guide/app-types/php) | Project, server (port/env), dependencies & extensions |
+| [WordPress](/zh/guide/app-types/wordpress) | Site, admin account, theme & plugins, source & install, server |
+| [Node.js](/zh/guide/app-types/nodejs) | Project, build mode, server (entry/port/env), native addons |
+| [Python](/zh/guide/app-types/python) | Project, entry & server, dependencies & extensions |
+| [Go](/zh/guide/app-types/go) | Project, build (binary/arch), server (port/static/env) |
+| [Media](/zh/guide/app-types/media) | Source, playback, display |
+| [Gallery](/zh/guide/app-types/gallery) | Content, playback, view, display |
 
-## 说明
+## Notes
 
-- **网页应用不显示此入口** —— 它们有单一的 **编辑**,涵盖一切,因为网页配置不拆分。
-- 共享选项(外观、网络、隐私、导出)用[编辑通用配置](/zh/guide/app-actions/edit-common-config/)。
+- **Web apps don't show this entry** — they have a single **Edit** that covers everything, since web config isn't split.
+- For the shared options (appearance, networking, privacy, export), use [Edit Common Config](/zh/guide/app-actions/edit-common-config/).

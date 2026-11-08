@@ -1,19 +1,19 @@
-# 语言
+# Language
 
-[我的应用](/zh/guide/main-screen/my-apps)顶栏的语言按钮打开构建器 UI 的语言选择器。
+The language button in the [My Apps](/zh/guide/main-screen/my-apps) top bar opens the language selector for the builder UI.
 
-## 支持的语言
+## Supported languages
 
-宿主界面完整本地化为 **10 种语言**:
+The host UI is fully localized into **10 languages**:
 
-中文 · 英文 · 阿拉伯文(完整 RTL)· 葡萄牙文 · 西班牙文 · 法文 · 德文 · 俄文 · 日文 · 韩文
+Chinese · English · Arabic (full RTL) · Portuguese · Spanish · French · German · Russian · Japanese · Korean
 
-## 工作方式
+## How it works
 
-- 点击语言按钮并选择一种语言。
-- 更改 **立即** 应用到整个构建器 UI;会显示一条确认提示。
-- 阿拉伯文会把布局切换为完整的从右到左。
+- Tap the language button and pick a language.
+- The change applies **immediately** across the whole builder UI; a confirmation snackbar appears.
+- Arabic switches the layout to full right-to-left.
 
-## 作用范围
+## Scope
 
-这是 **构建器** 的界面语言。你*生成*的应用的语言则按应用单独配置(生成的应用还可提供页内[翻译叠加层](/zh/guide/config/appearance))。
+This is the **builder's** UI language. The language of the apps you *generate* is configured separately per app (and a generated app can also offer an in-page [translation overlay](/zh/guide/config/appearance)).

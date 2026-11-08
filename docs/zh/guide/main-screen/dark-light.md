@@ -1,13 +1,13 @@
-# 暗亮色
+# Dark / Light Mode
 
-[我的应用](/zh/guide/main-screen/my-apps)顶栏的月亮/太阳按钮切换整个构建器 UI 的深色模式。
+The moon/sun button in the [My Apps](/zh/guide/main-screen/my-apps) top bar toggles dark mode for the whole builder UI.
 
-## 工作方式
+## How it works
 
-- 点击在 **深色** 与 **浅色** 之间切换。(底层设置还有第三个 `SYSTEM` 值,但顶栏按钮只在这两个显式模式间翻转。)
-- 切换时会从按钮处播放 circular **主题揭示** 动画,然后应用新主题。
-- 你的选择会被 **持久化**,下次启动时恢复。
+- Tap to switch between **dark** and **light**. (The underlying setting has a third `SYSTEM` value, but the top-bar button only flips between the two explicit modes.)
+- The switch plays a circular **theme reveal** animation expanding from the button, then applies the new theme.
+- Your choice is **persisted** and restored on next launch.
 
-## 作用范围
+## Scope
 
-这只控制 **构建器** 的外观。你生成的应用有自己的主题设置(亮/暗/跟随系统),在[应用配置](/zh/guide/config/appearance)中按应用配置。
+This controls the **builder's** appearance only. The apps you generate have their own theme settings (light/dark/follow-system) configured per app under [App Configuration](/zh/guide/config/appearance).

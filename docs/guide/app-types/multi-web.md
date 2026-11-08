@@ -45,4 +45,4 @@ Each site entry has:
 - Each site is still a web target, so per-app networking and privacy options apply to the whole multi-web app.
 - Gallery / single-image / single-video sites have their media embedded at export and resolved at runtime, so they render instead of going black.
 - Server-runtime apps (Node.js / PHP / Python / Go / WordPress) cannot be embedded as sites — their runtimes are not packaged into a multi-web APK. The site picker hides them, and a legacy config that still references one falls back to the site's URL at export.
-- For a single site, use [Web](/guide/app-types/web) instead.
+- For a single site, use [Web](/guide/app-types/web).

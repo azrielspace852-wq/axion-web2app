@@ -1,20 +1,20 @@
-# 外观
+# Appearance
 
-外观和界面能力的主题索引。每一项都在[编辑通用配置](/zh/guide/app-actions/edit-common-config/)的某张卡片中配置 —— 点链接看详解。
+A thematic index of the appearance and UI capabilities. Each is configured by a card in [Edit Common Config](/zh/guide/app-actions/edit-common-config/) — follow the links for full detail.
 
-## 布局与边框
+## Layout & chrome
 
-- [浏览器工具栏](/zh/guide/app-actions/edit-common-config/browser-toolbar) —— 应用内工具栏可见性与各项。
-- [全屏模式](/zh/guide/app-actions/edit-common-config/fullscreen) —— 沉浸式、状态/导航栏。
-- [屏幕方向](/zh/guide/app-actions/edit-common-config/orientation) —— 竖屏/横屏/传感器模式。
-- [保持屏幕常亮](/zh/guide/app-actions/edit-common-config/keep-screen-on) —— 常亮模式、超时、亮度。
-- [悬浮小窗](/zh/guide/app-actions/edit-common-config/floating-window) —— 可调整大小的浮窗。
-- [长按菜单](/zh/guide/app-actions/edit-common-config/long-press-menu) —— 上下文菜单样式。
-- **状态栏颜色/背景** —— 在[高级设置](/zh/guide/app-actions/edit-common-config/advanced-settings)中。
+- [Browser Toolbar](/zh/guide/app-actions/edit-common-config/browser-toolbar) — in-app toolbar visibility and items.
+- [Fullscreen Mode](/zh/guide/app-actions/edit-common-config/fullscreen) — immersive mode, status/navigation bars.
+- [Screen Orientation](/zh/guide/app-actions/edit-common-config/orientation) — portrait/landscape/sensor modes.
+- [Keep Screen On](/zh/guide/app-actions/edit-common-config/keep-screen-on) — awake mode, timeout, brightness.
+- [Floating Window](/zh/guide/app-actions/edit-common-config/floating-window) — resizable floating window.
+- [Long-press Menu](/zh/guide/app-actions/edit-common-config/long-press-menu) — context menu style.
+- **Status bar color/background** — under [Advanced Settings](/zh/guide/app-actions/edit-common-config/advanced-settings).
 
-## 媒体与内容
+## Media & content
 
-- [启动动画](/zh/guide/app-actions/edit-common-config/splash) —— 图片/视频启动、跳过、裁剪。
-- [背景音乐](/zh/guide/app-actions/edit-common-config/bgm) —— 播放列表、歌词、样式。
-- [弹窗公告](/zh/guide/app-actions/edit-common-config/announcement) —— 公告模板与时机。
-- [网页自动翻译](/zh/guide/app-actions/edit-common-config/translate) —— 页内翻译叠加层。
+- [Splash Animation](/zh/guide/app-actions/edit-common-config/splash) — image/video splash, skip, trim.
+- [Background Music](/zh/guide/app-actions/edit-common-config/bgm) — playlists, lyrics, styling.
+- [Popup Announcement](/zh/guide/app-actions/edit-common-config/announcement) — announcement templates and timing.
+- [Webpage Auto Translation](/zh/guide/app-actions/edit-common-config/translate) — in-page translation overlay.

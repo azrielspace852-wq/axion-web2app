@@ -1,6 +1,6 @@
 # Chrome MV3 Extensions
 
-WebToApp runs Manifest V3 (and V2) Chrome extensions: content scripts, popups, options pages, a background context, and `declarativeNetRequest` rules. You can import a `.crx`/`.zip`, or install live from the Chrome Web Store via the **Browser Extensions** tab.
+AXION Web2App runs Manifest V3 (and V2) Chrome extensions: content scripts, popups, options pages, a background context, and `declarativeNetRequest` rules. You can import a `.crx`/`.zip`, or install live from the Chrome Web Store via the **Browser Extensions** tab.
 
 ## Supported `manifest.json` fields
 
@@ -41,7 +41,7 @@ Android WebView has a **single JavaScript context**. `world: "ISOLATED"` and `wo
 
 ::: info Background is a hidden WebView
 The MV3 "service worker" runs in a hidden WebView with a service-worker environment shim (`self`, `clients`, `caches`, `install`/`activate`/`fetch` events). In the background, `fetch()` is rewritten to go through a native HTTP path that bypasses CORS. It is not a real service worker.
-:::
+::=
 
 ## `declarativeNetRequest`
 

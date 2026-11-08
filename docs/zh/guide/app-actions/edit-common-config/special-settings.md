@@ -1,73 +1,73 @@
-# 特殊设置
+# Special Settings
 
-兼容性 polyfill、桥接和其他专门开关。这张卡片汇集了专门的 `WebViewConfig` 选项。
+Compatibility polyfills, bridges, and other specialized toggles. This card collects the specialized `WebViewConfig` options.
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器中的 **特殊设置** 卡片。
+**Where:** the **Special settings** card in the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor.
 
-## Polyfill 与桥接
+## Polyfills & bridges
 
-- **剪贴板 polyfill** —— `enableClipboardPolyfill`。
-- **通知 polyfill** —— Web Notification 支持(`enableNotificationPolyfill`)。导出时打开网页通知,或打开这个开关后,`new Notification()` 和同源 service worker 的 `showNotification` 都会进系统通知栏。
-- **方向 polyfill** —— `enableOrientationPolyfill`。
-- **兼容 polyfill** —— 一组兼容 shim(`enableCompatPolyfills`)。
-- **原生桥** —— 暴露带能力门控的 [`window.NativeBridge`](/zh/extensions/native-bridge)（`enableNativeBridge`、`nativeBridgeCapabilities`）。**文件夹**能力默认关闭。打开后，页面可选择一个目录，并在系统 WebView 上通过 `WtaDirectory` 列出、读取和写入。授权留在那台设备上，导出的应用需要再选一次。
-- **打印桥** —— 拦截 `window.print()` 和 PDF 输出到 Android 打印框架(`enablePrintBridge`)。
-- **媒体会话桥** —— 把网页媒体接入系统媒体通知和锁屏控制,支持蓝牙耳机和 Android Auto(`enableMediaSession`)。
-- **后台继续播放** —— 离开应用后，正在播放的声音继续，通知栏可以暂停。画面会停，回到应用后接着播(`backgroundMediaPlayback`，默认关闭；打开时会同时打开媒体会话)。
-- **网页分享** —— 网页把文字和文件交给系统分享面板，由用户选择目标应用（`enableShareBridge`，默认开启）。说明文字可以和文件一起送出。文档使用和文件选择器相同的 MIME 类型。
-- **缩放 polyfill** —— `enableZoomPolyfill`。
+- **Clipboard polyfill** — `enableClipboardPolyfill`.
+- **Notification polyfill** — Web Notification support (`enableNotificationPolyfill`). With web notifications on at export, or this switch on, `new Notification()` and a same-origin service worker's `showNotification` both reach the system shade.
+- **Orientation polyfill** — `enableOrientationPolyfill`.
+- **Compat polyfills** — a bundle of compatibility shims (`enableCompatPolyfills`).
+- **Native bridge** — expose [`window.NativeBridge`](/zh/extensions/native-bridge) with capability gates (`enableNativeBridge`, `nativeBridgeCapabilities`). The **Folder** capability stays off until enabled. The page then picks one directory and can list, read, and write it through `WtaDirectory` on the system WebView. The grant is kept on that device, so an exported app asks again.
+- **Print bridge** — intercept `window.print()` and PDF output to the Android print framework (`enablePrintBridge`).
+- **Media Session bridge** — bridge web media to the system media notification and lock-screen controls, including Bluetooth headsets and Android Auto (`enableMediaSession`).
+- **Keep playing in background** — audio that is already playing continues after you leave, and the notification can pause it. The picture stops until you come back (`backgroundMediaPlayback`, off by default; turning it on also turns on the media session).
+- **Share from the page** — the page hands text and files to the system share sheet, and the user picks the target app (`enableShareBridge`, on by default). A caption can go with the files. Documents use the same MIME types as the file chooser.
+- **Zoom polyfill** — `enableZoomPolyfill`.
 
-## 媒体与内容
+## Media & content
 
-- **媒体自动播放** —— 带范围(`mediaAutoplayEnabled`、`mediaAutoplayScope`:仅视频……)。
-- **图片修复** —— 修复损坏的图片(`enableImageRepair`)。
-- **滚动记忆** —— 记住滚动位置(`enableScrollMemory`)。
-- **返回状态保留** —— `enableBackStatePreservation`。
-- **Blob 下载拦截** —— 带范围和大小阈值(`enableBlobDownloadInterception`、`blobInterceptThresholdMb`)。仅系统 WebView;GeckoView 应用不需要这个开关也能保存 blob 和 `data:` 下载。
-- **接收分享内容** —— 生成的 App 出现在 Android 系统分享面板中;收到的图片/文本经 `wta:share` DOM 事件送达页面,或预填页面的文件选择器(`receiveShareImages`、`receiveShareText`、`shareDeliveryMode`、`sharePromptBeforeUse`)。见[接收分享内容](/zh/guide/more-features/share-receive)。
+- **Media autoplay** — with scope (`mediaAutoplayEnabled`, `mediaAutoplayScope`: video-only, …).
+- **Image repair** — fix broken images (`enableImageRepair`).
+- **Scroll memory** — remember scroll position (`enableScrollMemory`).
+- **Back-state preservation** — `enableBackStatePreservation`.
+- **Blob download interception** — with scope and size threshold (`enableBlobDownloadInterception`, `blobInterceptThresholdMb`). System WebView only; GeckoView apps save blob and `data:` downloads without this switch.
+- **Receive shared content** — the generated app appears in the Android share sheet; incoming images/text arrive via the `wta:share` DOM event or prefill the page's file chooser (`receiveShareImages`, `receiveShareText`, `shareDeliveryMode`, `sharePromptBeforeUse`). See [Receive Shared Content](/zh/guide/more-features/share-receive).
 
-## JavaScript 与窗口
+## JavaScript & windows
 
-- **JS 可打开窗口** —— 带策略(`javaScriptCanOpenWindows`、`jsOpenWindowsPolicy`)。
-- **预置用户激活** —— 合成用户手势,带模式和时机(`primeUserActivation`、`primeUserActivationMode`、`primeUserActivationTiming`)。
-- **Base64 深度链接** —— 解码 base64 深度链接,仅手势或总是(`decodeBase64DeepLinks`、`decodeBase64Mode`)。
+- **JS can open windows** — with policy (`javaScriptCanOpenWindows`, `jsOpenWindowsPolicy`).
+- **Prime user activation** — synthesize a user gesture, with mode and timing (`primeUserActivation`, `primeUserActivationMode`, `primeUserActivationTiming`).
+- **Base64 deep links** — decode base64 deep links, gesture-only or always (`decodeBase64DeepLinks`, `decodeBase64Mode`).
 
-## 应用回跳
+## App-to-app returns
 
-- **应用回跳** —— 声明其他应用把控制权**交回**本应用的通道,这样在对方应用内完成授权后,QQ、微博等第三方登录才能回到本应用(`enableAppReturn`,默认开启)。关闭后页面仍能*打开*对方应用(任何非 http scheme 都会交给系统),但回调无处可返,系统会提示没有可用于打开的应用。
-  - 只声明**回跳**通道,绝不声明 `weixin`、`alipays` 这类唤起通道:声明它们会让本应用成为对方自家链接的候选,点"微信支付"可能弹出本应用而不是微信。
-  - **自定义回跳 scheme**(`customAppReturnSchemes`)—— 部分平台把回调 scheme 绑定到你在它那里注册的应用 ID(例如微信的 `wx<appid>`),无法作为默认值提供。每行或用逗号分隔一个。
+- **App return** — declare the channels other apps use to hand control **back**, so an OAuth / SSO login (QQ, Weibo, …) can return to this app once you have authorised inside the provider app (`enableAppReturn`, on by default). Without it the page can still *open* the provider app — any non-http scheme is handed to the system — but the callback has nowhere to return to, and the system reports that no app can handle the link.
+  - Only **return** channels are declared, never launcher schemes such as `weixin` or `alipays`: claiming one of those would make this app a candidate for the real provider's own links.
+  - **Custom return schemes** (`customAppReturnSchemes`) — some providers bind the callback scheme to the app id you registered with them (WeChat's `wx<appid>`, for instance), so it cannot ship as a default. Enter one per line or comma-separated.
 
-### 各平台的回跳方式
+### How each platform returns
 
-声明平台的**唤起** scheme(`weixin`、`alipays`、`taobao` 等)没有帮助,反而有害:这些 scheme 是用来**打开**该平台的,一旦你也声明,本应用就成了对方自家链接的候选,用户在支付中途会看到应用选择框。应用回跳只声明**回跳**通道。
+Declaring a provider's *launcher* scheme (`weixin`, `alipays`, `taobao`, …) does not help and can hurt: those schemes are how the provider is **opened**, so claiming one makes this app a candidate for the provider's own links and the user gets an app chooser mid-payment. App return declares return channels only.
 
-| 平台 | 如何交回控制权 | 由谁覆盖 |
+| Platform | How it hands control back | Covered by |
 | --- | --- | --- |
-| QQ(网页登录) | `mqqopensdkapi://browser?url=<回调地址>` —— 与调用方无关 | 内置,默认开启 |
-| 微信(SSO / H5 支付) | 回到你在微信开放平台注册的 scheme(`wx<AppID>`);H5 支付还需要商户后台把它加入白名单 | **自定义回跳 scheme** —— 先注册应用,再填 `wx<AppID>` |
-| 支付宝(H5 支付 / 授权) | 回到**调用方指定**的 scheme;浏览器和应用各传各的,页面里的那个值必须被改写才能回到本应用 | 不自动 —— 见下 |
-| 微博(SSO) | 回到与你的 AppKey 匹配的 scheme(`wb<AppKey>`) | **自定义回跳 scheme** |
-| 淘宝 / 天猫 / 京东 / 抖音 / 哔哩哔哩 | 没有与调用方无关的回跳通道;页面原地继续,或走自己域名下的 http(s) 回调 | 站点自身的 https 回调,导出时已声明 |
+| QQ (web OAuth) | `mqqopensdkapi://browser?url=<redirect_uri>` — app-agnostic | Built in, on by default |
+| WeChat (SSO / H5 pay) | Returns to the scheme you registered on WeChat Open Platform (`wx<AppID>`); H5 pay additionally requires the merchant to whitelist it | **Custom return schemes** — register an app, then enter `wx<AppID>` |
+| Alipay (H5 pay / auth) | Returns to a scheme **the caller supplies**; browsers and apps pass their own, and the page's value has to be rewritten to reach this app | Not automatic — see below |
+| Weibo (SSO) | Returns to the scheme matching your AppKey (`wb<AppKey>`) | **Custom return schemes** |
+| Taobao / Tmall / JD / Douyin / Bilibili | No app-agnostic return channel; the page resumes in place, or via an http(s) callback on its own host | The site's own https callback, which the export already declares |
 
-对于回跳到**被封装站点自己域名下的 https 回调**的平台(支付宝 H5、微信网页授权),导出时已声明该 host,所以回调能够回到本应用 —— 当浏览器也匹配时,Android 可能询问用哪个应用打开。
+For platforms that return to an **https** callback on the wrapped site's own host (Alipay H5, WeChat web authorisation), the export already declares that host, so the callback can come back to the app — Android may ask which app to use when a browser also matches.
 
-## 安全与其他
+## Security & misc
 
-- **跨源隔离** —— `enableCrossOriginIsolation`。
-- **防截屏** —— 阻止屏幕截取(`antiCapture`)。
-- **视频全屏时隐藏状态栏** —— 网页视频进入 HTML5 全屏播放时强制隐藏状态栏,退出全屏后恢复(`hideStatusBarInVideoFullscreen`,默认开启)。视频全屏期间优先于[全屏模式](/zh/guide/app-actions/edit-common-config/fullscreen)中的"全屏显示状态栏"选项。
-- **文件 URL 的文件访问** —— `allowFileAccessFromFileURLs`、`allowUniversalAccessFromFileURLs`。
-- **错误页** —— 自定义错误页配置(`errorPageConfig`)。
-- **性能优化** —— `performanceOptimization`。
-- **PWA 离线** —— 离线缓存策略(`pwaOfflineEnabled`、`pwaOfflineStrategy`)。
-- **每次打开都是新会话** —— 在 **网络与离线** 卡片上,与 PWA 离线相邻(`clearBrowsingDataOnLaunch`)。默认关闭。生成的 APK 会在每次冷启动(包括第二次打开)清除 Cookie、站点存储和磁盘上的 WebView 资料。它不能和 PWA 离线同时开启。保持关闭则资料目录保留。
-- **浮动返回按钮** —— `showFloatingBackButton`。
-- **键盘调整模式** —— `keyboardAdjustMode`(resize……)。在 Android 11 及更高版本上,RESIZE 在键盘移动时保持页面顶部不动,并裁到键盘上沿。页面自身没有足够的滚动范围露出焦点输入框时,会在动画结束后一次性让出键盘高度;已经避开了键盘的页面保留完整高度,输入框既不会被移动也不会被画两次。在 Android 10 及以下,RESIZE 走经典窗口缩放路径(窗口非 edge-to-edge)。
-- **全屏视频方向** —— 全屏视频如何转向(`fullscreenVideoOrientation`),如自动传感器横屏。
-- **隐藏 URL 预览** —— `hideUrlPreview`。
+- **Cross-origin isolation** — `enableCrossOriginIsolation`.
+- **Anti-capture** — block screen capture (`antiCapture`).
+- **Hide status bar in video fullscreen** — force-hide the status bar while a web video plays in HTML5 fullscreen, restoring it on exit (`hideStatusBarInVideoFullscreen`, on by default). Overrides the [Fullscreen Mode](/zh/guide/app-actions/edit-common-config/fullscreen) "show status bar in fullscreen" option while the video holds the screen.
+- **File access from file URLs** — `allowFileAccessFromFileURLs`, `allowUniversalAccessFromFileURLs`.
+- **Error page** — custom error page config (`errorPageConfig`).
+- **Performance optimization** — `performanceOptimization`.
+- **PWA offline** — offline cache strategy (`pwaOfflineEnabled`, `pwaOfflineStrategy`).
+- **Fresh session on launch** — on the **Network & Offline** card, next to PWA offline (`clearBrowsingDataOnLaunch`). Off by default. The generated APK then clears cookies, site storage, and the on-disk WebView profile on each cold start, including the second launch. It cannot be on together with PWA offline. Leaving it off keeps the profile.
+- **Floating back button** — `showFloatingBackButton`.
+- **Keyboard adjust mode** — `keyboardAdjustMode` (resize, …). On Android 11 and later, RESIZE keeps the top of the page still while the keyboard moves and clips at the keyboard. A page whose own scroll range cannot reveal the focused field gives up the keyboard height once, after the animation ends; a page that already avoids the keyboard keeps its full height, so the field is neither moved nor painted twice. On Android 10 and below, RESIZE uses the classic window-resize path (the window is not edge-to-edge).
+- **Fullscreen video orientation** — how fullscreen video orients (`fullscreenVideoOrientation`), e.g. auto sensor landscape.
+- **Hide URL preview** — `hideUrlPreview`.
 
-## 说明
+## Notes
 
-- 这些是高级用户开关;大多数应用保持默认即可。
-- **默认值:**以下安全体验特性对新应用默认**开启**——剪贴板/方向/兼容 polyfill、媒体会话、分享、缩放与打印桥、图片修复、滚动记忆、返回状态保留、Blob 拦截、JS 窗口、用户激活预置、Base64 深链、应用回跳、私网桥和原生桥。刻意保持**关闭**:通知 polyfill(否则每个导出包都会弹通知权限)、定位、混合内容、第三方 Cookie、自动播放和弹窗拦截。
+- These are power-user toggles; most apps leave them at defaults.
+- **Defaults:** the safe experience features default to **ON** for new apps — clipboard / orientation / compat polyfills, media session, share, zoom and print bridges, image repair, scroll memory, back-state preservation, blob interception, JS windows, user-activation priming, base64 deep links, app return, private-network bridge, and the native bridge. Deliberately **OFF**: notification polyfill (it would prompt `POST_NOTIFICATIONS` on every export), geolocation, mixed content, third-party cookies, autoplay, and popup blocking.

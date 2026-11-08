@@ -1,39 +1,39 @@
 # Python
 
-在设备端 Python 服务器上运行 Python 项目;WebView 指向本地端口。
+Runs a Python project on an on-device Python server; the WebView points at the local port.
 
-## 适用场景
+## When to use
 
-Flask、Django、FastAPI、Tornado 应用,或内置 HTTP 服务器。
+Flask, Django, FastAPI, Tornado apps, or the built-in HTTP server.
 
-## 运行时
+## Runtime
 
-- **版本** —— Python 3.14。
-- **框架** —— Flask、Django、FastAPI(uvicorn)、Tornado、内置 HTTP 服务器。
-- **依赖** —— pip 解析进 `.pypackages`;支持自定义原生扩展。
-- **版本化** —— 二进制名带版本号,未来升级不会写死路径。
-- 在 [Linux 环境](/zh/guide/more-features/linux-environment)和[运行时管理](/zh/guide/more-features/runtime-management)界面管理。
+- **Version** — Python 3.14.
+- **Frameworks** — Flask, Django, FastAPI (uvicorn), Tornado, built-in HTTP server.
+- **Dependencies** — pip resolves into `.pypackages`; custom native extensions supported.
+- **Versioning** — binary names are versioned so future bumps don't hard-code paths.
+- Managed in the [Linux Environment](/zh/guide/more-features/linux-environment) and [Runtime Management](/zh/guide/more-features/runtime-management) screens.
 
-## 核心配置
+## Core config
 
-由 `PythonAppConfig` 支撑。
+Backed by `PythonAppConfig`.
 
-### 项目
+### Project
 
-- **项目**(`projectId`/`projectName`、`sourceProjectPath`)—— Python 源码。
-- **框架**(`framework`)—— 识别出的框架(若有)。
-- **Python 版本**(`pythonVersion`)。
+- **Project** (`projectId`/`projectName`, `sourceProjectPath`) — the Python source.
+- **Framework** (`framework`) — detected framework, if any.
+- **Python version** (`pythonVersion`).
 
-### 入口与服务器
+### Entry & server
 
-- **入口文件**(`entryFile`)—— 默认 `app.py`。
-- **入口模块**(`entryModule`)—— 用于模块式入口(如 `main:app`)。
-- **服务器类型**(`serverType`)—— 按检测到的框架自动推导(FastAPI→uvicorn、Django→gunicorn、其余→`builtin`),导入项目时自动配置,无需手动选择。
-- **端口**(`serverPort`)—— 通过[端口管理](/zh/guide/more-features/port-manager)分配。
-- **环境变量**(`envVars`)—— 传给进程的键值对。
+- **Entry file** (`entryFile`) — defaults to `app.py`.
+- **Entry module** (`entryModule`) — for module-style entry (e.g. `main:app`).
+- **Server type** (`serverType`) — derived automatically from the detected framework (FastAPI→uvicorn, Django→gunicorn, everything else→`builtin`); configured on import, no manual selection.
+- **Port** (`serverPort`) — allocated through the [Port Manager](/zh/guide/more-features/port-manager).
+- **Environment variables** (`envVars`) — key/value pairs passed to the process.
 
-### 依赖与扩展
+### Dependencies & extensions
 
-- **requirements 文件**(`requirementsFile`)—— 默认 `requirements.txt`。文件为空,或只有注释和 pip 选项时,不会启动安装。
-- **含 pip 依赖**(`hasPipDeps`)—— 依赖是否解析进 `.pypackages`。
-- **自定义原生扩展**(`customPythonExtensions`)—— 添加 `.so` 扩展,各带加载顺序。
+- **Requirements file** (`requirementsFile`) — defaults to `requirements.txt`. A file that is empty, or only comments and pip options, does not start an install.
+- **Has pip dependencies** (`hasPipDeps`) — whether deps resolve into `.pypackages`.
+- **Custom native extensions** (`customPythonExtensions`) — add `.so` extensions, each with load order.

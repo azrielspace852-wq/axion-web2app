@@ -1,16 +1,16 @@
-# 应用分类
+# App Categories
 
-[我的应用](/zh/guide/main-screen/my-apps)顶栏下方的标签行让你把应用整理进分类。
+The tab row beneath the top bar on [My Apps](/zh/guide/main-screen/my-apps) organizes your apps into categories.
 
-## 使用分类
+## Using categories
 
-- **选中** 某个标签,把[应用列表](/zh/guide/main-screen/app-list)过滤到该分类。
-- **添加** 分类,用 ＋ 操作 —— 给它一个 **名称** 和一个 **图标**。
-- **编辑** 现有分类(改名或换图标)。
-- **删除** 不再需要的分类。
+- **Select** a tab to filter the [app list](/zh/guide/main-screen/app-list) to that category.
+- **Add** a category with the ＋ action — give it a **name** and an **icon**.
+- **Edit** an existing category (rename or change its icon).
+- **Delete** a category you no longer need.
 
-## 在分类间移动应用
+## Moving apps between categories
 
-应用的分类从它的操作菜单更改:点击应用卡片上的 ⋮,再点 **移动到分类**,选择目标。见[移动到分类](/zh/guide/app-actions/move-to-category)。
+An app's category is changed from its action menu: tap ⋮ on the app card, then **Move to Category**, and pick the destination. See [Move to Category](/zh/guide/app-actions/move-to-category).
 
-分类纯粹用于整理 —— 不影响应用如何构建或运行。
+Categories are purely organizational — they don't affect how an app builds or runs.

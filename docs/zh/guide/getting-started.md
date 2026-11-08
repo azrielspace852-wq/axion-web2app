@@ -1,88 +1,88 @@
-# 快速开始
+# Getting Started
 
-本教程带你从全新安装走到第一个已签名的 APK。每一步都会说明应用在背后实际做了什么,让流程能从代码的角度理解。
+This walkthrough takes you from a fresh install to your first signed APK. At each step it notes what the app is actually doing under the hood, so the flow makes sense in terms of the code.
 
-## 1. 安装并启动
+## 1. Install and launch
 
-在运行 **Android 7.0(API 24)或更高版本** 的设备上安装 WebToApp 构建器。
+Install the AXION Web2App builder on a device running **Android 7.0 (API 24) or newer**.
 
 <div class="wta-install">
 
-**下载构建器**
+**Download the builder**
 
 <LatestRelease variant="install" />
 
-从 [GitHub Releases](https://github.com/shiaho777/web-to-app/releases) 获取 APK,像普通应用一样安装即可。按钮会自动检测最新版本。
+Get the APK from [GitHub Releases](https://github.com/azrielspace852-wq/axion-web2app/releases) and install it like any other APK. The button auto-detects the newest version.
 
 </div>
 
-启动时,`WebToAppApplication` 以 **构建器模式**(`SHELL_RUNTIME_ONLY = false`)启动:初始化 i18n 字符串、Room 数据库和依赖图,然后显示 **我的应用** —— 即列出你所创建的全部应用的主页。见[主界面](/zh/guide/main-screen/my-apps)。
+On launch, `WebToAppApplication` starts in **builder mode** (`SHELL_RUNTIME_ONLY = false`): it initializes the i18n strings, the Room database, and the dependency graph, then shows **My Apps** — the home screen that lists every app you create. See [Main Screen](/zh/guide/main-screen/my-apps).
 
-## 2. 创建一个应用定义
+## 2. Create an app definition
 
-在 **我的应用** 底部,点击 **创建**。会展开一个面板,含[应用类型](/zh/guide/app-types/)的 3 列网格。
+At the bottom of **My Apps**, tap **Create**. A panel expands with a 3-column grid of [app types](/zh/guide/app-types/).
 
-默认网格是 **网页 · 多站点 · HTML · 离线包 · 前端 · 画廊**。PHP、WordPress、Node.js、Python、Go 和媒体要在[关于](/zh/guide/more-features/about)页打开 **高级功能** 后才出现。该开关默认关闭。
+By default that grid is **Web · Multi-Web · HTML · Offline Pack · Frontend · Gallery**. PHP, WordPress, Node.js, Python, Go, and Media appear after you turn on **Advanced features** in [About](/zh/guide/more-features/about). That switch is off by default.
 
-第一个应用点击 **网页**。网页编辑器打开。
+Tap **Web** for your first app. The Web editor opens.
 
-## 3. 填写基本信息
+## 3. Fill in the basics
 
-填写顶部的 **基本信息** 卡片:
+Fill in the top **Basic info** card:
 
-- **应用名称**
-- **目标 URL** —— 例如 `https://example.com`
-- **图标** —— 可选;否则用类型专属默认图标
+- **App name**
+- **Target URL** — e.g. `https://example.com`
+- **Icon** — optional; a type-specific default is used otherwise
 
-编辑器其余部分是一长串可选能力卡片(全屏、启动画面、去广告、DNS、伪装……)。现在忽略它们 —— 会使用默认值。每一项都在[应用配置](/zh/guide/config/)中说明。
+The rest of the editor is a long list of optional capability cards (fullscreen, splash, ad blocking, DNS, disguise, …). Ignore them for now — defaults are used. Each is covered under [App Configuration](/zh/guide/config/).
 
-点击 **保存**。在背后,编辑器组装一个 `WebApp` 对象(`appType = WEB`,带一个 `webViewConfig`),并写入 `web_apps` Room 表。你的应用现在出现在列表中。
+Tap **Save**. Under the hood, the editor assembles a `WebApp` object (with `appType = WEB` and a `webViewConfig`) and writes it to the `web_apps` Room table. Your app now appears in the list.
 
-## 4. 预览
+## 4. Preview
 
-在 **我的应用** 中,点击你的应用卡片。列表会直接打开对应的 activity:
+On **My Apps**, tap your app's card. The list opens the matching activity directly:
 
-- `IMAGE` / `VIDEO` → 媒体播放器 activity(仅在高级功能开启时)
-- `GALLERY` → 画廊播放器 activity
-- 其他一切(包括 `WEB`)→ WebView activity
+- `IMAGE` / `VIDEO` → the media player activity (only while Advanced features is on)
+- `GALLERY` → the gallery player activity
+- everything else (including `WEB`) → the WebView activity
 
-返回栈上没有空白预览页。按一次返回就回到列表。
+There is no empty preview page on the back stack. One back returns to the list.
 
-对于网页应用,WebView activity 用你配置的设置加载你的 URL —— 与导出的应用将运行的代码相同。(改为点击卡片上的 ⋮ 按钮可打开[操作菜单](/zh/guide/app-actions/edit-core-config)。)
+For a Web app, the WebView activity loads your URL with your configured settings — the same code the exported app will run. (Tap the card's ⋮ button instead to open the [action menu](/zh/guide/app-actions/edit-core-config).)
 
-::: warning 预览 ≠ 导出
-预览走 **宿主** 路径(一切都在构建器的 classpath 上)。导出走 **shell** 路径,从嵌入的 JSON 读取你的配置。如果某个配置字段没有走完这段旅程,功能可能预览正常、导出后却消失。见[配置字段漂移](/zh/developer/config-drift)。
+::: warning Preview ≠ export
+Preview runs the **host** path (everything on the builder's classpath). Export runs the **shell** path, reading your config from an embedded JSON. A feature can work in preview yet vanish after export if a config field doesn't survive that trip. See [Config Field Drift](/zh/developer/config-drift).
 :::
 
-## 5. 构建 APK
+## 5. Build the APK
 
-点击应用卡片上的 ⋮,再点 **构建 APK**。在对话框中你可以:
+Tap ⋮ on your app's card, then **Build APK**. In the dialog you can:
 
-- 选择 **浏览器引擎**(系统 WebView 或 GeckoView),
-- 可选启用 **资源加密**、**隔离**、**后台运行** 和 **通知**,
-- 强制 **全量重建**(否则自动选择增量模式)。
+- pick the **browser engine** (System WebView or GeckoView),
+- optionally enable **resource encryption**, **isolation**, **background run**, and **notifications**,
+- force a **full rebuild** (otherwise an incremental mode is chosen automatically).
 
-点击构建。`ApkBuilder` 取得 shell 模板 APK,修改其包名 / 图标 / 权限,把你的 `WebApp` 配置作为 `app_config.json` 嵌入,并签名(V1/V2/V3)。见[构建 APK](/zh/guide/app-actions/build-apk)。
+Tap build. The `ApkBuilder` takes the shell template APK, patches its package name / icon / permissions, embeds your `WebApp` config as `app_config.json`, and signs the result (V1/V2/V3). See [Build APK](/zh/guide/app-actions/build-apk).
 
-## 6. 安装
+## 6. Install it
 
-从我的应用右上角打开 **⋮ → [文件管理](/zh/guide/more-features/file-manager)**。你的 APK 就在那里 —— 安装或分享。启动它时,那个 APK 以 **shell 模式**(`SHELL_RUNTIME_ONLY = true`)运行:`ShellModeManager` 读取*你*嵌入的 `app_config.json` 并驱动运行时,完全独立于构建器。
+Open **⋮ → [File Manager](/zh/guide/more-features/file-manager)** from the top-right of My Apps. Your APK is there — install it or share it. When you launch it, that APK runs in **shell mode** (`SHELL_RUNTIME_ONLY = true`): `ShellModeManager` reads *your* embedded `app_config.json` and drives the runtime, fully independent of the builder.
 
-## 下一步
+## Next steps
 
-- 导览[主界面](/zh/guide/main-screen/my-apps)。
-- 了解每种[应用类型](/zh/guide/app-types/)能做什么。
-- 探索各应用[应用功能](/zh/guide/app-actions/edit-core-config)。
-- 打开右上角 **⋮** 菜单 —— 见[更多功能](/zh/guide/more-features/agent)。
+- Tour the [Main Screen](/zh/guide/main-screen/my-apps).
+- Learn what each [app type](/zh/guide/app-types/) does.
+- Explore the per-app [App Actions](/zh/guide/app-actions/edit-core-config).
+- Open the top-right **⋮** menu — see [More Features](/zh/guide/more-features/agent).
 
-## 从源码构建
+## Build from source
 
-要求:Android Studio Hedgehog 或更新版本,JDK 17。Gradle wrapper 固定为 Gradle 9.4.1。
+Requirements: Android Studio Hedgehog or newer, JDK 17. The Gradle wrapper pins Gradle 9.4.1.
 
 ```bash
-git clone https://github.com/shiaho777/web-to-app.git
-cd web-to-app
+git clone https://github.com/azrielspace852-wq/axion-web2app.git
+cd axion-web2app
 ./gradlew assembleDebug
 ```
 
-发布构建需通过 `local.properties` 和 `app/build.gradle.kts` 配置签名。
+For release builds, configure signing through `local.properties` and `app/build.gradle.kts`.

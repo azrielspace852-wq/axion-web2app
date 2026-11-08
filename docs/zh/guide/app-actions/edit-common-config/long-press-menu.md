@@ -1,20 +1,20 @@
-# 长按菜单
+# Long-press Menu
 
-配置长按页面内容时显示的上下文菜单。
+Configures the context menu shown when long-pressing page content.
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器中的 **长按菜单** 卡片。
+**Where:** the **Long-press menu** card in the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor.
 
-## 选项
+## Options
 
-- **样式**(`longPressMenuStyle`):
-  - `DISABLED` —— 无长按菜单(同时禁用)
+- **Style** (`longPressMenuStyle`):
+  - `DISABLED` — no long-press menu (also disables it)
   - `SIMPLE`
   - `FULL`
   - `IOS`
   - `FLOATING`
   - `CONTEXT`
-- **空长按时不震动**(`longPressHapticOnActionOnly`):默认关闭。只在长按菜单本身打开时才显示这一行。打开后，长按弹出本菜单时，在长按判定成立的那一刻震动，不等菜单面板出现。网页自己处理的长按(选中文字、网页自己的菜单)仍然震动。两边都没有的长按保持安静。预览和导出的 APK 都作用于系统 WebView。
+- **No haptic on an empty long-press** (`longPressHapticOnActionOnly`): off by default. It only appears while the long-press menu itself is on. When it is on, a long-press that opens this menu vibrates on the press itself, before the sheet appears. A long-press the page handles, such as selecting text or opening the page's own menu, still vibrates. A long-press that does neither stays quiet. The option applies to the system WebView in preview and in the built APK.
 
-## 说明
+## Notes
 
-- 选择 `DISABLED` 以外的任意样式都会启用长按菜单(`longPressMenuEnabled`)。
+- Choosing any style other than `DISABLED` enables the long-press menu (`longPressMenuEnabled`).

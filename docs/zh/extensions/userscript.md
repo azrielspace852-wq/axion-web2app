@@ -1,10 +1,10 @@
-# 油猴脚本
+# Userscripts
 
-WebToApp 运行 Tampermonkey/Greasemonkey 风格的 `.user.js` 脚本,带 `GM_*` 桥。导入一个脚本,它会像其他扩展一样被解析、存储和注入。
+AXION Web2App runs Tampermonkey/Greasemonkey-style `.user.js` scripts with a `GM_*` bridge. Import a script and it is parsed, stored, and injected like any other extension.
 
-## 元数据块
+## Metadata block
 
-油猴脚本必须包含一个 `// ==UserScript== ... // ==/UserScript==` 块。没有它,文件会作为普通 JS 导入(作为油猴脚本则 `isValid = false`)。
+A userscript must contain a `// ==UserScript== ... // ==/UserScript==` block. Without it, the file is imported as plain JS (`isValid = false` as a userscript).
 
 ```js
 // ==UserScript==
@@ -26,50 +26,50 @@ WebToApp 运行 Tampermonkey/Greasemonkey 风格的 `.user.js` 脚本,带 `GM_*`
 console.log('Hello from a userscript')
 ```
 
-### 支持的 `@` 标签
+### Supported `@` tags
 
-`@name`、`@description`/`@desc`、`@version`、`@author`、`@namespace`、`@match`、`@include`、`@exclude`/`@exclude-match`、`@run-at`、`@grant`、`@require`、`@resource`(`name url`)、`@noframes`、`@icon`/`@iconURL`/`@icon64`/`@icon64URL`、`@homepage`/`@homepageURL`/`@website`。
+`@name`, `@description`/`@desc`, `@version`, `@author`, `@namespace`, `@match`, `@include`, `@exclude`/`@exclude-match`, `@run-at`, `@grant`, `@require`, `@resource` (`name url`), `@noframes`, `@icon`/`@iconURL`/`@icon64`/`@icon64URL`, `@homepage`/`@homepageURL`/`@website`.
 
-- **`@run-at`**:`document-start` → `DOCUMENT_START`;`document-end`/`document-body` → `DOCUMENT_END`;`document-idle`(默认)→ `DOCUMENT_IDLE`。
-- **`@match`**:Chrome glob(`<all_urls>` → `*`)。
-- **`@include`**:若写成 `/regex/` 形式,按正则处理。
-- **`@grant none`**:被过滤掉。
+- **`@run-at`**: `document-start` → `DOCUMENT_START`; `document-end`/`document-body` → `DOCUMENT_END`; `document-idle` (default) → `DOCUMENT_IDLE`.
+- **`@match`**: Chrome glob (`<all_urls>` → `*`).
+- **`@include`**: if written as `/regex/`, treated as a regex.
+- **`@grant none`**: filtered out.
 
 ## `GM_*` API
 
-同时提供经典的 `GM_*` 函数和基于 Promise 的 `GM.*`(Tampermonkey 4.x)。
+Both the classic `GM_*` functions and the Promise-based `GM.*` (Tampermonkey 4.x) are provided.
 
-| API | 说明 |
+| API | Notes |
 | --- | --- |
-| `GM_getValue` / `GM_setValue` / `GM_deleteValue` / `GM_listValues` | 由 SharedPreferences 支撑,按脚本命名空间隔离。 |
-| `GM_xmlhttpRequest` | 经 OkHttp。支持 `method`、`url`、`headers`、`data`、`responseType`;回调 `onload`/`onerror`/`ontimeout`/`onprogress`;返回 `{status, statusText, responseText, responseHeaders, finalUrl}`。 |
-| `GM_addStyle` | 注入样式表。 |
-| `GM_setClipboard` | 写入剪贴板。 |
-| `GM_openInTab` | 在新标签页打开 URL。 |
-| `GM_log` | 日志输出。 |
-| `GM_notification` | **简化实现 —— 仅记录日志;不弹系统通知。** |
-| `GM_getResourceText` / `GM_getResourceURL` | 读取 `@resource` 内容。 |
-| `GM_registerMenuCommand` / `GM_unregisterMenuCommand` | 集成到浮窗菜单。 |
-| `GM_openScriptWindow` / `GM_updateScriptWindow` / `GM_closeScriptWindow` | WebToApp 专属脚本窗口。 |
-| `GM_info` | `{script:{name,version,description,author,namespace,grants,resources}, scriptHandler:'WebToApp', version:'1.0'}` |
-| `unsafeWindow` | 等于 `window`(无沙箱)。 |
+| `GM_getValue` / `GM_setValue` / `GM_deleteValue` / `GM_listValues` | Backed by SharedPreferences, namespaced per script. |
+| `GM_xmlhttpRequest` | Via OkHttp. Supports `method`, `url`, `headers`, `data`, `responseType`; callbacks `onload`/`onerror`/`ontimeout`/`onprogress`; returns `{status, statusText, responseText, responseHeaders, finalUrl}`. |
+| `GM_addStyle` | Inject a stylesheet. |
+| `GM_setClipboard` | Write to the clipboard. |
+| `GM_openInTab` | Open a URL in a new tab. |
+| `GM_log` | Log output. |
+| `GM_notification` | **Simplified — logs only; does not show a system notification.** |
+| `GM_getResourceText` / `GM_getResourceURL` | Read `@resource` contents. |
+| `GM_registerMenuCommand` / `GM_unregisterMenuCommand` | Integrated into the floating window menu. |
+| `GM_openScriptWindow` / `GM_updateScriptWindow` / `GM_closeScriptWindow` | AXION Web2App-specific script windows. |
+| `GM_info` | `{script:{name,version,description,author,namespace,grants,resources}, scriptHandler:'AXION Web2App', version:'1.0'}` |
+| `unsafeWindow` | Equals `window` (no sandbox). |
 
-基于 Promise 的 `GM.*` 镜像上述全部(`GM.getValue`、`GM.xmlHttpRequest`……)。
+The Promise-based `GM.*` mirrors all of the above (`GM.getValue`, `GM.xmlHttpRequest`, …).
 
-::: warning grant 不被强制执行
-尽管 `@grant` 声明会被解析并列入 `GM_info.script.grants`,但**所有 `GM_*` 函数都无条件暴露** —— 宿主目前不按 grant 门控 API。为了与真正的 Tampermonkey/Greasemonkey 保持可移植性,仍应声明 grant。
+::: warning Grants are not enforced
+Although `@grant` declarations are parsed and listed in `GM_info.script.grants`, **all `GM_*` functions are exposed unconditionally** — the host does not currently gate APIs by grant. Declare grants anyway for portability with real Tampermonkey/Greasemonkey.
 :::
 
-## `@require` 与 `@resource`
+## `@require` and `@resource`
 
-`@require` 脚本和 `@resource` 文件会被下载并缓存,然后在你的脚本主体之前注入。
+`@require` scripts and `@resource` files are downloaded and cached, then injected before your script body.
 
-- 单个 `@require` 最大:**5 MB**。
-- 整个扩展包最大:**50 MB**。
+- Max single `@require` size: **5 MB**.
+- Max total extension package size: **50 MB**.
 
-注入顺序:bootstrap(窗口管理器)→ GM polyfill → 各 `@require` → 你的脚本。
+Injection order: bootstrap (window manager) → GM polyfill → each `@require` → your script.
 
-## 示例
+## Example
 
 ```js
 // ==UserScript==

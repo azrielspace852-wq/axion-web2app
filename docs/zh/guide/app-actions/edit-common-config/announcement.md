@@ -1,18 +1,18 @@
-# 弹窗公告
+# Popup Announcement
 
-在生成的应用中,于可配置的时机显示公告对话框。
+Shows an announcement dialog in the generated app at configurable moments.
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器中的 **公告** 卡片。
+**Where:** the **Announcement** card in the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor.
 
-## 选项
+## Options
 
-- **启用** —— 打开公告(`announcementEnabled`)。
-- **内容** —— 标题和正文;正文可为纯文本或 HTML(`announcementContentIsHtml`)。
-- **链接** —— 可选的操作链接,带自定义文本。
-- **模板** —— 视觉样式(`MINIMAL`、`XIAOHONGSHU`、`GRADIENT`、`GLASSMORPHISM`、`NEON`、`CUTE`……)。
-- **时机** —— 启动时、按间隔,或无网络时显示。
-- **只显示一次 / 需要确认** —— 控制重复行为以及用户是否必须确认。
+- **Enable** — turn announcements on (`announcementEnabled`).
+- **Content** — title and body; the body can be plain text or HTML (`announcementContentIsHtml`).
+- **Link** — an optional action link with custom text.
+- **Template** — visual style (`MINIMAL`, `XIAOHONGSHU`, `GRADIENT`, `GLASSMORPHISM`, `NEON`, `CUTE`, …).
+- **Timing** — show on launch, on an interval, or when there is no network.
+- **Show once / require confirmation** — control repeat behavior and whether the user must confirm.
 
-## 说明
+## Notes
 
-- 公告按应用配置,并随导出的 APK 一起发布。
+- Announcements are configured per app and ship inside the exported APK.

@@ -1,41 +1,41 @@
-# 本地服务运行时
+# Local Server Runtimes
 
-WebToApp 在设备端运行真实的服务运行时,并打包成可安装的 APK。按运行时不同,这可能是从应用存储 fork+exec 原生二进制(如同 Termux)、JNI 内嵌引擎(Node.js),或直驱构建加载通道(受限宿主上的 Go)。生成应用中的 WebView 指向由运行时提供的本地端口。
+AXION Web2App runs real server runtimes on-device and packages them into an installable APK. Depending on the runtime that means fork+exec of native binaries from app storage (like Termux), a JNI-embedded engine (Node.js), or a direct build-and-load driver (Go on locked-down hosts). The WebView in the generated app points at a local port served by the runtime.
 
-## 支持的运行时
+## Supported runtimes
 
-| 运行时 | 版本 | 说明 |
+| Runtime | Version | Notes |
 | --- | --- | --- |
-| **Node.js** | 18.20.x（完整 ICU） | 通过加载 `libnode.so` 的原生 `node_launcher` 包装器,在独立的 `:nodejs` 操作系统进程中运行。支持自定义原生 `.node` 扩展。完整 ICU 才能编译 `\p{ID_Start}` 这类 Unicode 属性转义。 |
-| **PHP** | 8.4 | 来自 `pmmp/PHP-Binaries`,首次使用下载一次。Composer 2.10.x。自定义原生扩展(`zend_extension`、`.so`)。 |
-| **Python** | 3.14 | Flask、Django、FastAPI(uvicorn)、Tornado、内置 HTTP 服务器。pip 依赖解析进 `.pypackages`。二进制名带版本号。 |
-| **Go** | 1.26.10 | 官方 Linux arm64 工具链(国内用 USTC 镜像)。设备端 `go build` / `go mod` / `go run`、`vendor/` 离线构建、通过 `go_exec_loader` 提供静态服务。已解压的更旧目录会重新下载。 |
-| **WordPress** | 7.x | 基于本地 PHP + SQLite(`sqlite-database-integration`)。主题与插件导入。 |
+| **Node.js** | 18.20.x (full ICU) | Runs in a dedicated `:nodejs` OS process via a native `node_launcher` wrapper loading `libnode.so`. Custom native `.node` extensions supported. Full ICU is required for Unicode property escapes such as `\p{ID_Start}`. |
+| **PHP** | 8.4 | From `pmmp/PHP-Binaries`, downloaded once on first use. Composer 2.10.x. Custom native extensions (`zend_extension`, `.so`). |
+| **Python** | 3.14 | Flask, Django, FastAPI (uvicorn), Tornado, built-in HTTP server. pip deps resolve into `.pypackages`. Versioned binary names. |
+| **Go** | 1.26.10 | Official Linux arm64 toolchain (USTC mirror for CN). On-device `go build` / `go mod` / `go run`, `vendor/` offline builds, static serving via `go_exec_loader`. An older extracted tree is downloaded again. |
+| **WordPress** | 7.x | Over local PHP + SQLite (`sqlite-database-integration`). Theme and plugin import. |
 
-**Linux 环境** 界面管理 Node、PHP、Python 和 Go 的工具链与依赖。
+A **Linux Environment** screen manages toolchains and dependencies for Node, PHP, Python, and Go.
 
-## 运行时如何协调
+## How runtimes are coordinated
 
-- **端口管理器** —— 通过广播接收器在多个生成应用间协调运行时端口,冲突时重分配、自动杀掉冲突方或弹窗提醒。运行时通过端口管理器分配端口,并在停止时清理。
-- **本地 DNS 桥代理** —— Android JVM 中的 HTTP CONNECT 代理,为那些 musl/打包二进制无法触达系统解析器的运行时,提供可用的 DNS 解析和出站 HTTP。
-- **下载** —— 大型运行时下载使用延长超时的下载客户端,而非默认的短超时客户端。
+- **Port Manager** — coordinates runtime ports across generated apps via broadcast receivers, with conflict handling: reassign, auto-kill, or alert. Runtimes allocate through the Port Manager and clean up on stop.
+- **Local DNS bridge proxy** — an HTTP CONNECT proxy in the Android JVM gives runtimes working DNS resolution and outbound HTTP where the musl/packed binary can't reach the system resolver.
+- **Downloads** — large runtime downloads use an extended-timeout download client, not the default short-lived one.
 
-## 导出要求
+## Export requirements
 
-导出运行时应用时,所需的原生库会被嵌入 APK:
+When you export a runtime app, the required native libraries are embedded into the APK:
 
-- **Node.js** → `libnode_bridge.so` + `libnode.so`(16KB 对齐)+ `libc++_shared.so`
+- **Node.js** → `libnode_bridge.so` + `libnode.so` (16KB-aligned) + `libc++_shared.so`
 - **Go** → `libgo_exec_loader.so`
 
-::: info 16KB 页对齐
-`libnode.so` 和其他大型 ELF 原生库为 Android 15+ 设备做了 16KB 对齐。原生启动器在 `dlopen` 之前启用 16KB 应用兼容。
+::: info 16KB page alignment
+`libnode.so` and other large ELF natives are 16KB-aligned for Android 15+ devices. The native launcher enables 16KB app-compat before `dlopen`.
 :::
+
+::: info Host-side preview vs generated apps
+Host preview of Node.js apps goes through the same JNI launcher and works at any `targetSdk`. Go builds and previews in the host through a direct driver even where fork+exec is blocked. Other exec-based runtimes (PHP / Python / WordPress) can only be previewed when the host build permits exec from app storage — on the host (`targetSdk` ≥ 29), SELinux W^X blocks it and those previews degrade with an explicit message. Generated APKs for those types always ship `targetSdk` 28 and are never affected.
 
 ---
 
-::: info 宿主预览与生成应用的区别
-Node.js 应用的宿主预览走同一套 JNI 启动器,在任何 `targetSdk` 下都可用。Go 在宿主内经直驱通道构建和预览,即使 fork+exec 被拦截也不受影响。其他基于 exec 的运行时(PHP / Python / WordPress)只有在宿主构建允许从应用存储 exec 时才能预览 —— 在 `targetSdk` ≥ 29 的宿主上,SELinux W^X 会拦截,这些预览会以明确提示优雅降级。这些类型的生成 APK 始终以 `targetSdk` 28 发布,完全不受影响。
-
-::: tip 各运行时的安装指南即将推出
-每个运行时的详细首次安装、依赖安装与故障排除正在编写中。
+::: tip Per-runtime setup guides coming soon
+Detailed first-run setup, dependency installation, and troubleshooting for each runtime are being written.
 :::

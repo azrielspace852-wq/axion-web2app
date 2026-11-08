@@ -1,17 +1,17 @@
-# 自定义DNS
+# Custom DNS
 
-覆盖应用的 DNS 解析,包括 DNS-over-HTTPS。
+Overrides DNS resolution for the app, including DNS-over-HTTPS.
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器中的 **自定义DNS** 卡片。
+**Where:** the **Custom DNS** card in the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor.
 
-## 选项
+## Options
 
-- **DNS 模式**(`dnsMode`)—— `SYSTEM`(默认)或 DoH 提供商 / 自定义端点。
-- **DoH 提供商** —— Cloudflare、Google、AdGuard、NextDNS、CleanBrowsing、Quad9、Mullvad,或自定义端点。
-- **DNS 配置** —— 提供商专属设置(`dnsConfig`)。
-- **引擎类型** —— 这里也可选择浏览器引擎(`engineType`;系统 WebView 或 GeckoView)。
+- **DNS mode** (`dnsMode`) — `SYSTEM` (default) or a DoH provider / custom endpoint.
+- **DoH providers** — Cloudflare, Google, AdGuard, NextDNS, CleanBrowsing, Quad9, Mullvad, or a custom endpoint.
+- **DNS config** — provider-specific settings (`dnsConfig`).
+- **Engine type** — the browser engine can also be chosen here (`engineType`; System WebView or GeckoView).
 
-## 说明
+## Notes
 
-- 严格模式的 DoH 把所有 DNS 走 HTTPS;自动模式按需回退。
-- Hosts 映射(host → IP 覆盖)在[高级设置](/zh/guide/app-actions/edit-common-config/advanced-settings)中配置。
+- DoH in strict mode routes all DNS over HTTPS; automatic mode falls back as needed.
+- Hosts mappings (host → IP overrides) are configured under [Advanced Settings](/zh/guide/app-actions/edit-common-config/advanced-settings).

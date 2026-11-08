@@ -1,25 +1,25 @@
-# 分享 APK
+# Share APK
 
-构建 APK,然后打开系统分享面板发送。点击应用卡片上的 ⋮,再点 **分享 APK**。
+Builds the APK, then opens the system share sheet to send it. Tap ⋮ on an app card, then **Share APK**.
 
-## 工作方式
+## How it works
 
-1. WebToApp 构建 APK(显示"构建中"提示)。
-2. 成功后,报告所用的增量构建模式。
-3. 系统分享面板打开,附带 APK,可发送到任意应用。
+1. AXION Web2App builds the APK (showing a "building" notice).
+2. On success, it reports the incremental build mode used.
+3. The system share sheet opens with the APK attached, ready to send to any app.
 
-## 如果失败
+## If it fails
 
-会显示一份诊断报告,含:
+A diagnostic report is shown with:
 
-- 失败阶段和原因,
-- 项目详情,
-- 构建日志尾部,
-- 最近日志。
+- the failure stage and cause,
+- the project details,
+- the build-log tail,
+- recent logs.
 
-你可以复制报告用于排查。
+You can copy the report for troubleshooting.
 
-## 说明
+## Notes
 
-- 只构建不分享,用[构建 APK](/zh/guide/app-actions/build-apk)。
-- 要源码而不是 APK，用[导出源码](/zh/guide/app-actions/export-apk)。
+- To build without sharing, use [Build APK](/zh/guide/app-actions/build-apk).
+- To export the app's source instead of an APK, use [Export source](/zh/guide/app-actions/export-apk).

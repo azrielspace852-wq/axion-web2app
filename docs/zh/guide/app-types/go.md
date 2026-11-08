@@ -1,42 +1,42 @@
 # Go
 
-在设备上构建并运行 Go 项目;WebView 指向本地端口。
+Builds and runs a Go project on-device; the WebView points at the local port.
 
-## 适用场景
+## When to use
 
-Gin/Echo/Fiber 服务、静态文件服务和编译工具。
+Gin/Echo/Fiber services, static file serving, and compiled tools.
 
-## 运行时
+## Runtime
 
-- **工具链** —— 官方 Go 1.26.10 Linux arm64(从 `dl.google.com` 下载 `.tar.gz`,国内用 USTC 镜像)。1.26.10 是 1.26 上 GO-2026-6809 的修复。已解压目录的 `VERSION` 更旧时会重新下载。
-- **设备端** —— `go build` / `go mod` / `go run`、`vendor/` 离线构建,以及通过原生 `go_exec_loader` 包装器提供静态服务。在禁止 fork+exec 的宿主上,工具链走直驱通道(单发编译/汇编/链接 + 内容缓存),不拉起进程。
-- 在 [Linux 环境](/zh/guide/more-features/linux-environment)和[运行时管理](/zh/guide/more-features/runtime-management)界面管理。
+- **Toolchain** — official Go 1.26.10 Linux arm64 (`.tar.gz` from `dl.google.com`, USTC mirror for CN). 1.26.10 is the 1.26 fix for GO-2026-6809. An extracted tree whose `VERSION` is older is downloaded again.
+- **On-device** — `go build` / `go mod` / `go run`, `vendor/` offline builds, and static serving via the native `go_exec_loader` wrapper. On locked-down hosts (no fork+exec) the toolchain runs through a direct driver that replays single-shot compile/assemble/link steps with a content cache instead of spawning processes.
+- Managed in the [Linux Environment](/zh/guide/more-features/linux-environment) and [Runtime Management](/zh/guide/more-features/runtime-management) screens.
 
-## 导出要求
+## Export requirements
 
-导出的 APK 嵌入 `libgo_exec_loader.so`。
+The exported APK embeds `libgo_exec_loader.so`.
 
-## 核心配置
+## Core config
 
-由 `GoAppConfig` 支撑。
+Backed by `GoAppConfig`.
 
-### 项目
+### Project
 
-- **项目**(`projectId`/`projectName`)—— Go 模块。
-- **框架**(`framework`)—— 识别出的框架(若有)。
+- **Project** (`projectId`/`projectName`) — the Go module.
+- **Framework** (`framework`) — detected framework, if any.
 
-### 构建
+### Build
 
-- **二进制名**(`binaryName`)—— 输出二进制。
-- **目标架构**(`targetArch`)—— 例如 `arm64`。
-- `vendor/` 启用离线构建。
+- **Binary name** (`binaryName`) — the output binary.
+- **Target architecture** (`targetArch`) — e.g. `arm64`.
+- `vendor/` enables offline builds.
 
-### 服务器
+### Server
 
-- **端口**(`serverPort`)—— 通过[端口管理](/zh/guide/more-features/port-manager)分配。
-- **静态目录**(`staticDir`)—— 静态提供服务的目录。
-- **环境变量**(`envVars`)—— 传给进程的键值对。
+- **Port** (`serverPort`) — allocated through the [Port Manager](/zh/guide/more-features/port-manager).
+- **Static directory** (`staticDir`) — directory to serve statically.
+- **Environment variables** (`envVars`) — key/value pairs passed to the process.
 
-## 说明
+## Notes
 
-Go 工具链的 DNS 和 CA 信任经由 PHP 所用的同一个本地 JVM 桥。
+DNS and CA trust for the Go toolchain go through the same local JVM bridge used by PHP.

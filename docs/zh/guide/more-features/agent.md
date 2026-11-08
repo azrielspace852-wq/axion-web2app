@@ -1,36 +1,36 @@
 # Agent
 
-应用内的工具调用型助手,可操控 WebToApp 的全部功能。从 [⋮ → Agent](/zh/guide/main-screen/more) 打开。
+A tool-calling assistant inside the app that can operate the entire AXION Web2App surface. Open it from [⋮ → Agent](/zh/guide/main-screen/more).
 
-## 能做什么
+## What it can do
 
-除了生成网页应用、插件、油猴脚本、MV3 Chrome 扩展和本地运行时项目之外,Agent 还能直接执行应用内的各种操作:
+Beyond generating web apps, plugins, userscripts, MV3 Chrome extensions, and local runtime projects, the Agent can directly perform actions across the app:
 
-- **应用生命周期** —— 创建、编辑、复制、删除、构建 APK/AAB、导出、分享、创建快捷方式、移动分类。
-- **端口与引擎** —— 扫描/终止端口,查看/切换/删除浏览器引擎(WebView、GeckoView)。
-- **运行时** —— 查看状态、安装、清理 Node.js、PHP、Python、Go、WordPress 和 Linux 环境的缓存。
-- **广告拦截** —— 查看规则数量和订阅源,导入/删除/启用/停用 hosts 订阅。
-- **统计与健康** —— 使用统计、URL 健康检查。
-- **应用修改器** —— 列出已安装应用、克隆/换壳应用、批量文本导入、导出模板。
-- **构建环境与合规** —— 初始化 Linux 构建环境、安装组件、运行 Google Play 合规检查。
-- **模块** —— 列出、创建、更新插件。
-- **文件** —— 读取、写入、编辑、删除、列出、glob 和 grep 项目文件。
+- **App lifecycle** — create, edit, duplicate, delete, build APK/AAB, export, share, create shortcuts, move to categories.
+- **Ports & engines** — scan/kill ports, check/select/delete browser engines (WebView, GeckoView).
+- **Runtimes** — check status, install, and clear caches for Node.js, PHP, Python, Go, WordPress, and the Linux environment.
+- **Ad-block** — view rule counts and sources, import/remove/enable/disable hosts subscriptions.
+- **Stats & health** — usage statistics, URL health checks.
+- **App modifier** — list installed apps, clone/rebrand apps, batch import from text, export templates.
+- **Build environment & compliance** — initialize the Linux build environment, install components, run Google Play policy checks.
+- **Modules** — list, create, and update plugins.
+- **Files** — read, write, edit, delete, list, glob, and grep project files.
 
-## 功能
+## Features
 
-- **会话** —— 每段对话有自己的标题和历史。
-- **最多 60 个内置工具** —— 按功能域分组(文件、应用、配置模板、生命周期、端口/引擎、hosts/运行时、统计/修改器/导入、构建环境/Play、模块、图像、计划模式)。其中 55 个基础工具、2 个计划模式工具、3 个图像工具。图像工具仅在使用图像模型时加载。只读工具无需确认直接执行;写入工具会先请求权限。`ExportConfigTemplate` 是只读的;`ImportConfigTemplate` 会先请求确认。
-- **计划模式** —— 先提出计划,等你批准后再应用改动(以计划模式徽标显示)。
-- **韧性** —— 遇到 429/5xx 响应自动退避重试。
+- **Sessions** — each conversation has its own title and history.
+- **Up to 60 built-in tools** — grouped by domain (files, apps, config templates, lifecycle, ports/engine, hosts/runtime, stats/modifier/import, build env/Play, modules, imagery, plan mode). That is 55 base tools, 2 plan-mode tools, and 3 imagery tools. The imagery tools only load with an image-capable model. Read-only tools run without confirmation; write tools ask for permission first. `ExportConfigTemplate` is read-only; `ImportConfigTemplate` asks first.
+- **Plan mode** — proposes a plan and waits for your approval before applying changes (shown with a plan-mode badge).
+- **Resilience** — automatic retry with backoff on 429/5xx responses.
 
-## 本地 MCP
+## Local MCP
 
-[关于 → 本地 MCP](/zh/guide/more-features/about)默认关闭。开启后,外部 Agent 可以通过 `127.0.0.1` 调用同一套工具,并用 bearer 令牌保护。只读的预览工具会在一条文档任务里打开页面,方便你看着它操作。写操作仍会在手机上确认。生成的 APK 不带这个服务。电脑通过 `adb reverse` 访问该端口。
+[About → Local MCP](/zh/guide/more-features/about) is off by default. When it is on, an external agent can call the same tools over `127.0.0.1`, with a bearer token. A read-only preview tool opens the page in a document task you can watch. Write tools still ask on the phone. Generated APKs do not ship this server. A computer reaches the port with `adb reverse`.
 
-## 配置
+## Configuration
 
-Agent 使用 [AI 设置](/zh/guide/more-features/ai-settings) 中配置的模型和密钥。
+Agent uses the model and keys configured in [AI Settings](/zh/guide/more-features/ai-settings).
 
-## 说明
+## Notes
 
-Agent 既生成*源码*也执行*操作*。要安装生成的扩展,请通过[管理插件](/zh/guide/more-features/extension-modules)流程安装。
+Agent produces *source* and performs *actions*. To install a generated extension, save it through the [Manage Plugins](/zh/guide/more-features/extension-modules) flow.

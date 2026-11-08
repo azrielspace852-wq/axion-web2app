@@ -1,29 +1,29 @@
-# 网络与反审查
+# Network & Anti-Censorship
 
-网络能力的主题索引。每一项都在[编辑通用配置](/zh/guide/app-actions/edit-common-config/)的某张卡片中配置 —— 点链接看详解。
+A thematic index of the networking capabilities. Each is configured by a card in [Edit Common Config](/zh/guide/app-actions/edit-common-config/) — follow the links for full detail.
 
 ## DNS
 
-- [自定义DNS](/zh/guide/app-actions/edit-common-config/custom-dns) —— DNS 模式、DoH 提供商、自定义端点。
+- [Custom DNS](/zh/guide/app-actions/edit-common-config/custom-dns) — DNS mode, DoH providers, custom endpoints.
 
-## 代理、TLS 与 CORS
+## Proxies, TLS & CORS
 
-这些在[高级设置](/zh/guide/app-actions/edit-common-config/advanced-settings)中:
+These live under [Advanced Settings](/zh/guide/app-actions/edit-common-config/advanced-settings):
 
-- **代理** —— 静态 HTTP/HTTPS/SOCKS5 或 PAC,带认证和绕过规则。系统 WebView 过旧不支持代理覆盖的设备,子资源流量自动降级走应用内抓取桥,沿用同一套配置(无法代理的 HTTPS 上游直接 fail-closed)。
-- **TLS 指纹** —— 模拟浏览器 JA3 配置(如 `CHROME_131`)。
-- **CORS 绕过** —— 用于跨源 SPA。
-- **混合内容** 与 **私有网络桥**。
-- **Hosts 映射** —— host → IP 覆盖。
+- **Proxy** — static HTTP/HTTPS/SOCKS5 or PAC, with auth and bypass rules. On devices whose system WebView predates proxy override support, subresource traffic automatically falls back to an in-app fetch bridge honoring the same settings (HTTPS upstreams that cannot be proxied fail closed).
+- **TLS fingerprint** — impersonate a browser JA3 profile (e.g. `CHROME_131`).
+- **CORS bypass** — for cross-origin SPAs.
+- **Mixed content** and **private network bridge**.
+- **Hosts mappings** — host → IP overrides.
 
-## 故障转移
+## Failover
 
-- **故障转移镜像** —— 自动回退 URL,在[高级设置](/zh/guide/app-actions/edit-common-config/advanced-settings)中。
+- **Failover mirrors** — automatic fallback URLs, under [Advanced Settings](/zh/guide/app-actions/edit-common-config/advanced-settings).
 
-## 浏览器引擎
+## Browser engine
 
-- 引擎(系统 WebView / GeckoView)在[自定义DNS](/zh/guide/app-actions/edit-common-config/custom-dns)或 [APK导出配置](/zh/guide/app-actions/edit-common-config/apk-export)中选择;在[浏览器内核](/zh/guide/more-features/browser-kernel)中管理引擎。
+- The engine (System WebView / GeckoView) is chosen in [Custom DNS](/zh/guide/app-actions/edit-common-config/custom-dns) or [APK Export Config](/zh/guide/app-actions/edit-common-config/apk-export); manage engines in [Browser Kernel](/zh/guide/more-features/browser-kernel).
 
-## 运行时
+## Runtimes
 
-- 服务端运行时的 DNS/代理桥接见[本地服务运行时](/zh/guide/config/runtimes)。
+- Server-runtime DNS/proxy bridging is covered in [Local Server Runtimes](/zh/guide/config/runtimes).

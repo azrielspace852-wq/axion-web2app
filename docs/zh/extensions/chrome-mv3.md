@@ -1,62 +1,62 @@
-# Chrome MV3 扩展
+# Chrome MV3 Extensions
 
-WebToApp 运行 Manifest V3(及 V2)Chrome 扩展:content script、popup、options 页、后台上下文,以及 `declarativeNetRequest` 规则。你可以导入 `.crx`/`.zip`,或通过 **浏览器扩展** 标签页从 Chrome 网上应用店实时安装。
+AXION Web2App runs Manifest V3 (and V2) Chrome extensions: content scripts, popups, options pages, a background context, and `declarativeNetRequest` rules. You can import a `.crx`/`.zip`, or install live from the Chrome Web Store via the **Browser Extensions** tab.
 
-## 支持的 `manifest.json` 字段
+## Supported `manifest.json` fields
 
-| 字段 | 说明 |
+| Field | Notes |
 | --- | --- |
-| `manifest_version` | `2` 或 `3`。 |
-| `name`、`version`、`description` | 支持通过 `_locales/<locale>/messages.json` 的 `__MSG_key__` i18n。 |
-| `default_locale` | i18n 的基础语言。 |
-| `content_scripts[]` | `matches`、`exclude_matches`、`js[]`、`css[]`、`run_at`(`document_start/end/idle`,默认 idle)、`all_frames`(默认 false)、`world`(`"MAIN"` 或默认 `"ISOLATED"`)。每个条目成为一个内部模块。 |
-| `action.default_popup` / `browser_action` / `page_action` | Popup 页。 |
-| `options_page` / `options_ui.page` | Options 页。 |
-| `background.service_worker` / `background.scripts[0]` | 后台上下文;`background.type: "module"` 以 ES module 加载。 |
-| `declarative_net_request.rule_resources[]` | `{id, enabled, path}`。 |
-| `permissions`、`host_permissions`、`optional_permissions` | 映射到内部权限类别;不支持的会产生警告。 |
+| `manifest_version` | `2` or `3`. |
+| `name`, `version`, `description` | Support `__MSG_key__` i18n via `_locales/<locale>/messages.json`. |
+| `default_locale` | Base locale for i18n. |
+| `content_scripts[]` | `matches`, `exclude_matches`, `js[]`, `css[]`, `run_at` (`document_start/end/idle`, default idle), `all_frames` (default false), `world` (`"MAIN"` or default `"ISOLATED"`). Each entry becomes one internal module. |
+| `action.default_popup` / `browser_action` / `page_action` | Popup page. |
+| `options_page` / `options_ui.page` | Options page. |
+| `background.service_worker` / `background.scripts[0]` | Background context; `background.type: "module"` loads as an ES module. |
+| `declarative_net_request.rule_resources[]` | `{id, enabled, path}`. |
+| `permissions`, `host_permissions`, `optional_permissions` | Mapped to internal permission categories; unsupported ones produce a warning. |
 
-## `chrome.*` API 支持
+## `chrome.*` API support
 
-polyfill 提供了广泛的 `chrome.*`(及 `browser.*`)接口。**核心可用**的命名空间:
+A polyfill provides a broad `chrome.*` (and `browser.*`) surface. **Core functional** namespaces:
 
-| 命名空间 | 可用亮点 |
+| Namespace | Functional highlights |
 | --- | --- |
-| `runtime` | `getURL`、`getManifest`、`sendMessage`、`onMessage`、`onInstalled`、`connect`/`onConnect`、`getPlatformInfo`、`id`、`lastError` |
-| `storage` | `local` / `sync` / `session` + `onChanged`(`sync` 映射到 local;`managed` 为 no-op) |
-| `tabs` | `create`、`query`、`sendMessage`、`get`、`getCurrent`、`update` + 事件 |
-| `scripting` | `executeScript`、`insertCSS`、`removeCSS`、`registerContentScripts`、`unregisterContentScripts`、`getRegisteredContentScripts` |
-| `cookies` | Cookie 访问 |
-| `alarms` | 调度 |
-| `declarativeNetRequest` | 基于规则的拦截/重定向(见下) |
+| `runtime` | `getURL`, `getManifest`, `sendMessage`, `onMessage`, `onInstalled`, `connect`/`onConnect`, `getPlatformInfo`, `id`, `lastError` |
+| `storage` | `local` / `sync` / `session` + `onChanged` (`sync` maps to local; `managed` is a no-op) |
+| `tabs` | `create`, `query`, `sendMessage`, `get`, `getCurrent`, `update` + events |
+| `scripting` | `executeScript`, `insertCSS`, `removeCSS`, `registerContentScripts`, `unregisterContentScripts`, `getRegisteredContentScripts` |
+| `cookies` | Cookie access |
+| `alarms` | Scheduling |
+| `declarativeNetRequest` | Rule-based blocking/redirect (see below) |
 | `downloads` | `download` |
-| `webRequest` | `onBeforeRequest` 可经原生桥注册真实过滤 |
-| `i18n`、`notifications`、`permissions`、`contextMenus`、`commands` | 支持 |
+| `webRequest` | `onBeforeRequest` can register real filtering via the native bridge |
+| `i18n`, `notifications`, `permissions`, `contextMenus`, `commands` | Supported |
 
-许多其他命名空间(`windows`、`management`、`bookmarks`、`history`、`identity`、`system.*`、`offscreen`、`tts`……)以**桩**形式存在,返回默认值。逐项状态见 [API 参考](/zh/extensions/api-reference)。
+Many other namespaces (`windows`, `management`, `bookmarks`, `history`, `identity`, `system.*`, `offscreen`, `tts`, …) are present as **stubs** returning defaults. See the [API Reference](/zh/extensions/api-reference) for the per-API status.
 
-::: warning 没有真正的 world 隔离
-Android WebView 只有**单一 JavaScript 上下文**。`world: "ISOLATED"` 和 `world: "MAIN"` 都通过 `evaluateJavascript` 注入同一个 window;隔离是*模拟*的 —— 每个扩展覆盖 `globalThis.chrome`,并在闭包中捕获自己的扩展 id。不要依赖扩展之间的真实隔离。
+::: warning No true world isolation
+Android WebView has a **single JavaScript context**. `world: "ISOLATED"` and `world: "MAIN"` are both injected into the same window via `evaluateJavascript`; isolation is *simulated* by each extension overwriting `globalThis.chrome` and capturing its own extension id in a closure. Don't rely on real isolation between extensions.
 :::
 
-::: info 后台是一个隐藏的 WebView
-MV3 的"service worker"运行在一个带 service-worker 环境 shim 的隐藏 WebView 中(`self`、`clients`、`caches`、`install`/`activate`/`fetch` 事件)。在后台,`fetch()` 被改写为走绕过 CORS 的原生 HTTP 路径。它不是真正的 service worker。
+::: info Background is a hidden WebView
+The MV3 "service worker" runs in a hidden WebView with a service-worker environment shim (`self`, `clients`, `caches`, `install`/`activate`/`fetch` events). In the background, `fetch()` is rewritten to go through a native HTTP path that bypasses CORS. It is not a real service worker.
 :::
 
 ## `declarativeNetRequest`
 
-支持的 action:`block`、`allow`、`redirect`、`modifyHeaders`、`upgradeScheme`、`allowAllRequests`。condition 支持 `urlFilter` / `regexFilter`、`resourceTypes`、`initiatorDomains`、`requestMethods` 等。优先用 DNR 而非 `webRequestBlocking`(后者不支持)。
+Supported actions: `block`, `allow`, `redirect`, `modifyHeaders`, `upgradeScheme`, `allowAllRequests`. Conditions support `urlFilter` / `regexFilter`, `resourceTypes`, `initiatorDomains`, `requestMethods`, and more. Prefer DNR over `webRequestBlocking` (which is unsupported).
 
-## 资源 URL
+## Resource URLs
 
-`chrome.runtime.getURL(path)` 返回 `https://localhost/__ext__/<EXT_ID>/<path>`,由资源拦截器拦截并从扩展打包的文件中提供。
+`chrome.runtime.getURL(path)` returns `https://localhost/__ext__/<EXT_ID>/<path>`, intercepted by the resource interceptor and served from the extension's bundled files.
 
-## 不支持的权限(仅警告)
+## Unsupported permissions (warning only)
 
-`nativeMessaging`、`debugger`、`proxy`、`webRequestBlocking`、`management`、`devtools`、`bookmarks`、`identity`、`tabCapture` 等会产生警告且不可用。
+`nativeMessaging`, `debugger`, `proxy`, `webRequestBlocking`, `management`, `devtools`, `bookmarks`, `identity`, `tabCapture`, and similar produce a warning and are not functional.
 
-## 安装
+## Installing
 
-- **导入** `.crx`(直接解析 CRX2/CRX3)或 `.zip`。
-- **Chrome 网上应用店** —— 浏览器扩展标签页按关键词实时搜索商店(或粘贴商店 URL / 扩展 ID),并通过 CRX 管线按需安装。实时搜索需要能访问 Google 的网络。
-- **导出的 APK** —— 每个启用的扩展文件会打进 `assets/extensions/<EXT_ID>/`,导出后 popup、options 页、后台上下文和 content script 都能加载。资源加密会把这些文件和其他资源一起加密。每次安装都以真实的 Chrome 扩展 id 命名(商店安装用商店 id,其他来源从 manifest `key` 推导),因此商店和 zip 安装会解析到同一套文件。
+- **Import** a `.crx` (CRX2/CRX3 parsed directly) or `.zip`.
+- **Chrome Web Store** — the Browser Extensions tab searches the store live by keyword (or paste a store URL / extension ID) and installs on demand through the CRX pipeline. Live search requires a network that can reach Google.
+- **Exported APKs** — each enabled extension's files are embedded under `assets/extensions/<EXT_ID>/`, so popups, options pages, background contexts, and content scripts work after export. Resource encryption encrypts them with the rest of the app. Every install is named by its real Chrome extension id (the store id for store installs, or the id derived from the manifest `key`), so store and zip installs resolve the same files.

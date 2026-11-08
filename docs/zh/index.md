@@ -2,81 +2,81 @@
 layout: home
 
 hero:
-  name: WebToApp
-  text: 在手机上构建 Android APK
-  tagline: 一个远超"网址转 App"的设备端 APK 工坊 —— fork+exec 真实服务运行时、搭载加固网络栈、导出 Play 级安装包,全程无需电脑。
+  name: AXION Web2App
+  text: Build Android APKs on your phone
+  tagline: An on-device APK workshop that goes far beyond URL wrapping — fork+exec real server runtimes, ship a hardened network stack, and export Play-ready bundles. No PC required.
   image:
     src: /logo.png
-    alt: WebToApp
+    alt: AXION Web2App
   actions:
     - theme: brand
-      text: 快速开始
+      text: Get Started
       link: /zh/guide/introduction
     - theme: alt
-      text: 开发者文档
+      text: Developer Docs
       link: /zh/developer/
     - theme: alt
-      text: 在 GitHub 上查看
-      link: https://github.com/shiaho777/web-to-app
+      text: View on GitHub
+      link: https://github.com/azrielspace852-wq/axion-web2app
 
 features:
   - icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 4v16"/><path d="M4 9h5"/></svg>
-    title: 真实的设备端运行时
-    details: Node.js、PHP、Python、Go、WordPress 作为原生二进制直接从应用存储 fork+exec —— 如同 Termux,但打包成可安装的 APK。
+    title: Real on-device runtimes
+    details: Node.js, PHP, Python, Go, and WordPress are fork+exec'd as native binaries straight from app storage — like Termux, packaged into an installable APK.
   - icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.2 7.6-8 9-4.8-1.4-8-4.5-8-9V6z"/></svg>
-    title: 加固网络栈
-    details: DNS-over-HTTPS、带本地 MITM 桥的 TLS 指纹伪造、加密客户端 Hello(ECH)、按应用代理,以及针对受限 SPA 的 CORS 绕过。
+    title: Hardened networking
+    details: DNS-over-HTTPS, TLS fingerprint spoofing with a local MITM bridge, Encrypted Client Hello (ECH), per-app proxies, and CORS bypass for locked-down SPAs.
   - icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
-    title: 自包含构建
-    details: 二进制 AXML/ARSC 打补丁、权限裁剪、V1/V2/V3 签名、Google Play 级 AAB 导出 —— 全部通过 apksig 在应用内完成,无需远程构建队列。
+    title: Self-contained builds
+    details: Binary AXML/ARSC patching, permission pruning, V1/V2/V3 signing, and Google Play-ready AAB export — all inside the app via apksig. No remote build queue.
   - icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v4M14 2v4M10 18v4M14 18v4M2 10h4M2 14h4M18 10h4M18 14h4"/><rect x="8" y="8" width="8" height="8" rx="1.5"/></svg>
-    title: 发布后仍可扩展
-    details: 添加 JS/CSS 模块、Tampermonkey 风格油猴脚本,或 MV3 Chrome 扩展(从 Chrome 网上应用店实时搜索),无需重建宿主。
+    title: Extensible after shipping
+    details: Add JS/CSS modules, Tampermonkey-style userscripts, or MV3 Chrome extensions (live-searched from the Chrome Web Store) without rebuilding the host.
   - icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15" r="1.4"/></svg>
-    title: 隐私与指纹防护
-    details: 50+ 维浏览器指纹伪装、内置 20 个过滤列表的 hosts 去广告、AES-256-GCM 资源加密,以及激活码门控。
+    title: Privacy & fingerprint defense
+    details: 50+ vector browser fingerprint disguise, hosts-rule ad blocking with 20 built-in lists, AES-256-GCM resource encryption, and activation gating.
   - icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"/></svg>
-    title: 10 种界面语言
-    details: 中文、英文、阿拉伯文(RTL)、葡萄牙文、西班牙文、法文、德文、俄文、日文、韩文 —— 在设置中随时切换。
+    title: 10 UI languages
+    details: Chinese, English, Arabic (RTL), Portuguese, Spanish, French, German, Russian, Japanese, and Korean — switch anytime in Settings.
 ---
 
 <div class="wta-home">
 
-## 从 URL 到签名 APK,只需三步
+## From URL to a signed APK in three steps
 
 <div class="wta-steps">
 
-1. **选择类型**
+1. **Pick a type**
 
-   从 [12 种应用类型](/zh/guide/app-types/)里选 —— 普通的 [Web](/zh/guide/app-types/web) 封装、[HTML](/zh/guide/app-types/html) 或 [Frontend](/zh/guide/app-types/frontend) 构建,或是设备端运行的 [Node.js](/zh/guide/app-types/nodejs)、[PHP](/zh/guide/app-types/php)、[Python](/zh/guide/app-types/python)、[Go](/zh/guide/app-types/go)、[WordPress](/zh/guide/app-types/wordpress) 服务器。服务端类型和图片/视频在打开[关于 → 高级功能](/zh/guide/more-features/about)之前保持隐藏。
+   Choose from [12 app types](/zh/guide/app-types/) — a plain [Web](/zh/guide/app-types/web) wrapper, [HTML](/zh/guide/app-types/html) or [Frontend](/zh/guide/app-types/frontend) builds, or on-device [Node.js](/zh/guide/app-types/nodejs), [PHP](/zh/guide/app-types/php), [Python](/zh/guide/app-types/python), [Go](/zh/guide/app-types/go), [WordPress](/zh/guide/app-types/wordpress) servers. The server and image/video types stay hidden until [About → Advanced features](/zh/guide/more-features/about) is on.
 
-2. **填写基本信息**
+2. **Fill in the basics**
 
-   名称、URL 或项目、图标 —— 保存即可。所有类型共享同一套[配置卡片](/zh/guide/config/):网络、隐私、外观、运行时。
+   A name, a URL or a project, an icon — then save. Every type shares the same [configuration cards](/zh/guide/config/) for network, privacy, appearance, and runtimes.
 
-3. **构建并分享**
+3. **Build and share**
 
-   [构建 APK](/zh/guide/app-actions/build-apk) 用 V1/V2/V3 在设备上完成签名,再[分享](/zh/guide/app-actions/share-apk)出去、[导出源码](/zh/guide/app-actions/export-apk),或[导出 Play 级 AAB](/zh/guide/more-features/google-play)。无需电脑,没有构建队列。
+   [Build APK](/zh/guide/app-actions/build-apk) signs on-device with V1/V2/V3, then [share](/zh/guide/app-actions/share-apk) it, [export its source](/zh/guide/app-actions/export-apk), or [export a Play-ready AAB](/zh/guide/more-features/google-play). No PC, no build queue.
 
 </div>
 
-## 十二种类型,一个构建器
+## Twelve app types, one builder
 
 <div class="wta-types">
 
 <div class="wta-tile">
 
-[**Web 与 Multi-Web**](/zh/guide/app-types/multi-web)
+[**Web and Multi-Web**](/zh/guide/app-types/multi-web)
 
-URL 封装、多标签页枢纽、门户与链接流。
+URL wrappers, tabbed hubs, portals, and link feeds.
 
 </div>
 
 <div class="wta-tile">
 
-[**HTML 与离线包**](/zh/guide/app-types/html)
+[**HTML and Offline Pack**](/zh/guide/app-types/html)
 
-打包本地 HTML 或 zip 构建,或抓取整站生成自包含的离线 APK。
+Package local HTML or zip builds, or scrape a site into a self-contained offline APK.
 
 </div>
 
@@ -84,15 +84,15 @@ URL 封装、多标签页枢纽、门户与链接流。
 
 [**Frontend**](/zh/guide/app-types/frontend)
 
-把 React、Vue、Vite 构建产物发布成 localhost 服务的 APK。
+Ship React, Vue, or Vite builds as a localhost-served APK.
 
 </div>
 
 <div class="wta-tile">
 
-[**服务端运行时**](/zh/guide/app-types/nodejs)
+[**Server runtimes**](/zh/guide/app-types/nodejs)
 
-fork+exec Node.js、PHP、Python、Go 原生二进制,在本地端口提供服务。
+fork+exec Node.js, PHP, Python, or Go binaries that serve on a local port.
 
 </div>
 
@@ -100,21 +100,21 @@ fork+exec Node.js、PHP、Python、Go 原生二进制,在本地端口提供服�
 
 [**WordPress**](/zh/guide/app-types/wordpress)
 
-完整的便携 WordPress 站点,PHP 与 SQLite 都跑在设备上。
+A full portable WordPress site with PHP and SQLite running on-device.
 
 </div>
 
 <div class="wta-tile">
 
-[**媒体与相册**](/zh/guide/app-types/media)
+[**Media and Gallery**](/zh/guide/app-types/media)
 
-图片和视频播放器、相册集、作品集,打包成独立应用。
-
-</div>
+Image and video players, albums, and portfolios as standalone apps.
 
 </div>
 
-## 编辑器背后的工具箱
+</div>
+
+## A toolbox behind the editor
 
 <div class="wta-types">
 
@@ -122,73 +122,73 @@ fork+exec Node.js、PHP、Python、Go 原生二进制,在本地端口提供服�
 
 [**Agent**](/zh/guide/more-features/agent)
 
-内置最多 60 个工具的调用式助手,可以构建、编辑、操作整个应用。
+A tool-calling assistant with up to 60 built-in tools that can build, edit, and operate the whole app.
 
 </div>
 
 <div class="wta-tile">
 
-[**管理插件**](/zh/guide/more-features/extension-modules)
+[**Manage Plugins**](/zh/guide/more-features/extension-modules)
 
-向任何生成的应用注入 JS/CSS、油猴脚本或 MV3 Chrome 扩展。
-
-</div>
-
-<div class="wta-tile">
-
-[**Hosts 去广告**](/zh/guide/more-features/hosts-adblock)
-
-内置 20 个过滤列表和按应用的订阅规则,编译进导出的 APK。
+Inject JS/CSS modules, userscripts, or MV3 Chrome extensions into any generated app.
 
 </div>
 
 <div class="wta-tile">
 
-[**Linux 环境**](/zh/guide/more-features/linux-environment)
+[**Hosts ad-block**](/zh/guide/more-features/hosts-adblock)
 
-Termux 风格的设备端环境,带有构建和运行项目所需的真实工具链。
-
-</div>
-
-<div class="wta-tile">
-
-[**端口管理**](/zh/guide/more-features/port-manager)
-
-冲突策略、真实停止处理器,以及所有本地服务运行时的 DNS 桥接。
+20 built-in filter lists and per-app subscriptions, compiled into the shipped APK.
 
 </div>
 
 <div class="wta-tile">
 
-[**应用修改器**](/zh/guide/more-features/app-modifier)
+[**Linux environment**](/zh/guide/more-features/linux-environment)
 
-克隆和重打包已安装的 APK、批量导入定义、导出模板。
+A Termux-style environment with real toolchains for building and running projects.
+
+</div>
+
+<div class="wta-tile">
+
+[**Port manager**](/zh/guide/more-features/port-manager)
+
+Conflict policies, real stop handlers, and DNS bridging for every local server runtime.
+
+</div>
+
+<div class="wta-tile">
+
+[**App modifier**](/zh/guide/more-features/app-modifier)
+
+Clone and rebrand installed APKs, batch-import definitions, export templates.
 
 </div>
 
 </div>
 
-## 深入底层
+## Under the hood
 
 <div class="wta-stats">
 
-<div class="wta-stat"><b>12</b><span>种应用类型</span></div>
+<div class="wta-stat"><b>12</b><span>app types</span></div>
 
-<div class="wta-stat"><b>60</b><span>个 Agent 工具(上限)</span></div>
+<div class="wta-stat"><b>60</b><span>agent tools max</span></div>
 
-<div class="wta-stat"><b>10</b><span>种界面语言</span></div>
+<div class="wta-stat"><b>10</b><span>UI languages</span></div>
 
-<div class="wta-stat"><b>20</b><span>个去广告列表</span></div>
+<div class="wta-stat"><b>20</b><span>ad-filter lists</span></div>
 
 </div>
 
-构建器自己做二进制手术 —— AXML/ARSC 重写、权限裁剪、AES-256-GCM 资源加密、16 KB 页对齐的原生库 —— 并让 shell 携带 `targetSdk` 35。[开发者文档](/zh/developer/architecture)覆盖了完整的导出管线。
+The builder does its own binary patching — AXML/ARSC rewriting, permission pruning, AES-256-GCM resource encryption, 16 KB page-aligned native libraries — and ships a `targetSdk` 35 shell runtime. The [developer docs](/zh/developer/architecture) cover the full export pipeline.
 
 <div class="wta-cta">
 
-准备好构建你的第一个 APK 了吗?
+Ready to build your first APK?
 
-[快速开始](/zh/guide/getting-started)
+[Get started](/zh/guide/getting-started)
 
 </div>
 

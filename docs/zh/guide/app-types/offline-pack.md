@@ -1,33 +1,33 @@
-# 离线包
+# Offline Pack
 
-把一个在线站点抓取为自包含的离线包,然后像 [HTML](/zh/guide/app-types/html) 应用一样包装。
+Scrapes a live website into a self-contained offline package, then wraps it like an [HTML](/zh/guide/app-types/html) app.
 
-## 适用场景
+## When to use
 
-把网站归档为离线使用 —— 阅读材料、文档,或任何你想在无网络时可用的站点。
+Archiving a site for offline use — reading material, documentation, or any site you want available without a network.
 
-## 核心配置(抓取器)
+## Core config (scraper)
 
-### 爬取范围
+### Crawl scope
 
-- **最大深度**(`maxDepth`)—— 跟随多少层链接。
-- **跟随链接**(`followLinks`)—— 切换是否在站点内爬取。
-- **最大文件数**(`maxFiles`)与 **最大总大小**(`maxTotalSizeMb`)—— 抓取的上限。
+- **Max depth** (`maxDepth`) — how many link hops to follow.
+- **Follow links** (`followLinks`) — toggle crawling within the site.
+- **Max files** (`maxFiles`) and **max total size** (`maxTotalSizeMb`) — caps on the scrape.
 
-### 过滤
+### Filtering
 
-- **跳过模式**(`skipPatterns`)—— 要排除的 URL 模式。
+- **Skip patterns** (`skipPatterns`) — URL patterns to exclude.
 
-### 网络
+### Network
 
-- **超时**(`timeoutSeconds`)—— 每请求超时。
-- **下载 CDN 资源**(`downloadCdnResources`)—— 是否把 CDN 托管的资源拉到本地。
+- **Timeout** (`timeoutSeconds`) — per-request timeout.
+- **Download CDN resources** (`downloadCdnResources`) — whether to pull CDN-hosted assets locally.
 
-## 重写什么
+## What it rewrites
 
-HTML、CSS、JS、图片和字体 —— 包括 `url()`、`srcset` 和 `@import` 引用 —— 带路径重写,受同域、深度和大小限制。
+HTML, CSS, JS, images, and fonts — including `url()`, `srcset`, and `@import` references — with path rewriting, subject to same-domain, depth, and size limits.
 
-## 说明
+## Notes
 
-- 结果是一个本地离线副本;动态服务端行为不会被捕获。
-- 保持在线的站点,用[网页](/zh/guide/app-types/web)。
+- The result is a local, offline copy; dynamic server-side behavior won't be captured.
+- For a site that stays online, use [Web](/zh/guide/app-types/web).

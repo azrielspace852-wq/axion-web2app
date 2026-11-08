@@ -1,16 +1,16 @@
-# 自启动设置
+# Auto-start
 
-让生成的应用自动启动(例如设备开机时)或按计划启动。
+Lets the generated app start automatically (for example on device boot) or on a schedule.
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器中的 **自启动** 卡片(由 `AutoStartConfig` 支撑)。
+**Where:** the **Auto-start** card in the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor (backed by `AutoStartConfig`).
 
-## 选项
+## Options
 
-- **开机自启** —— 设备开机时启动应用。
-- **定时启动** —— 按计划启动应用。
-- **后台运行服务** —— 保持服务运行(与 [APK导出配置](/zh/guide/app-actions/edit-common-config/apk-export)中的后台运行选项相关)。
+- **Boot auto-start** — launch the app when the device boots.
+- **Scheduled launch** — start the app on a schedule.
+- **Background-run service** — keep a service running (related to the background-run option in [APK Export Config](/zh/guide/app-actions/edit-common-config/apk-export)).
 
-## 说明
+## Notes
 
-- 自启动依赖系统允许应用启动;某些 OEM 会限制后台启动。
-- 后台服务使用的通知渠道以失败软处理创建,渠道失败不会导致启动崩溃。
+- Auto-start relies on the system allowing the app to start; some OEMs restrict background starts.
+- Notification channels used by background services are created fail-soft so channel failures don't crash startup.

@@ -1,37 +1,37 @@
-# AI 设置
+# AI Settings
 
-配置 [Agent](/zh/guide/more-features/agent)所用的 AI 后端。从 [⋮ → AI 设置](/zh/guide/main-screen/more) 打开。
+Configures the AI backend used by [Agent](/zh/guide/more-features/agent). Open it from [⋮ → AI Settings](/zh/guide/main-screen/more).
 
-## 提供商目录
+## Provider catalog
 
-内置目录只保留知名提供商,每类至多三个:
+The built-in catalog keeps well-known providers only, at most three per category:
 
-- **推荐** —— Google Gemini、OpenRouter。
-- **国际** —— OpenAI、Anthropic、Grok。
-- **聚合** —— Together、Perplexity、Fireworks。
-- **中国** —— DeepSeek、Qwen、GLM。内置 GLM 对话发到智谱的 `/api/paas/v4/chat/completions`。自定义密钥仍可覆盖聊天端点。
-- **自托管** —— Ollama、LM Studio、vLLM。
+- **Recommended** — Google Gemini, OpenRouter.
+- **International** — OpenAI, Anthropic, Grok.
+- **Aggregator** — Together, Perplexity, Fireworks.
+- **Chinese** — DeepSeek, Qwen, GLM. Built-in GLM chat posts to Zhipu's `/api/paas/v4/chat/completions`. A custom key can still override the chat endpoint.
+- **Self-hosted** — Ollama, LM Studio, vLLM.
 
-其他一律走 **自定义**:目录之外的提供商(或历史版本移除的提供商)都按自定义端点处理;引用已移除提供商的旧配置会自动迁移为自定义,并保留原 base URL。
+Anything else fits **Custom**: any provider not in the catalog (or removed by a past update) is handled as a custom endpoint, and legacy configs referencing a removed provider migrate to Custom automatically with their base URL preserved.
 
-## API 密钥
+## API keys
 
-- **添加** 提供商 API 密钥,每个可带一个 **别名**。
-- 自定义端点可选 **API 格式** —— Chat Completions(`/chat/completions`)、Anthropic Messages(`/v1/messages`)、OpenAI Responses(`/responses`)或 Google Gemini —— 网关按声明的格式路由请求,而不是一律走 OpenAI 兼容路径。**聊天端点**可按密钥覆盖。
-- **连接测试** —— 验证密钥是否可用(连接成功 / 失败)。
-- 密钥在设备上安全存储。
-- 提供商对一次会话限流时,Agent 会换到该提供商下一把已保存的密钥。
+- **Add** provider API keys, each with an optional **alias**.
+- Custom endpoints choose an **API format** — Chat Completions (`/chat/completions`), Anthropic Messages (`/v1/messages`), OpenAI Responses (`/responses`), or Google Gemini — and the gateway routes the request by the declared format instead of assuming OpenAI-compat. The **chat endpoint** can be overridden per key.
+- **Connection test** — verify a key works (connection OK / fail).
+- Keys are stored securely on-device.
+- When a provider rate-limits a session, Agent rotates to the next saved key for that provider.
 
-## 已保存模型
+## Saved models
 
-- **添加模型**,可单个添加或从可用列表中 **批量选择**。
-- 配置 **模型能力** 和每个模型的 **适用范围**。
-- 价格参考帮助你挑选模型。
+- **Add models** individually or **batch-select** from the available list.
+- Configure **model capabilities** and what each model is **available for**.
+- A pricing reference helps you pick models.
 
-## 高级
+## Advanced
 
-- **上下文容量** —— Agent会话使用的上下文窗口大小。
+- **Context capacity** — the context window size used for Agent sessions.
 
-## 说明
+## Notes
 
-在配置好至少一个有效的 API 密钥和模型之前,Agent无法工作。
+Agent won't work until at least one valid API key and model are configured here.

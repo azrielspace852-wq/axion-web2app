@@ -1,23 +1,23 @@
-# 前端
+# Frontend
 
-打包一个*已构建*的前端项目 —— React、Vue、Vite 等框架的生产输出。
+Packages a *built* front-end project — the production output of React, Vue, Vite, and similar frameworks.
 
-## 适用场景
+## When to use
 
-你有一个框架项目,想把它的构建输出作为应用发布。
+You have a framework project and want to ship its build output as an app.
 
-## 核心配置
+## Core config
 
-### 来源
+### Source
 
-- **构建输出** —— 要打包的生产构建目录(创建页字段;保存后的配置与 HTML 类型一样只保留导入的文件)。
-- **框架** —— 被识别或选择(React、Vue、Vite 等)。
+- **Build output** — the directory of the production build to package (a create-screen field; the saved config keeps the imported files, like the HTML type).
+- **Framework** — detected or selected (React, Vue, Vite, etc.).
 
-### 工具链
+### Toolchain
 
-- 当需要设备端构建步骤时,界面会链接到 [Linux 环境](/zh/guide/more-features/linux-environment)安装 Node 和构建工具。
+- When a build step is needed on-device, the screen links to the [Linux Environment](/zh/guide/more-features/linux-environment) to set up Node and build tools.
 
-## 说明
+## Notes
 
-- **前端 vs HTML:** 前端用于框架项目的构建输出;[HTML](/zh/guide/app-types/html) 用于你已有的纯静态文件。
-- 打包的前端在本地提供服务,因此离线可用的 SPA 表现良好。
+- **Frontend vs HTML:** Frontend is for a framework project's build output; [HTML](/zh/guide/app-types/html) is for plain static files you already have.
+- The packaged front-end is served locally, so offline-capable SPAs work well.

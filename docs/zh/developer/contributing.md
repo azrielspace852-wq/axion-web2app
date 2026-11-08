@@ -1,33 +1,33 @@
-# 贡献指南
+# Contributing
 
-感谢你为 WebToApp 做贡献。规范的贡献者指南位于仓库中:
+Thank you for contributing to AXION Web2App. The canonical contributor guide lives in the repository:
 
-👉 [`.github/CONTRIBUTING.md`](https://github.com/shiaho777/web-to-app/blob/main/.github/CONTRIBUTING.md)
+👉 [`.github/CONTRIBUTING.md`](https://github.com/azrielspace852-wq/axion-web2app/blob/main/.github/CONTRIBUTING.md)
 
-## 贡献通道
+## Contribution lanes
 
-| 通道 | 你做什么 | 指南 |
+| Lane | What you do | Guide |
 | --- | --- | --- |
-| `modules/` | 把一个社区模块发布到应用内市场 | [modules/README.md](https://github.com/shiaho777/web-to-app/blob/main/modules/README.md) |
-| Issues | 报告 bug 或请求功能 | [GitHub Issues](https://github.com/shiaho777/web-to-app/issues) |
-| 代码 | 在 Android 客户端修复 bug 或构建功能 | [CONTRIBUTING.md](https://github.com/shiaho777/web-to-app/blob/main/.github/CONTRIBUTING.md) |
-| 文档 | 改进本文档站点 | 在 `docs/` 下编辑并开 PR |
+| `modules/` | Publish a community module to the in-app market | [modules/README.md](https://github.com/azrielspace852-wq/axion-web2app/blob/main/modules/README.md) |
+| Issues | Report a bug or request a feature | [GitHub Issues](https://github.com/azrielspace852-wq/axion-web2app/issues) |
+| Code | Fix a bug or build a feature in the Android client | [CONTRIBUTING.md](https://github.com/azrielspace852-wq/axion-web2app/blob/main/.github/CONTRIBUTING.md) |
+| Docs | Improve this documentation site | Edit under `docs/` and open a PR |
 
-## 基本规则
+## Ground rules
 
-- **做对的事,而非最小的 diff。** 如果一个修复需要重构、重命名或触及多个文件,就去做。匹配周围代码已有的模式与约定。
-- **不要添加版权或许可证头**,除非被要求。
-- **代码里不写注释。** 不要给源码添加行注释、块注释、KDoc、Javadoc、XML 注释或其他解释性注释。用清晰的命名和小函数表达意图;原因写在 commit message、PR 描述或文档里。这条规则适用于所有源码语言。工具必需的机器可读指令(油猴脚本元数据块、shebang、编译器 pragma)不算解释性注释,保留。已有注释属于历史债务:修改到该文件时顺手删除,不要新增。
-- **不要提交密钥**、`local.properties`、密钥库或 IDE/缓存垃圾。
-- **优先用 pull request**,而非直接推送到 `main`。
-- **GitHub Issues 和 PR 必须用英文撰写** —— 标题、正文和交付评论。本地聊天可用任何语言。
+- **Do what is right, not the smallest diff.** If a fix calls for refactoring, renaming, or touching multiple files, do it. Match the patterns and conventions already in the surrounding code.
+- **Do not add copyright or license headers** unless asked.
+- **No comments in code.** Do not add line, block, KDoc, Javadoc, XML, or other explanatory comments to source files. Clear names and small functions carry the intent; put the reasoning in the commit message, PR description, or docs. This applies to every source language. Machine-readable directives a tool requires (a userscript metadata block, a shebang, a compiler pragma) are not explanatory comments and stay. Existing comments are legacy debt: remove them when you touch the file; do not add new ones.
+- **Do not commit secrets**, `local.properties`, keystores, or IDE/cache junk.
+- **Prefer a pull request** over direct pushes to `main`.
+- **GitHub Issues and PRs must be written in English** — titles, bodies, and delivery comments. Local chat may be any language.
 
-## 交付循环
+## Delivery loop
 
-交付改动时,端到端走 Issue → 分支 → PR → CI → 合并循环。在 PR 合并且 CI 变绿之前,不要关闭 Issue。`main` 受分支保护,需要 PR 加上通过的 `check` 状态。
+When delivering a change, run the Issue → branch → PR → CI → merge loop end-to-end. Do not close the Issue until the PR is merged and CI is green. `main` is branch-protected and requires a PR plus a passing `check` status.
 
-## 开 PR 之前
+## Before you open a PR
 
-- 改动了 shell 成员、导出打包或配置字段?运行[验证命令](/zh/developer/recipes#验证命令)。
-- 新增宿主 UI 字符串?补全[全部 10 种语言](/zh/developer/i18n)。
-- 新增影响导出的编辑器设置?走完[整条链路](/zh/developer/config-drift#添加一个影响生成-apk-的设置)。
+- Changed shell membership, export packaging, or config fields? Run the [verify commands](/zh/developer/recipes#verify-commands).
+- New host UI string? Add all [10 languages](/zh/developer/i18n).
+- New editor setting that affects export? Walk the [full chain](/zh/developer/config-drift#adding-a-setting-that-affects-the-generated-apk).

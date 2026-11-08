@@ -1,23 +1,23 @@
-# 关于
+# About
 
-应用信息与数据工具。从 [⋮ → 关于](/zh/guide/main-screen/more) 打开。
+App information and data tools. Open it from [⋮ → About](/zh/guide/main-screen/more).
 
-## 功能
+## Features
 
-- **关于** —— 版本、当前语言和项目链接。
-- **检查更新** —— 检查是否有更新版本的构建器(显示当前版本及是否有可用更新)。
-- **法律免责声明** —— 涵盖允许用途和责任的重要声明。
+- **About** — version, current language, and project links.
+- **Update check** — check for a newer version of the builder (shows current version and whether an update is available).
+- **Legal disclaimer** — important notices covering permitted use and responsibilities.
 
-## 宿主开关
+## Host switches
 
-这些开关只在构建器里。生成的 APK 不会读取它们。
+These switches live only in the builder. Generated APKs do not read them.
 
-- **显示说明文字** —— 在功能标题下方显示辅助说明。默认开启。关闭后标题、当前值、错误和控件上唯一的状态仍然显示。
-- **WebApp 独立任务** —— 默认关闭。开启后,首页预览会让每个 WebApp 单独占用一条最近任务,可同时打开多个。这是另一条最近任务,不是另一个进程,也更占内存。再次打开同一个预览会把那张卡片调到前面。关闭后,这些预览任务会结束。桌面快捷方式始终单独占用一个任务,返回时回到桌面。关闭这个开关不会结束快捷方式的任务。很早以前创建的快捷方式仍可能每次新开一张卡片,需要重新创建。
-- **高级功能** —— 默认关闭。开启后可以创建、预览并导出 Node.js、PHP、Python、Go、WordPress、图片和视频。代码始终在应用里。开关关闭时,已有项目仍留在列表中,也可以继续编辑。[Linux 环境](/zh/guide/more-features/linux-environment)、[运行时管理](/zh/guide/more-features/runtime-management)和[端口管理](/zh/guide/more-features/port-manager)只在开关开启时出现在 ⋮ 菜单。服务端运行时导出固定 targetSdk 28。WebView 导出保持 shell 模板的 targetSdk 35。Play 和 AAB 仍然拒绝会 exec 进程的类型。
-- **本地 MCP** —— 默认关闭。开启后,构建器在 `127.0.0.1` 提供与应用内 [Agent](/zh/guide/more-features/agent) 相同的工具,外加一个只读预览工具,并用 bearer 令牌保护。长按地址或令牌即可复制。**复制配置**复制一份 `mcp.json`。**更换令牌**签发新令牌。写操作仍会在手机上确认。在电脑上先执行 `adb reverse tcp:<port> tcp:<port>`,再用卡片上的地址。生成的 APK 不包含这个服务。
+- **Show descriptions** — helper text under feature titles. On by default. Titles, values, errors, and the only status on a control stay visible when it is off.
+- **Separate WebApp tasks** — off by default. When on, home preview opens each WebApp in its own recents entry so several can stay open. That is another recents entry, not another process, and it uses more memory. Opening the same preview again brings that card forward. Turning the switch off closes those preview tasks. Desktop shortcuts always open in their own task, and Back returns to the launcher. Turning this switch off leaves shortcut tasks alone. A shortcut pinned by a much older build can still open a new card each time; create it again.
+- **Advanced features** — off by default. When on, you can create, preview, and export Node.js, PHP, Python, Go, WordPress, image, and video apps. The code stays in the app either way. Existing projects stay in the list and can still be edited while the switch is off. [Linux Environment](/zh/guide/more-features/linux-environment), [Runtime Management](/zh/guide/more-features/runtime-management), and [Port Manager](/zh/guide/more-features/port-manager) show in the ⋮ menu only while it is on. Server-runtime exports stay on targetSdk 28. WebView exports stay on the shell template's targetSdk 35. Play and AAB still refuse types that exec a process.
+- **Local MCP** — off by default. When on, the builder serves the same tools as the in-app [Agent](/zh/guide/more-features/agent) on `127.0.0.1`, plus a read-only preview tool, behind a bearer token. Long-press the address or the token to copy it. **Copy config** copies an `mcp.json`. **Rotate token** issues a new token. Write tools still ask for confirmation on the phone. From a computer, run `adb reverse tcp:<port> tcp:<port>`, then use the URL on the card. Generated APKs do not include this server.
 
-## 说明
+## Notes
 
-- 在重大更改前或更换设备时,使用 [数据备份](/zh/guide/more-features/data-backup)。
-- WebToApp 以 [The Unlicense](https://github.com/shiaho777/web-to-app/blob/main/LICENSE) 开源。
+- Use [Data Backup](/zh/guide/more-features/data-backup) before major changes or when switching devices.
+- AXION Web2App is open source under [The Unlicense](https://github.com/azrielspace852-wq/axion-web2app/blob/main/LICENSE).

@@ -1,19 +1,19 @@
-# 悬浮小窗
+# Floating Window
 
-让应用在其他应用之上的可调整大小浮窗中运行。
+Runs the app in a resizable floating window over other apps.
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器中的 **悬浮小窗** 卡片。
+**Where:** the **Floating window** card in the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor.
 
-## 选项
+## Options
 
-- **启用** —— 打开浮窗模式(`floatingWindowConfig.enabled`)。
-- **尺寸** —— 窗口尺寸百分比,或单独的宽/高百分比;锁定宽高比,带模式(`SCREEN`、`FREE`、`RATIO_16_9` 或自定义 宽:高)。默认自由缩放(`lockAspectRatio = false`、`FREE`),拖角即可随意调整窗口形状,除非手动锁定。
-- **外观** —— 不透明度、圆角半径和边框样式(`NONE`、`SUBTLE`、`GLOW`、`ACCENT`)。
-- **标题栏** —— 显示标题栏、自动隐藏。
-- **最小化** —— 启动时最小化、自定义最小化图标和尺寸、边缘停靠。
-- **行为** —— 记住位置、边缘吸附、显示调整手柄、锁定位置。
+- **Enable** — turn on floating-window mode (`floatingWindowConfig.enabled`).
+- **Size** — window size percent, or separate width/height percent; lock aspect ratio with a mode (`SCREEN`, `FREE`, `RATIO_16_9`, or custom width:height). Defaults to free resize (`lockAspectRatio = false`, `FREE`), so corner-drag reshapes the window freely unless you lock it.
+- **Appearance** — opacity, corner radius, and border style (`NONE`, `SUBTLE`, `GLOW`, `ACCENT`).
+- **Title bar** — show title bar, auto-hide it.
+- **Minimized** — start minimized, custom minimized icon and size, edge docking.
+- **Behavior** — remember position, edge snapping, show resize handle, lock position.
 
-## 说明
+## Notes
 
-- 浮窗在运行时需要系统悬浮窗权限。
-- 同时开启全屏模式时,应用仍然以悬浮小窗打开。全屏只隐藏这个小窗里的浏览器工具栏。
+- Floating window requires the system overlay permission at runtime.
+- When fullscreen mode is also on, the app still opens as a floating window. Fullscreen then hides the browser chrome inside that window.

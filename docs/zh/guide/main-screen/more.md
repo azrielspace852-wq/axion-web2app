@@ -1,31 +1,31 @@
-# 更多菜单(⋮)
+# More Menu (⋮)
 
-[我的应用](/zh/guide/main-screen/my-apps)顶栏最右侧的 ⋮ 按钮打开全局工具下拉菜单。
+The ⋮ button at the far right of the [My Apps](/zh/guide/main-screen/my-apps) top bar opens a dropdown of global tools.
 
-## 菜单项
+## The menu items
 
-按分隔符分组,自上而下:
+Grouped with dividers, top to bottom:
 
-| 项目 | 打开 |
+| Item | Opens |
 | --- | --- |
 | **Agent** | [Agent](/zh/guide/more-features/agent) |
-| **AI 设置** | [AI 设置](/zh/guide/more-features/ai-settings) |
+| **AI Settings** | [AI Settings](/zh/guide/more-features/ai-settings) |
 | ── | ── |
-| **管理插件** | [管理插件](/zh/guide/more-features/extension-modules) |
-| **应用修改器** | [应用修改器](/zh/guide/more-features/app-modifier) |
-| **Linux 环境** | [Linux 环境](/zh/guide/more-features/linux-environment) |
-| **运行时管理** | [运行时管理](/zh/guide/more-features/runtime-management) |
-| **端口管理** | [端口管理](/zh/guide/more-features/port-manager) |
+| **Manage Plugins** | [Manage Plugins](/zh/guide/more-features/extension-modules) |
+| **App Modifier** | [App Modifier](/zh/guide/more-features/app-modifier) |
+| **Linux Environment** | [Linux Environment](/zh/guide/more-features/linux-environment) |
+| **Runtime Management** | [Runtime Management](/zh/guide/more-features/runtime-management) |
+| **Port Manager** | [Port Manager](/zh/guide/more-features/port-manager) |
 | ── | ── |
-| **浏览器内核** | [浏览器内核](/zh/guide/more-features/browser-kernel) |
-| **Hosts 拦截** | [Hosts 拦截](/zh/guide/more-features/hosts-adblock) |
+| **Browser Kernel** | [Browser Kernel](/zh/guide/more-features/browser-kernel) |
+| **Hosts Ad Blocking** | [Hosts Ad Blocking](/zh/guide/more-features/hosts-adblock) |
 | ── | ── |
-| **使用统计** | [使用统计](/zh/guide/more-features/usage-stats) |
+| **Usage Stats** | [Usage Stats](/zh/guide/more-features/usage-stats) |
 | **Google Play** | [Google Play](/zh/guide/more-features/google-play) |
-| **文件管理** | [文件管理](/zh/guide/more-features/file-manager) |
-| **数据备份** | [数据备份](/zh/guide/more-features/data-backup) |
-| **关于** | [关于](/zh/guide/more-features/about) |
+| **File Manager** | [File Manager](/zh/guide/more-features/file-manager) |
+| **Data Backup** | [Data Backup](/zh/guide/more-features/data-backup) |
+| **About** | [About](/zh/guide/more-features/about) |
 
-每一项都在[更多功能](/zh/guide/more-features/agent)中有详细说明。
+Each is covered in detail under [More Features](/zh/guide/more-features/agent).
 
-Linux 环境、运行时管理和端口管理只在[关于](/zh/guide/more-features/about)页的 **高级功能** 开启时列出。
+Linux Environment, Runtime Management, and Port Manager are listed only while **Advanced features** is on in [About](/zh/guide/more-features/about).

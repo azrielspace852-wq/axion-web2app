@@ -1,16 +1,16 @@
-# 网页自动翻译
+# Webpage Auto Translation
 
-把生成应用中页面的*内容*翻译为目标语言。
+Translates the *content* of pages in the generated app into a target language.
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器中的 **翻译** 卡片。
+**Where:** the **Translate** card in the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor.
 
-## 选项
+## Options
 
-- **启用** —— 打开翻译叠加层(`translateEnabled`)。
-- **目标语言** —— 提供 20 种语言。
-- **引擎** —— Google、MyMemory、LibreTranslate 或 Lingva,并在它们之间自动故障转移。
+- **Enable** — turn the translation overlay on (`translateEnabled`).
+- **Target languages** — 20 languages available.
+- **Engines** — Google, MyMemory, LibreTranslate, or Lingva, with automatic failover across them.
 
-## 说明
+## Notes
 
-- 这翻译的是生成应用的内容;与**构建器**的界面语言(从[我的应用](/zh/guide/main-screen/my-apps)顶栏的[语言按钮](/zh/guide/main-screen/language)设置)相互独立。
-- 长页面会按大小分块发送,不再用一次请求装下整页。
+- This translates generated-app content; it is separate from the **builder's** UI language (set from the [language button](/zh/guide/main-screen/language) on My Apps).
+- A long page is sent in sized chunks. One request no longer has to carry the whole page.

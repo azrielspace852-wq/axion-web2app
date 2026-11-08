@@ -1,51 +1,51 @@
-# 编辑通用配置
+# Edit Common Config
 
-**编辑通用配置** 是 WebToApp 的核心。它打开每个应用都有的共享编辑器 —— 一长卷能力卡片,涵盖外观、行为、网络、隐私、扩展和打包。点击应用卡片上的 ⋮,再点 **编辑通用配置**(网页应用此入口简称为 **编辑**)。
+**Edit Common Config** is the heart of AXION Web2App. It opens the shared editor that every app has — a scroll of capability cards covering appearance, behavior, networking, privacy, extensions, and packaging. Tap ⋮ on an app card, then **Edit Common Config** (for Web apps this entry is simply called **Edit**).
 
-本节按编辑器中出现的顺序,**逐卡片** 详解每一张。
+This section documents **every card**, one page each, in the order they appear in the editor.
 
-## 基本信息
+## Basic info
 
-- [应用图标](/zh/guide/app-actions/edit-common-config/app-icon)
-- [应用名称](/zh/guide/app-actions/edit-common-config/app-name)
-- [网址/网页](/zh/guide/app-actions/edit-common-config/url-webpage)
+- [App Icon](/zh/guide/app-actions/edit-common-config/app-icon)
+- [App Name](/zh/guide/app-actions/edit-common-config/app-name)
+- [URL / Webpage](/zh/guide/app-actions/edit-common-config/url-webpage)
 
-## 浏览器与界面
+## Browser & interface
 
-- [浏览器工具栏](/zh/guide/app-actions/edit-common-config/browser-toolbar)
-- [全屏模式](/zh/guide/app-actions/edit-common-config/fullscreen)
-- [屏幕方向](/zh/guide/app-actions/edit-common-config/orientation)
-- [保持屏幕常亮](/zh/guide/app-actions/edit-common-config/keep-screen-on)
-- [悬浮小窗](/zh/guide/app-actions/edit-common-config/floating-window)
-- [长按菜单](/zh/guide/app-actions/edit-common-config/long-press-menu)
+- [Browser Toolbar](/zh/guide/app-actions/edit-common-config/browser-toolbar)
+- [Fullscreen Mode](/zh/guide/app-actions/edit-common-config/fullscreen)
+- [Screen Orientation](/zh/guide/app-actions/edit-common-config/orientation)
+- [Keep Screen On](/zh/guide/app-actions/edit-common-config/keep-screen-on)
+- [Floating Window](/zh/guide/app-actions/edit-common-config/floating-window)
+- [Long-press Menu](/zh/guide/app-actions/edit-common-config/long-press-menu)
 
-## 媒体与互动
+## Media & interaction
 
-- [启动动画](/zh/guide/app-actions/edit-common-config/splash)
-- [背景音乐](/zh/guide/app-actions/edit-common-config/bgm)
-- [弹窗公告](/zh/guide/app-actions/edit-common-config/announcement)
-- [网页自动翻译](/zh/guide/app-actions/edit-common-config/translate)
+- [Splash Animation](/zh/guide/app-actions/edit-common-config/splash)
+- [Background Music](/zh/guide/app-actions/edit-common-config/bgm)
+- [Popup Announcement](/zh/guide/app-actions/edit-common-config/announcement)
+- [Webpage Auto Translation](/zh/guide/app-actions/edit-common-config/translate)
 
-## 扩展与网络
+## Extensions & network
 
-- [拓展模块](/zh/guide/app-actions/edit-common-config/extension-modules)
-- [广告拦截](/zh/guide/app-actions/edit-common-config/ad-blocking)
-- [自定义DNS](/zh/guide/app-actions/edit-common-config/custom-dns)
+- [Extension Modules](/zh/guide/app-actions/edit-common-config/extension-modules)
+- [Ad Blocking](/zh/guide/app-actions/edit-common-config/ad-blocking)
+- [Custom DNS](/zh/guide/app-actions/edit-common-config/custom-dns)
 
-## 伪装
+## Disguise
 
-- [设备伪装](/zh/guide/app-actions/edit-common-config/device-disguise)
+- [Device Disguise](/zh/guide/app-actions/edit-common-config/device-disguise)
 
-## 启动与运行
+## Launch & runtime
 
-- [自启动设置](/zh/guide/app-actions/edit-common-config/auto-start)
+- [Auto-start](/zh/guide/app-actions/edit-common-config/auto-start)
 
-## 高级与导出
+## Advanced & export
 
-- [高级设置](/zh/guide/app-actions/edit-common-config/advanced-settings)
-- [特殊设置](/zh/guide/app-actions/edit-common-config/special-settings)
-- [APK导出配置](/zh/guide/app-actions/edit-common-config/apk-export)
+- [Advanced Settings](/zh/guide/app-actions/edit-common-config/advanced-settings)
+- [Special Settings](/zh/guide/app-actions/edit-common-config/special-settings)
+- [APK Export Config](/zh/guide/app-actions/edit-common-config/apk-export)
 
 ::: tip
-这些是*共享*选项。类型专属的来源/运行时设置见[编辑核心配置](/zh/guide/app-actions/edit-core-config)。
+These are the *shared* options. For the type-specific source/runtime settings, see [Edit Core Config](/zh/guide/app-actions/edit-core-config).
 :::

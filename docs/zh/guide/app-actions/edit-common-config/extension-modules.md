@@ -1,16 +1,16 @@
-# 插件
+# Plugins
 
-为应用附加插件（HCJ 包、油猴脚本、MV3 Chrome 扩展）。
+Attaches plugins (HCJ packages, userscripts, MV3 Chrome extensions) to the app.
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器中的 **插件** 卡片。多站点编辑器里也有同一张卡片。
+**Where:** the **Plugins** card in the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor, and the same card in the multi-site editor.
 
-## 选项
+## Options
 
-- **启用** —— 为此应用打开插件。
-- **所选插件** —— 选择在此应用中运行哪些已安装的插件。什么都不选时，使用「管理插件」里已打开的插件。单独选过一份清单后，只运行这些。
-- **宿主形态** —— 插件入口的位置（工具栏/悬浮句柄/菜单）与面板的打开方式（底部抽屉/悬浮窗/全屏）。
+- **Enable** — turn plugins on for this app.
+- **Selected plugins** — choose which installed plugins run in this app. With nothing picked, the plugins turned on in Manage Plugins run here. A picked list runs only those.
+- **Host style** — where plugin entries live (toolbar / floating handle / menu) and how panels open (bottom sheet / floating window / fullscreen).
 
-## 说明
+## Notes
 
-- 在[管理插件](/zh/guide/more-features/extension-modules)中管理和创建插件。
-- 编写插件见[插件开发](/zh/extensions/)。
+- Manage and create plugins in [Manage Plugins](/zh/guide/more-features/extension-modules).
+- To author plugins, see [Plugin Authoring](/zh/extensions/).

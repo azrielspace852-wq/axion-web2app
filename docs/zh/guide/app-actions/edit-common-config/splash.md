@@ -1,25 +1,25 @@
-# 启动动画
+# Splash Animation
 
-应用启动时显示图片或视频启动画面。
+Shows an image or video splash screen when the app launches.
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器中的 **启动画面** 卡片。
+**Where:** the **Splash screen** card in the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor.
 
-## 选项
+## Options
 
-- **启用** —— 打开启动画面(`splashEnabled`)。
-- **媒体** —— 选一张图片(`image/*`)或一个视频(`video/*`)。
-- **时长** —— 启动画面显示多久(`splashConfig.duration`)。
-- **点击跳过** —— 允许点击跳过(`clickToSkip`)。
-- **显示倒计时** —— 独立显示剩余秒数倒计时(`showCountdown`)。
-- **方向** —— 启动画面方向(`orientation`)。
-- **铺满屏幕** —— 裁剪铺满 vs 适应(`fillScreen`)。
-- **启用音频** —— 用于视频启动画面(`enableAudio`)。
-- **视频裁剪** —— 为视频启动画面设置起止裁剪区间(`videoStartMs`/`videoEndMs`)。
-- **清除媒体** —— 移除所选启动媒体。
+- **Enable** — turn the splash on (`splashEnabled`).
+- **Media** — pick an image (`image/*`) or a video (`video/*`).
+- **Duration** — how long the splash shows (`splashConfig.duration`).
+- **Click to skip** — allow tapping to skip (`clickToSkip`).
+- **Show countdown** — show the remaining-seconds countdown independently (`showCountdown`).
+- **Orientation** — splash orientation (`orientation`).
+- **Fill screen** — crop to fill vs fit (`fillScreen`).
+- **Enable audio** — for video splashes (`enableAudio`).
+- **Video trim** — set start/end trim range for a video splash (`videoStartMs`/`videoEndMs`).
+- **Clear media** — remove the selected splash media.
 
-## 说明
+## Notes
 
-- 当状态栏可见时,倒计时/跳过胶囊自动落在其下方,绝不被遮挡;纯全屏时保持在顶部角落。
-- 右上角胶囊只在有倒计时或跳过文案时出现。两个都关着时,那个角是空的。
-- 跳过文案跟随生成应用的语言,使用构建器的 10 种语言之一,而不是固定的英文 "Skip"。
-- 启动媒体被打包进导出的 APK(并可加密)。
+- When the status bar is visible, the countdown/skip chip automatically sits below it so it is never covered; in pure fullscreen it stays at the top corner.
+- The corner chip is drawn only when it has a countdown or a Skip label. With both off, that corner stays empty.
+- The skip label follows the generated app's language. It uses one of the builder's 10 languages, not a fixed English "Skip".
+- Splash media is packaged into the exported APK (and can be encrypted).

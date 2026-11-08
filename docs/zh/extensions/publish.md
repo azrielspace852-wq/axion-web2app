@@ -1,44 +1,44 @@
-# 发布到市场
+# Publish to the Market
 
-插件市场是由 GitHub 承载的社区插件目录，没有后端——App 直接从本仓库拉取目录文件，投稿就是普通的 PR 流程。
+The Plugin Market is a GitHub-backed catalog of community plugins. There is no backend — the app fetches catalog files straight from this repository, so contributing is a normal pull-request flow.
 
-::: info 权威规则
-提交规则、字段 Schema、审核 Checklist 和 CI 校验以 [`modules/README.md`](https://github.com/shiaho777/web-to-app/blob/main/modules/README.md) 为准。本页是快速上手。
+::: info Canonical rules
+The authoritative submission rules, field schemas, reviewer checklist, and CI validation live in [`modules/README.md`](https://github.com/azrielspace852-wq/axion-web2app/blob/main/modules/README.md). This page is a quick start.
 :::
 
-## 目录结构
+## Catalog layout
 
 ```
 modules/
-├── registry.json        # 面向 App 的目录索引
-├── submissions.json     # CI 生成的 PR/贡献者元数据
-├── README.md            # 投稿指南
-└── <plugin-folder>/     # 每个插件包
+├── registry.json        # app-facing catalog
+├── submissions.json     # CI-generated PR / contributor metadata
+├── README.md            # contributor guide
+└── <plugin-folder>/     # each plugin package
 ```
 
-App 同时拉取 `registry.json` 和 `submissions.json`，**只展示两边都存在的插件**，保证市场目录和已合并 PR 严格对齐。
+The app fetches both `registry.json` and `submissions.json` and **only shows plugins present in both**, keeping the in-app catalog aligned with actually-merged PRs.
 
-## 添加插件
+## Add a plugin
 
-1. 在 `modules/` 下建一个 **kebab-case** 文件夹：
+1. Create a **kebab-case** folder under `modules/`:
 
    ```
    modules/my-plugin/
-   ├── plugin.json    # 必需
-   ├── plugin.html    # 必需 —— 页面脚本（`<script type="hcj/page">`）+ 面板文档合一
-   └── icon.png       # 可选，≤256KB
+   ├── plugin.json    # required
+   ├── plugin.html    # required — page script (`<script type="hcj/page">`) + panel document
+   └── icon.png       # optional, ≤256KB
    ```
 
-   旧版 `main.js` / `style.css` / `panel.html` 多文件包仍可通过校验并安装；新投稿请用单文件 `plugin.html`。
+   Legacy `main.js` / `style.css` / `panel.html` packages still validate and install; new submissions should use the single `plugin.html`.
 
-2. 在 `registry.json` 中加条目：
+2. Add an entry to `registry.json`:
 
    ```json
    {
      "id": "my-plugin",
      "path": "my-plugin",
      "name": "My Plugin",
-     "description": "做什么的",
+     "description": "What it does",
      "icon": "star",
      "category": "CONTENT_ENHANCE",
      "tags": ["demo"],
@@ -51,28 +51,28 @@ App 同时拉取 `registry.json` 和 `submissions.json`，**只展示两边都�
    }
    ```
 
-   注册表保留旧字段名（大写下划线的 `runAt`、对象形式的 `urlMatches`、`hasCss`），保证旧客户端可用——`plugin.json` 用新字段名（`document_end`、`matches`）。
+   The registry keeps its legacy field names (`runAt` in upper-snake, `urlMatches` objects, `hasCss`) so older clients keep working — `plugin.json` uses the new field names (`document_end`, `matches`).
 
-3. 保持 `plugin.json` 与 `registry.json` 一致——`id`、`name`、`version` 必须相同。已退役的 `module.json` 格式会被 CI 拒绝。
+3. Keep `plugin.json` and `registry.json` consistent — `id`, `name`, and `version` must agree. The retired `module.json` format is rejected by CI.
 
-4. 提 PR，CI 自动跑校验。
+4. Open a pull request. CI runs the validator automatically.
 
-## CI 校验什么
+## What CI validates
 
-`python3 .github/scripts/ci/validate_modules.py` 检查：
+`python3 .github/scripts/ci/validate_modules.py` checks:
 
-- JSON 合法性与必填字段（`plugin.json`、`registry.json`）
-- 枚举取值（`runAt`、`permissions`、registry 枚举）
-- `plugin.json` ↔ `registry.json` 一致性（`id`/`name`/`version`）
-- kebab-case 文件夹名；无孤儿/幽灵条目；`id`/`path` 不重复
-- 必需文件齐全；`hasCss` 与 `style.css` 是否存在一致
-- `iconUrl` 大小/扩展名限制
-- 页面脚本（`hcj/page` 块 / `main.js`）无顶层 `return`
+- JSON validity and required fields (`plugin.json`, `registry.json`)
+- Allowed values (`runAt`, `permissions`, registry enums)
+- `plugin.json` ↔ `registry.json` consistency (`id` / `name` / `version`)
+- kebab-case folder names; no orphan or ghost entries; no duplicate `id`/`path`
+- Required files present (`plugin.html`, or legacy `main.js`)
+- `iconUrl` size/extension limits
+- No top-level `return` in the page script (`hcj/page` block / `main.js`)
 
-## 浏览器扩展另算
+## Browser extensions are different
 
-社区市场**只收录 HCJ 插件包**。MV3 浏览器扩展不是社区目录——**浏览器扩展** tab 实时搜索 Chrome Web Store。见 [Chrome MV3 扩展](/zh/extensions/chrome-mv3)。
+The community market carries **only HCJ plugin packages**. MV3 browser extensions are not a community catalog — the **Browser Extensions** tab searches the Chrome Web Store live instead. See [Chrome MV3 Extensions](/zh/extensions/chrome-mv3).
 
-## 镜像
+## Mirrors
 
-目录文件和插件图标优先走全球镜像，`raw.githubusercontent.com` 与 jsDelivr 自动兜底，各地（含中国大陆）都快。客户端默认缓存一小时，插件合入后无需发版即可触达。
+Catalog files and plugin icons route through a global mirror first, with `raw.githubusercontent.com` and jsDelivr as automatic fallbacks, so the store loads fast everywhere (including mainland China). The default client cache is one hour, so merged plugins propagate without an app update.

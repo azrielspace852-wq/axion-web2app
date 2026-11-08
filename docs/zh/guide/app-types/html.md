@@ -1,48 +1,48 @@
 # HTML
 
-把本地 HTML 打包进 APK,并从本地文件提供服务 —— 无需远程 URL。
+Packages local HTML into the APK and serves it from local files — no remote URL required.
 
-## 适用场景
+## When to use
 
-静态构建和离线 Web 应用,你已经有 HTML/CSS/JS 文件。
+Static builds and offline web apps where you already have the HTML/CSS/JS files.
 
-## 核心配置
+## Core config
 
-由 `HtmlConfig` 支撑。
+Backed by `HtmlConfig`.
 
-### 来源
+### Source
 
-- **项目目录**(`projectDir`)—— HTML/CSS/JS 文件夹,或导入时解压的 `.zip`。
-- **文件**(`files`)—— 打包的文件,类型为 HTML/CSS/JS/图片/字体/其他。
+- **Project directory** (`projectDir`) — the folder of HTML/CSS/JS, or a `.zip` extracted on import.
+- **Files** (`files`) — the packaged files, typed as HTML/CSS/JS/image/font/other.
 
-### 入口
+### Entry
 
-- **入口文件**(`entryFile`)—— 默认 `index.html`。
+- **Entry file** (`entryFile`) — defaults to `index.html`.
 
-### 加载
+### Loading
 
-- **加载模式**(`loadMode`)—— `AUTO`(新建应用的默认值)、`FILE`(文件协议)或 `LOCAL_HTTP`(本地服务器)。
-- **端口**(`port`)—— 本地服务器端口(用于 `LOCAL_HTTP`)。
-- **端口冲突模式**(`portConflictMode`)—— `AUTO_KILL` 或 `ALERT`。
+- **Load mode** (`loadMode`) — `AUTO` (the default for a new app), `FILE` (file scheme), or `LOCAL_HTTP` (local server).
+- **Port** (`port`) — the local server port (for `LOCAL_HTTP`).
+- **Port-conflict mode** (`portConflictMode`) — `AUTO_KILL` or `ALERT`.
 
-### 能力
+### Capabilities
 
-- **启用 JavaScript**(`enableJavaScript`)。
-- **启用本地存储**(`enableLocalStorage`)。
-- **允许文件访问**(`allowFileAccess`)—— 纯文件加载所必需。
+- **Enable JavaScript** (`enableJavaScript`).
+- **Enable local storage** (`enableLocalStorage`).
+- **Allow file access** (`allowFileAccess`) — required for pure file-based loads.
 
-### 外观
+### Appearance
 
-- **背景色**(`backgroundColor`)。
+- **Background color** (`backgroundColor`).
 
-## 说明
+## Notes
 
-- 生成的应用获得 `allowFileAccess`,使纯文件加载可离线工作。
-- Godot 网页导出会在系统 WebView 里启动。只有 User-Agent 里同时有 Chrome 时才去掉 `Version/4.0`,这样引擎不会被当成 Safari 4。真正的 Safari 版本号会保留。
-- **文件夹访问** —— 在[特别设置](/zh/guide/app-actions/edit-common-config/special-settings)里打开原生桥的文件夹能力。页面选定一个目录后,可以在系统 WebView 上通过 `WtaDirectory` 列出、读取和写入。授权留在这台设备上,导出的应用需要再选一次。GeckoView 没有这组方法。
-- **本地文件**在页面能留在磁盘上时不申请 `INTERNET` 权限。自动模式对普通页面同样如此。必须使用 CDN、ES 模块或 WASM 的页面仍走本地服务并保留该权限,**本地服务**也始终保留。
-- `AUTO` 对普通页面使用文件协议。页面需要真实源时改由本地 HTTP 服务器提供:CDN 地址、ES 模块(`type=module` 或动态 `import(`)、`.mjs`、`.wasm`、Service Worker、Web Manifest,或跨源隔离。已保存的 `FILE` 页面仍走文件协议,除非它需要这个源。只用 `fetch` 或 `localStorage` 不会强制走服务器。`LOCAL_HTTP` 始终走服务器。内置代码编辑器默认软换行,可以关掉,并会高亮 HTML。
-- **HTML vs 前端 vs 离线包:**
-  - **HTML** —— 你已经有静态文件。
-  - [前端](/zh/guide/app-types/frontend) —— 你有一个框架项目,打包其构建输出。
-  - [离线包](/zh/guide/app-types/offline-pack) —— 你从一个远程 URL 开始,把它抓取下来。
+- The generated app gets `allowFileAccess` so pure file-based loads work offline.
+- A Godot web export starts on System WebView. The `Version/4.0` token is removed only when the user agent also contains Chrome, so the engine is not treated as Safari 4. A real Safari version string is left as it is.
+- **Folder access** — in [Special settings](/zh/guide/app-actions/edit-common-config/special-settings), turn on the Native Bridge folder capability. The page picks one directory and can list, read, and write it through `WtaDirectory` on the system WebView. The grant stays on that device, so an exported app asks again. GeckoView does not expose these methods.
+- **Local file** does not request the `INTERNET` permission when the page can stay on disk. Automatic does the same for a plain page. A page that needs a CDN, ES modules, or WASM still uses the local server and keeps the permission, as does **Local server**.
+- `AUTO` uses the file scheme for a plain page. A page that needs a real origin is served from the local HTTP server: a CDN URL, an ES module (`type=module` or a dynamic `import(`), `.mjs`, `.wasm`, a service worker, a web manifest, or cross-origin isolation. A saved `FILE` page stays on the file scheme unless it needs that origin. `fetch` or `localStorage` alone does not force the server. `LOCAL_HTTP` always uses it. The built-in code editor soft-wraps by default, with a toggle, and highlights HTML.
+- **HTML vs Frontend vs Offline Pack:**
+  - **HTML** — you already have static files.
+  - [Frontend](/zh/guide/app-types/frontend) — you have a framework project whose build output you package.
+  - [Offline Pack](/zh/guide/app-types/offline-pack) — you start from a remote URL and scrape it down.

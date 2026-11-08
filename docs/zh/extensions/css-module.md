@@ -1,23 +1,23 @@
-# CSS 插件
+# CSS Plugins
 
-CSS 插件是纯样式覆盖——给站点做主题、重排版或暗色模式。它和 [HCJ 插件](/zh/extensions/js-module) 用同一个 `plugin.json` 清单，只是主体是样式表。
+A CSS plugin is a pure style override — theming, restyling, or a dark mode for a site. It uses the same `plugin.json` manifest as an [HCJ plugin](/zh/extensions/js-module), but the substance is the stylesheet.
 
-::: tip 推荐：`hcj.addStyle(css)`
-页面样式通常直接写在 `main.js` 里，通过 `hcj.addStyle(css)` 注入——不需要独立文件，编辑器也只暴露 `main.js` / `panel.html`。单独的 `style.css` 文件为兼容保留（旧包或迁移包），见下文。
+::: tip Preferred: `hcj.addStyle(css)`
+Page styles are normally authored inside `main.js` via `hcj.addStyle(css)` — no separate file needed, and the editor only exposes `main.js` / `panel.html`. A bare `style.css` file still loads for compatibility (older or migrated packages), as described below.
 :::
 
-## 文件结构
+## File layout
 
 ```
 my-theme/
-├── plugin.json    # 必需
-├── main.js        # 必需 —— 可以是接近空的占位
-├── style.css      # 兼容保留 —— 推荐改用 main.js 里的 hcj.addStyle
-└── icon.png       # 可选
+├── plugin.json    # required
+├── main.js        # required — can be a near-empty stub
+├── style.css      # legacy optional — prefer hcj.addStyle in main.js
+└── icon.png       # optional
 ```
 
-::: info `main.js` 仍然是必需的
-即使是纯 CSS 插件也需要一个 `main.js`（最小占位即可）。把 `runAt` 设为 `document_start`，样式尽早生效，避免未样式化内容的闪烁。
+::: info A `main.js` is still required
+Even a pure CSS plugin needs a `main.js` (it can be a minimal stub). Set `runAt` to `document_start` so your styles apply as early as possible and avoid a flash of unstyled content.
 :::
 
 ## `plugin.json`
@@ -26,7 +26,7 @@ my-theme/
 {
   "id": "dark-reader-lite",
   "name": "Dark Reader Lite",
-  "description": "一个简单的暗色主题",
+  "description": "A simple dark theme",
   "icon": "dark_mode",
   "runAt": "document_start",
   "matches": ["*://news.ycombinator.com/*"],
@@ -34,13 +34,13 @@ my-theme/
 }
 ```
 
-CSS 注入不需要权限——它就是包的一部分。
+CSS injection needs no permission — it's part of the package.
 
-## CSS 如何注入
+## How CSS is injected
 
-`style.css` 在 document-start 以 `<style id="hcj-css-<id>">` 元素注入，早于页面绘制和 `main.js` 运行。按插件、按文档幂等——反复导航不会重复叠加。
+`style.css` is injected as a `<style id="hcj-css-<id>">` element at document-start, before the page paints and before `main.js` runs. It is idempotent per plugin per document — re-navigations won't stack duplicates.
 
-## `style.css` 示例
+## Example `style.css`
 
 ```css
 :root {
@@ -55,4 +55,4 @@ a {
 }
 ```
 
-可用的暗色插件示例见 [`app/src/main/assets/plugins/`](https://github.com/shiaho777/web-to-app/tree/main/app/src/main/assets/plugins) 下的 `builtin-dark-mode`（样式由 `main.js` 注入）。
+See the built-in `builtin-dark-mode` package under [`app/src/main/assets/plugins/`](https://github.com/azrielspace852-wq/axion-web2app/tree/main/app/src/main/assets/plugins) for a working dark-mode plugin (it injects its styles from `main.js`).

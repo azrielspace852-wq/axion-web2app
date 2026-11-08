@@ -1,71 +1,71 @@
 # NativeBridge
 
-`window.NativeBridge` 是网页调用 Android 能力的桥，不是未公开的私有接口。按应用打开后，在系统 WebView 里直接调用下面的方法。预览和导出的 APK 用的是同一套。
+`window.NativeBridge` is the page-side bridge to Android. It is not a hidden private API. Turn it on per app, then call the methods below from the page. The same bridge is available in preview and in the exported APK when the app uses the system WebView.
 
-**位置：** 编辑器 → **特殊设置** → **原生桥**（`enableNativeBridge`）。新建应用默认打开。每一项能力还有自己的开关，在 `nativeBridgeCapabilities` 里。开关关掉时，对应方法直接返回，不执行。
+**Where:** editor → **Special settings** → **Native bridge** (`enableNativeBridge`). It is on for newly created apps. Each ability has its own switch under `nativeBridgeCapabilities`. A method whose switch is off returns without doing the work.
 
-GeckoView 没有这个对象。那种内核只保留 CORS 绕过 / 私有网络的 `httpRequest`。剪贴板、震动、分享和文件夹都要系统 WebView。
+GeckoView does not host this object. On that engine only the CORS-bypass / private-network `httpRequest` entry point is available. Clipboard, vibration, sharing, and the directory helper need the system WebView.
 
-## 调用方式
+## Call pattern
 
 ```javascript
-NativeBridge.showToast('已保存');
+NativeBridge.showToast('Saved');
 NativeBridge.vibrate(200);
 const copied = NativeBridge.copyToClipboard('hello');
-if (copied) NativeBridge.showToast('已复制');
-NativeBridge.share('标题', '正文', 'https://example.com');
+if (copied) NativeBridge.showToast('Copied');
+NativeBridge.share('Title', 'Body', 'https://example.com');
 ```
 
-除了写明走 `window` 回调的方法，其余调用是同步的。
+Methods are synchronous unless the section says the result comes back through a `window` callback.
 
-## 能力开关
+## Capabilities
 
-| 开关 | 管到的方法 |
+| Switch | Methods it gates |
 | --- | --- |
-| 剪贴板 | `copyToClipboard`、`getClipboardText` |
-| 震动 | `vibrate`、`vibratePattern` |
+| Clipboard | `copyToClipboard`, `getClipboardText` |
+| Vibration | `vibrate`, `vibratePattern` |
 | Toast | `showToast` |
-| 下载 | `saveImageToGallery`、`saveVideoToGallery`、`downloadVideo`、`downloadAudio`、`downloadWithHeaders`、`saveToFile` |
-| 外部打开 | `openUrl`、`openApp` |
-| 设备信息 | `getDeviceInfo`、`getAppInfo` |
-| 安全信息 | `isDeveloperOptionsEnabled`、`isAdbEnabled`、`isDebuggable`、`getSecurityInfo` |
-| 网络信息 | `isNetworkAvailable`、`getNetworkType` |
-| 日志 | `log` |
-| 页内查找 | `findInPage`、`findNextInPage`、`clearFindInPage` |
-| 屏幕方向 | `setOrientation`、`getOrientation`、`lockOrientation`、`unlockOrientation` |
-| 亮度 | `setScreenBrightness` |
-| 屏幕常亮 | `setKeepScreenOn` |
-| 全屏 | `enterFullscreen`、`exitFullscreen`、`isFullscreen` |
-| 打印 | 走单独的打印桥 |
-| 通知 | 系统通知，默认关 |
-| Google 登录 | `googleSignIn`，默认关，还要填 Web client id |
-| 文件夹 | `WtaDirectory`，默认关 |
+| Download | `saveImageToGallery`, `saveVideoToGallery`, `downloadVideo`, `downloadAudio`, `downloadWithHeaders`, `saveToFile` |
+| Open external | `openUrl`, `openApp` |
+| Device info | `getDeviceInfo`, `getAppInfo` |
+| Security info | `isDeveloperOptionsEnabled`, `isAdbEnabled`, `isDebuggable`, `getSecurityInfo` |
+| Network info | `isNetworkAvailable`, `getNetworkType` |
+| Logging | `log` |
+| Find in page | `findInPage`, `findNextInPage`, `clearFindInPage` |
+| Orientation | `setOrientation`, `getOrientation`, `lockOrientation`, `unlockOrientation` |
+| Brightness | `setScreenBrightness` |
+| Screen wake | `setKeepScreenOn` |
+| Fullscreen | `enterFullscreen`, `exitFullscreen`, `isFullscreen` |
+| Print | covered by the separate print bridge |
+| Notification | system notifications. Off by default |
+| Google sign-in | `googleSignIn`. Off by default. Needs a Web client id |
+| Folder | `WtaDirectory`. Off by default |
 
-## 剪贴板和震动
+## Clipboard and vibration
 
 ```javascript
-NativeBridge.vibrate();          // 100 毫秒
+NativeBridge.vibrate();          // 100ms
 NativeBridge.vibrate(500);
 NativeBridge.vibratePattern('100,200,100,200');
 
-const ok = NativeBridge.copyToClipboard('要复制的文字');
-const text = NativeBridge.getClipboardText(); // 失败时是空字符串
+const ok = NativeBridge.copyToClipboard('text to copy');
+const text = NativeBridge.getClipboardText(); // empty string on failure
 ```
 
-`getClipboardText` 在系统要求时需要用户允许读取剪贴板。
+`getClipboardText` needs the user to grant clipboard access when the platform asks.
 
-## 分享和打开
+## Share and open
 
 ```javascript
-NativeBridge.share('标题', '正文', 'https://example.com');
-NativeBridge.shareImage('https://example.com/image.jpg', '图片');
+NativeBridge.share('Title', 'Body text', 'https://example.com');
+NativeBridge.shareImage('https://example.com/image.jpg', 'Photo');
 NativeBridge.openUrl('https://example.com');
-NativeBridge.openApp('com.tencent.mm'); // 没安装这个包时返回 false
+NativeBridge.openApp('com.tencent.mm'); // returns false when the package is missing
 ```
 
-网页里的 `navigator.share` 是另一个开关：**网页分享**（`enableShareBridge`），默认开。`NativeBridge.share` 走的是这座桥。
+Page-level `navigator.share` is a different switch: **Share from the page** (`enableShareBridge`), on by default. `NativeBridge.share` is this bridge.
 
-## 相册和文件
+## Gallery and files
 
 ```javascript
 NativeBridge.saveImageToGallery('https://example.com/image.jpg', 'my_image.jpg');
@@ -76,17 +76,17 @@ NativeBridge.downloadWithHeaders(
   'video.mp4',
   JSON.stringify({ Referer: 'https://example.com' })
 );
-NativeBridge.saveToFile('笔记正文', 'note.txt', 'text/plain');
+NativeBridge.saveToFile('note body', 'note.txt', 'text/plain');
 ```
 
-系统下载进相册时，图片放在 `Pictures/相册子目录`，视频和音频进对应的影片、音乐目录。子目录名在下载卡片的 **相册子目录**。留空就是 `WebToApp`。
+System-download media goes into `Pictures/<gallery folder>` (and the matching movie or music folder). The folder name is **Gallery folder** on the download card. Blank stays `AXION Web2App`.
 
-## 屏幕、方向、查找
+## Screen, orientation, find
 
 ```javascript
 NativeBridge.setOrientation('landscape'); // portrait | landscape | auto
 NativeBridge.setKeepScreenOn(true);
-NativeBridge.setScreenBrightness(0.8);    // -1 跟随系统
+NativeBridge.setScreenBrightness(0.8);    // -1 follows the system
 NativeBridge.enterFullscreen();
 
 const state = JSON.parse(NativeBridge.findInPage('keyword'));
@@ -94,24 +94,24 @@ NativeBridge.findNextInPage(true);
 NativeBridge.clearFindInPage();
 ```
 
-## Google 登录
+## Google sign-in
 
-要在编辑器里打开，并填好 Web client id。结果不从返回值来。
+Off until the editor enables it and a Web client id is set. The result is not the return value.
 
 ```javascript
 window.NativeBridgeGoogleSignInResult = function (requestId, payload) {
   if (payload.ok) {
-    // 先在自己的服务器上校验 payload.idToken，再建立会话。
+    // Verify payload.idToken on your server before creating a session.
   }
 };
 NativeBridge.googleSignIn('sign-in-' + Date.now());
 ```
 
-成功时 `payload` 是 `{ ok: true, idToken, displayName, profilePictureUri, googleUserId }`，失败时是 `{ ok: false, error, message }`。错误码包括 `DISABLED`、`NO_CLIENT_ID`、`NO_ACTIVITY`、`CALLER_NOT_ALLOWED`、`CANCELLED`、`CREDENTIAL_ERROR`、`UNAVAILABLE`。
+`payload` is `{ ok: true, idToken, displayName, profilePictureUri, googleUserId }` or `{ ok: false, error, message }`. Error codes include `DISABLED`, `NO_CLIENT_ID`, `NO_ACTIVITY`, `CALLER_NOT_ALLOWED`, `CANCELLED`, `CREDENTIAL_ERROR`, and `UNAVAILABLE`.
 
-## 文件夹（`WtaDirectory`）
+## Folder (`WtaDirectory`)
 
-先打开 **文件夹**。`pick()` 必须由用户点击触发。授权留在当前安装的应用里。导出的 APK 是另一个包名，要再选一次。GeckoView 没有这组方法。
+Off until **Folder** is enabled. The page must call `pick()` from a user gesture. The grant stays on that installed app. An exported APK is a different package and asks again. GeckoView does not include this helper.
 
 ```javascript
 const grant = await WtaDirectory.pick();
@@ -121,19 +121,19 @@ const font = await WtaDirectory.read('fonts/MyFont.ttf');
 await WtaDirectory.write('exports/image.png', pngBytes);
 ```
 
-| 方法 | 结果 |
+| Method | Result |
 | --- | --- |
 | `directoryInfo()` | `{ ok, granted, name?, writable? }` |
-| `pickDirectory(requestId)` | 打开系统目录选择器，结果送到 `window.NativeBridgeDirectoryResult` |
-| `listDirectory(relativePath)` | `{ ok, entries, truncated }`。空路径是授权根 |
-| `readDirectoryFile(relativePath, offset, length)` | 一块最多 256 KiB，`data` 是 base64 |
-| `writeDirectoryFile(relativePath, base64, append)` | 写一块。`append: false` 是新建或覆盖 |
-| `deleteDirectoryEntry(relativePath)` | 删除文件或子目录，不能删授权根 |
-| `releaseDirectory()` | 丢掉授权 |
+| `pickDirectory(requestId)` | Opens the system picker. The result arrives at `window.NativeBridgeDirectoryResult` |
+| `listDirectory(relativePath)` | `{ ok, entries, truncated }`. An empty path is the granted root |
+| `readDirectoryFile(relativePath, offset, length)` | One chunk, at most 256 KiB, base64 in `data` |
+| `writeDirectoryFile(relativePath, base64, append)` | Writes one chunk. `append: false` creates or replaces |
+| `deleteDirectoryEntry(relativePath)` | Deletes a file or a child directory, never the granted root |
+| `releaseDirectory()` | Drops the grant |
 
-`WtaDirectory.pick`、`read`、`write`、`list` 是打开这项能力后注入的简便方法。表里的名字是底层 `NativeBridge` 方法。
+`WtaDirectory.pick`, `read`, `write`, and `list` are the helpers injected with the capability. The object names above are the underlying `NativeBridge` methods.
 
-## 设备和网络
+## Device and network
 
 ```javascript
 const device = JSON.parse(NativeBridge.getDeviceInfo());
@@ -141,14 +141,14 @@ const app = JSON.parse(NativeBridge.getAppInfo());
 const security = JSON.parse(NativeBridge.getSecurityInfo());
 NativeBridge.isNetworkAvailable();
 NativeBridge.getNetworkType(); // "wifi" | "mobile" | "none" | "unknown"
-NativeBridge.log('调试一行');
+NativeBridge.log('debug line');
 ```
 
-## 网页可以接的按键
+## Keys the page can handle
 
-这是 DOM 事件，不是 `NativeBridge` 的方法。预览和导出的 APK 都会发。
+These are DOM events, not `NativeBridge` methods. They exist in preview and in the exported APK.
 
-**返回键。** 编辑器里把返回键行为设为 **执行 JS**。每次系统返回都会在 `document` 上派发可取消的 `wta:back`。`preventDefault()` 就留在页面里。网页没处理时，仍然按历史返回。历史已经空了时，再按一次返回就离开应用。
+**Back.** Editor → back behavior → **Run JavaScript**. Each system Back press dispatches a cancelable `wta:back` on `document`. `preventDefault()` keeps the app on the page. If the page does not handle the event, Back still walks history. When that history is empty, one Back leaves the app.
 
 ```javascript
 document.addEventListener('wta:back', function (event) {
@@ -156,7 +156,7 @@ document.addEventListener('wta:back', function (event) {
 });
 ```
 
-**音量键。** 打开 **把音量键交给网页** 后会派发 `wta:volume`。`event.detail.key` 是 `VolumeUp`、`VolumeDown` 或 `VolumeMute`。再打开 **接管时不改系统音量**，系统音量就不会变。这个开关关掉时，网页仍能收到事件，系统音量照常变。
+**Volume.** **Send volume keys to the page** dispatches `wta:volume`. `event.detail.key` is `VolumeUp`, `VolumeDown`, or `VolumeMute`. **Do not change the system volume** swallows the key. Leave that switch off and the page still hears the event while the system volume changes.
 
 ```javascript
 document.addEventListener('wta:volume', function (event) {
@@ -164,6 +164,6 @@ document.addEventListener('wta:volume', function (event) {
 });
 ```
 
-## 网页指定的下载文件名
+## Downloads named by the page
 
-`<a download="chapter.txt" href="https://...">`、用 `File` 做出来的 `blob:` 地址，以及 `window.open` 打开这个 blob，都会沿用网页给的文件名。系统浏览器本来就会这样。WebView 的下载回调只看得到网址，所以壳自己读 `download` 属性和 `File.name`。
+An `<a download="chapter.txt" href="https://...">` link, a `blob:` URL created from a `File`, and `window.open` of that blob keep the page's file name. The system browser already did this. The WebView download listener only sees the URL, so the shell reads the `download` attribute and `File.name` itself.

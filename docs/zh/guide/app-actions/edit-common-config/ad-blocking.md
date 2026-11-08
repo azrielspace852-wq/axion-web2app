@@ -1,16 +1,16 @@
-# 广告拦截
+# Ad Blocking
 
-使用 hosts 规则和 cosmetic 过滤在生成的应用中拦截广告。
+Blocks ads in the generated app using hosts rules and cosmetic filtering.
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器中的 **广告拦截** 卡片。
+**Where:** the **Ad blocking** card in the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor.
 
-## 选项
+## Options
 
-- **启用** —— 打开去广告(`adBlockEnabled`)。
-- **规则** —— 自定义拦截规则(`adBlockRules`)。
-- **订阅** —— 过滤订阅 URL(`adBlockSubscriptions`),从[Hosts 拦截](/zh/guide/more-features/hosts-adblock)中的内置列表与导入的自定义源中选取。
+- **Enable** — turn ad blocking on (`adBlockEnabled`).
+- **Rules** — custom blocking rules (`adBlockRules`).
+- **Subscriptions** — filter subscription URLs (`adBlockSubscriptions`), chosen from the built-in lists and your imported custom sources in [Hosts Ad Blocking](/zh/guide/more-features/hosts-adblock).
 
-## 说明
+## Notes
 
-- 在 [Hosts 拦截](/zh/guide/more-features/hosts-adblock)中全局管理过滤列表和订阅(内置 20 个社区列表)。
-- 去广告同时贯通预览与导出:宿主去广告器服务预览,规则文本随导出的 APK 一起发布,由应用在启动时解析。列表很大时,进度显示 **Compiling ad-block rules...**,不再停在模板重打包那一步。启动时,下载的规则在后台线程解析。窗口保持可操作,第一页会等到规则装好再打开。
+- Manage filter lists and subscriptions globally in [Hosts Ad Blocking](/zh/guide/more-features/hosts-adblock) (20 built-in community lists).
+- Ad blocking is wired for both preview and export: the host blocker serves preview, and the rule text ships inside the exported APK for the app to parse at launch. A large list shows **Compiling ad-block rules...** while that step runs. At launch, a downloaded list is parsed off the main thread. The window stays responsive, and the first page waits until the rules are ready.

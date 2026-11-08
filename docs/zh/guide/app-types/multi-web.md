@@ -1,48 +1,48 @@
-# 多站点
+# Multi-Web
 
-把多个站点合并到一个应用,可选择布局。
+Combines multiple sites into a single app with a choice of layouts.
 
-## 适用场景
+## When to use
 
-链接枢纽、门户和应用合集 —— 想把多个站点放在一个屋檐下。
+Link hubs, portals, and app collections where you want several sites under one roof.
 
-## 核心配置
+## Core config
 
-由 `MultiWebConfig` 和一个 `MultiWebSite` 条目列表支撑。
+Backed by `MultiWebConfig` and a list of `MultiWebSite` entries.
 
-### 站点
+### Sites
 
-每个站点条目有:
+Each site entry has:
 
-- **名称与 URL** —— 站点的标签和地址。
-- **类型** —— `URL`、`LOCAL`、`INLINE_HTML` 或 `EXISTING`(复用另一个应用/项目)。
-- **图标** —— emoji 图标或 favicon URL。
-- **主题色** —— 按站点的强调色。
-- **分类** —— 在应用内对站点分组。
-- **选择器** —— 用于内容提取的 CSS 选择器(`cssSelector`)和链接选择器(`linkSelector`)。
-- **启用与排序** —— 开关站点并设置排序索引。
-- **按站点配置** —— 站点可携带自己的 `webViewConfig` 或 `htmlConfig`。数据模型也有服务端运行时的配置槽位,但被标为服务端运行时类型的站点无法嵌入 —— 见下文说明。
+- **Name & URL** — the site's label and address.
+- **Type** — `URL`, `LOCAL`, `INLINE_HTML`, or `EXISTING` (reuse another app/project).
+- **Icon** — an emoji icon or a favicon URL.
+- **Theme color** — a per-site accent color.
+- **Category** — group sites within the app.
+- **Selectors** — a CSS selector (`cssSelector`) and link selector (`linkSelector`) for content extraction.
+- **Enabled & order** — toggle a site and set its sort index.
+- **Per-site config** — a site can carry its own `webViewConfig` or `htmlConfig`. The model also has server-runtime config slots, but a site typed as a server-runtime app is not embeddable — see Notes.
 
-### 布局与显示
+### Layout & display
 
-- **显示模式**(`displayMode`)—— 在编辑器里选择。**底部标签**(`TABS`,新建应用的默认值)、**顶部标签**(`TOP_TABS`)、**卡片主页**(`CARDS`)、**侧边抽屉**(`DRAWER`)或**信息流**(`FEED`)。
-- **顶部标签** —— 标签在状态栏下方。选中的站点有一个小圆点。左右滑动会跟着手指走,松手后滑到相邻站点。一次手势只停在当前页或下一页;到头时页面会回弹。底部标签、卡片、抽屉和信息流仍是一次切一页。栏背景先取当前页顶部的实时采样,再回退到站点主题色。首屏绘制后会再采一次,所以第一屏不会停在浅色回退上。**显示站点图标**在这里同样生效。GeckoView 拿不到采样,栏就用主题色。被挡住的 Gecko 标签会收起,切回去时显示的是该标签自己的页面,而不是最新一帧。
-- **卡片主页和抽屉** —— 卡片主页 1–4 列(`cardColumns`,默认 2)。侧边抽屉 1–3 列(`drawerColumns`,默认 1)。列越多,整张卡片越小。高度滑杆可以再把它缩短(`cardAspectRatio`,默认 1.2)。旧配置没有这些字段时保持原来的布局。抽屉顶栏可以按显示名、主机或完整网址过滤。星标只收藏、不打开。收藏的站点在列表上方单独成组。星标和上次打开的站点一起留在这台设备上,不写入编辑器配置。
-- **站点顺序** —— 在站点列表里长按握把拖动。顺序随应用保存,并写入导出配置,生成的应用用同一顺序。
-- **启动时打开的标签**(`startTab`)—— **上次打开**(`LAST`,默认)或指定站点(`SITE` 加 `startSiteId`)。指定的站点被删掉或关掉时,回退到第一个站点。卡片主页在指定了站点时会跳过网格。信息流没有当前标签,所以那里不显示这个选项。
-- **显示站点图标**(`showSiteIcons`)。
+- **Display mode** (`displayMode`) — chosen in the editor. **Bottom Tabs** (`TABS`, the default for new apps), **Top Tabs** (`TOP_TABS`), **Card Home** (`CARDS`), **Side Drawer** (`DRAWER`), or **Feed** (`FEED`).
+- **Top Tabs** — labels sit under the status bar. The selected site has a dot. A sideways swipe follows the finger and coasts onto the neighboring site. One gesture stays on the current page or the next one; past the ends the page rubber-bands. Bottom tabs, cards, the drawer, and the feed stay a discrete switch. The bar background follows a live sample of the top of the current page, then the site's theme color. The first paint is sampled again, so the bar is not left on the light fallback. **Show site icons** applies here too. On GeckoView the sample is unavailable, so the bar uses the theme color. A covered Gecko tab is collapsed, so switching back shows that tab's page instead of the newest frame.
+- **Card home and drawer** — card home uses 1–4 columns (`cardColumns`, default 2). The side drawer uses 1–3 (`drawerColumns`, default 1). More columns shrink the whole card. A height slider shortens it further (`cardAspectRatio`, default 1.2). An old config that omits these keys keeps that layout. The drawer header filters by the visible name, the host, or the full URL. A star marks a site without opening it. Marked sites sit in a Saved section above the list. Marks stay on the device with the last-opened site, and they are not part of the editor config.
+- **Site order** — long-press the grip in the site list. The order is saved with the app and written into the export, so the generated app shows the same sequence.
+- **Tab opened on launch** (`startTab`) — **Last opened** (`LAST`, the default) or a chosen site (`SITE` plus `startSiteId`). A pinned site that was removed or disabled falls back to the first site. Card home skips the grid when a site is pinned. Feed mode has no current tab, so the control is hidden there.
+- **Show site icons** (`showSiteIcons`).
 
-### 刷新
+### Refresh
 
-- **刷新间隔**(`refreshInterval`)—— 自动刷新之间的秒数。
+- **Refresh interval** (`refreshInterval`) — seconds between auto-refreshes.
 
-### 共享注入
+### Shared injection
 
-- 跨所有站点应用的公共 JS/CSS。
+- Common JS/CSS applied across all sites.
 
-## 说明
+## Notes
 
-- 每个站点仍是一个网页目标,因此按应用的网络和隐私选项作用于整个多站点应用。
-- 画廊/单图/单视频站点的媒体会在导出时嵌入、运行时解析,正常渲染而不会黑屏。
-- 服务端运行时应用(Node.js / PHP / Python / Go / WordPress)无法作为站点嵌入 —— 它们的运行时不会打进多网站 APK。站点选择器会隐藏它们,仍有此类引用的旧配置会在导出时回退为站点 URL。
-- 单个站点请改用[网页](/zh/guide/app-types/web)。
+- Each site is still a web target, so per-app networking and privacy options apply to the whole multi-web app.
+- Gallery / single-image / single-video sites have their media embedded at export and resolved at runtime, so they render instead of going black.
+- Server-runtime apps (Node.js / PHP / Python / Go / WordPress) cannot be embedded as sites — their runtimes are not packaged into a multi-web APK. The site picker hides them, and a legacy config that still references one falls back to the site's URL at export.
+- For a single site, use [Web](/zh/guide/app-types/web).

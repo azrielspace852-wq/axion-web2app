@@ -1,21 +1,21 @@
-# 激活码验证
+# Activation Code Verification
 
-用激活码为生成的应用设门,使其仅在输入有效码后运行。
+Gate the generated app behind activation codes, so it runs only after a valid code is entered.
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器中的 **激活码** 卡片。
+**Where:** the **Activation code** card in the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor.
 
-## 选项
+## Options
 
-- **启用** —— 打开激活门控(`activationEnabled`)。
-- **激活码** —— 有效码列表(`activationCodeList`)。时间限制或组合限制的码上有 **每次启动显示剩余天数**，默认关闭。打开后，每次成功启动会先告诉用户还剩多少天、多少小时，再继续公告或启动画面。永久激活和次数限制没有这个按钮。远程激活不会显示这条提示。
-- **每次验证** —— 每次启动都重新校验激活,而非仅信任一次(`activationRequireEveryTime`)。上次的卡会被静默复验:本地码必须仍在配置列表中(移除即吊销),远程码会向服务器重新校验。仅当上次的卡已失效(过期、用尽、被移除或被服务器拒绝)时才要求重新输入。
-- **对话框配置** —— 自定义激活对话框(标题、副标题、输入框标签、按钮文本)。
-- **远程激活** —— 对你自己经 EC P-256 签名的 HTTPS 端点校验,带离线策略(`activationRemoteConfig`)。
-- **设备绑定(一码一次)** —— 仅远程验证可用(`activationRemoteConfig.deviceBound`)。激活请求携带设备标识,由服务器执行每码占座:每个码默认限 1 台设备(首台激活的设备占座),即一次性/单设备码;其他设备激活会被拒绝并显示服务器消息。同一设备卸载重装不丢失占座。需要能执行绑定的验证服务器——[参考 Worker](https://github.com/shiaho777/web-to-app/blob/main/examples/remote-activation-worker/README.md) 通过 `maxDevices` 开箱即用。
+- **Enable** — turn activation gating on (`activationEnabled`).
+- **Activation codes** — the list of valid codes (`activationCodeList`). On a time-limited or combined code, **Show remaining days on each launch** is off unless you turn it on. When it is on, every successful launch tells the user how many days and hours are left, then continues into the announcement or splash. Permanent and usage-only codes do not offer it. Remote activation does not show this notice.
+- **Require every time** — re-verify the activation on every launch instead of trusting it once (`activationRequireEveryTime`). The remembered card is re-validated silently: local codes must still be listed in the config (removing a card revokes it), remote codes are re-checked against your server. The user is only asked to re-enter a code when the remembered one fails (expired, exhausted, revoked, or rejected).
+- **Dialog config** — customize the activation dialog (title, subtitle, input label, button text).
+- **Remote activation** — verify against your own HTTPS endpoint signed with EC P-256, with an offline policy (`activationRemoteConfig`).
+- **Device binding (one-time codes)** — remote-verification only (`activationRemoteConfig.deviceBound`). The verification request carries a device identifier and the server enforces per-code seats: each code is limited to 1 device by default (first device to activate claims the seat), so a code behaves as a one-time / single-device code. Other devices are rejected with the server's message. The claimed seat survives uninstall + reinstall on the same device. Requires a verification server that enforces binding — the [reference worker](https://github.com/azrielspace852-wq/axion-web2app/blob/main/examples/remote-activation-worker/README.md) does this out of the box via `maxDevices`.
 
-## 说明
+## Notes
 
-- 本地校验在设备上检查码;远程校验调用你的服务器。见[远程激活参考](https://github.com/shiaho777/web-to-app/blob/main/.github/docs/remote-activation.md)。
-- 本地校验无法实现设备绑定:应用在设备间没有任何共享状态,纯本地的"一码一次"无法强制执行。一次性码请使用远程验证并开启 **设备绑定**。
-- 本地"次数限制"码的次数指激活后本机的应用启动次数,不是该码可被兑换的次数;清除应用数据后会重置。
-- 应用列表会在设门的应用上显示激活标签。
+- Local verification checks codes on-device; remote verification calls your server. See the [remote activation reference](https://github.com/azrielspace852-wq/axion-web2app/blob/main/.github/docs/remote-activation.md).
+- Device binding is impossible with local verification: the app has no shared state between devices, so any "one-time" claim on a purely local code cannot be enforced. Use remote verification with **Device binding** enabled for one-time codes.
+- The **usage limit** on a local usage-limited code counts app launches on the device after activation — it is not a per-code redemption limit and resets if app data is cleared.
+- The app list shows an activation chip on gated apps.

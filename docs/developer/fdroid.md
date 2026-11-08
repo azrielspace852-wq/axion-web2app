@@ -1,6 +1,6 @@
 # F-Droid flavor
 
-WebToApp ships one source tree for GitHub, Play, and F-Droid. The F-Droid build is a Gradle property, not a long-lived git branch.
+AXION Web2App ships one source tree for GitHub, Play, and F-Droid. The F-Droid build is a Gradle property, not a long-lived git branch.
 
 ```bash
 ./gradlew :app:assembleStandardRelease -Pfdroid=true
@@ -37,20 +37,20 @@ The `check` job compiles this flavor in a **second** Gradle invocation so the fl
 
 Fastlane files live at `fastlane/metadata/android/<locale>/`. F-Droid reads those from this repository.
 
-The fdroiddata recipe to copy into a [fdroiddata](https://gitlab.com/fdroid/fdroiddata) merge request is `metadata/com.webtoapp.yml` at the repo root of **this** project (path `metadata/com.webtoapp.yml`). MR title: `New app: WebToApp`.
+The fdroiddata recipe to copy into a [fdroiddata](https://gitlab.com/fdroid/fdroiddata) merge request is `metadata/com.webtoapp.yml` at the repo root of **this** project (path `metadata/com.webtoapp.yml`). MR title: `New app: AXION Web2App`.
 
 ```yaml
 Categories:
   - Development
   - Internet
 License: Unlicense
-SourceCode: https://github.com/shiaho777/web-to-app
-IssueTracker: https://github.com/shiaho777/web-to-app/issues
-Changelog: https://github.com/shiaho777/web-to-app/releases
-WebSite: https://shiaho777.github.io/web-to-app/
+SourceCode: https://github.com/azrielspace852-wq/axion-web2app
+IssueTracker: https://github.com/azrielspace852-wq/axion-web2app/issues
+Changelog: https://github.com/azrielspace852-wq/axion-web2app/releases
+WebSite: https://azrielspace852-wq.github.io/axion-web2app/
 
 RepoType: git
-Repo: https://github.com/shiaho777/web-to-app.git
+Repo: https://github.com/azrielspace852-wq/axion-web2app.git
 
 Builds:
   - versionName: "2.8.6"

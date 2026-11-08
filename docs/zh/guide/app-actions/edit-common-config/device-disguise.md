@@ -1,13 +1,13 @@
-# 设备伪装
+# Device Disguise
 
-伪造向网站报告的设备级标识和属性。
+Spoofs device-level identifiers and properties reported to websites.
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器中的 **设备伪装** 卡片(由 `DeviceDisguiseConfig` 支撑)。
+**Where:** the **Device disguise** card in the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor (backed by `DeviceDisguiseConfig`).
 
-## 选项
+## Options
 
-配置生成应用向网页内容呈现的设备属性(例如型号/厂商及相关标识),使应用报告一个不同的设备档案。
+Configure the device properties the generated app presents to web content (for example model/manufacturer and related identifiers), so the app reports a different device profile.
 
-## 说明
+## Notes
 
-- 设备伪装补充了浏览器级指纹伪装(50+ 维),后者在[高级设置](/zh/guide/app-actions/edit-common-config/advanced-settings)中配置。
+- Device disguise complements the browser-level fingerprint disguise (50+ vectors) configured under [Advanced Settings](/zh/guide/app-actions/edit-common-config/advanced-settings).

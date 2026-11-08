@@ -1,22 +1,22 @@
-# 配置模板
+# Config Templates
 
-把整套通用配置保存为命名模板，之后任何应用一键套用 —— 精心调好的浏览器配置不用再逐个应用重新设置。
+Save the whole common config as a named template once, then apply it to any app in one tap — so a heavily customized browser setup never has to be re-configured app by app.
 
-**位置：**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器顶栏的**配置模板**按钮(书库图标)。
+**Where:** the **Config Templates** button (library icon) in the top bar of the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor.
 
-## 模板包含什么
+## What a template contains
 
-模板是**通用配置(`WebViewConfig`)的完整快照** —— 浏览器行为、界面、网络、隐私、工具栏等该编辑器里的全部设置。套用模板会**整体替换**目标应用的通用配置：结果与保存时完全一致，不会出现新旧值混杂。应用类型相关设置(入口文件、端口、依赖)和 APK 导出设置不属于模板。
+A template is a **full snapshot of the common config (`WebViewConfig`)** — browser behavior, interface, network, privacy, toolbar and everything else configured in that editor. Applying a template **replaces** the target app's entire common config with the snapshot: the result is exactly what was saved, never a mix of old and new values. App-type-specific settings (entry files, ports, dependencies) and APK export settings are not part of a template.
 
-## 使用方法
+## Using templates
 
-- **保存为模板** —— 把编辑器当前的配置以指定名称(1–40 字符)存为快照；同名再次保存会覆盖旧快照。
-- **套用** —— 点击卡片中的模板名称，把当前应用的通用配置整体替换为该快照。改动与手动编辑一样落在编辑器里，确认无误后照常保存。
-- **导出当前配置** —— 把编辑器里的配置写成 `webtoapp-config-template` JSON 文件(`*.wta-config.json`)。已保存模板上的**导出**同样写出那份快照。
-- **导入配置** —— 读取这种 JSON,或一份裸的 `WebViewConfig` 对象。无关 JSON 会被拒绝。同名会加上数字后缀。导入同时把配置套到当前编辑器。
-- **管理模板** —— 对已保存模板重命名、导出或删除。
+- **Save as template** — snapshots the config currently shown in the editor under a name (1–40 chars). Saving again with the same name overwrites the old snapshot.
+- **Apply** — tap a template name in the card to replace the current app's common config with it. The change lands in the editor like any manual edit; review and save as usual.
+- **Export current config** — writes the editor's config as a `webtoapp-config-template` JSON file (`*.wta-config.json`). **Export** on a saved template writes that snapshot the same way.
+- **Import config** — reads that JSON, or a bare `WebViewConfig` object. Unrelated JSON is rejected. A name that already exists gets a numeric suffix. Import also applies the config to the open editor.
+- **Manage templates** — rename, export, or delete saved templates.
 
-## 说明
+## Notes
 
-- 模板保存在本地(app 存储中的 `config_templates.json`),应用升级不会丢失。
-- 应用内 Agent 同样可以管理模板:`ListConfigTemplates`、`SaveConfigTemplate`、`ApplyConfigTemplate`、`DeleteConfigTemplate`,只读的 `ExportConfigTemplate`,以及 `ImportConfigTemplate`。
+- Templates are stored locally (`config_templates.json` in app storage) and survive app updates.
+- The in-app Agent can also manage templates: `ListConfigTemplates`, `SaveConfigTemplate`, `ApplyConfigTemplate`, `DeleteConfigTemplate`, read-only `ExportConfigTemplate`, and `ImportConfigTemplate`.

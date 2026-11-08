@@ -1,48 +1,48 @@
-# 插件开发
+# Plugin Authoring
 
-WebToApp 生成的应用依然可扩展。三种插件共用同一个管理界面和注入管线：
+AXION Web2App stays extensible after an app ships. Three kinds of plugins share one management surface and one injection pipeline:
 
-| 类型 | 是什么 | 适合 |
+| Type | What it is | Good for |
 | --- | --- | --- |
-| **[HCJ 插件](/zh/extensions/js-module)** | `plugin.json` + 单文件 `plugin.html` 的包——纯 HTML + CSS + JS，无 DSL | 自定义功能、面板、设置界面 |
-| **[油猴脚本](/zh/extensions/userscript)** | Tampermonkey/Greasemonkey 风格的 `.user.js` | 移植现成脚本；`GM_*` API |
-| **[Chrome MV3](/zh/extensions/chrome-mv3)** | Manifest V3 Chrome 扩展 | 移植浏览器扩展；`chrome.*` API |
-| **[NativeBridge](/zh/extensions/native-bridge)** | 系统 WebView 上的 `window.NativeBridge` | 剪贴板、震动、分享、文件、屏幕和按键 |
+| **[HCJ Plugin](/zh/extensions/js-module)** | A `plugin.json` + single `plugin.html` package — plain HTML + CSS + JS, no DSL | Custom features, panels, settings UIs |
+| **[Userscript](/zh/extensions/userscript)** | Tampermonkey/Greasemonkey-style `.user.js` | Porting existing userscripts; `GM_*` APIs |
+| **[Chrome MV3](/zh/extensions/chrome-mv3)** | A Manifest V3 Chrome extension | Porting browser extensions; `chrome.*` APIs |
+| **[NativeBridge](/zh/extensions/native-bridge)** | `window.NativeBridge` on the system WebView | Clipboard, vibration, share, files, screen, and key events |
 
-HCJ（HTML+CSS+JS）是原生格式——可以理解为带真实 UI 能力的油猴脚本升级版。
+HCJ (HTML+CSS+JS) is the native format — think of it as a userscript upgraded with a real UI surface.
 
-## 注入机制
+## How injection works
 
-脚本类插件按配置的**运行时机**注入：
+Script plugins are injected at their configured **run time**:
 
-| 运行时机 | 触发点 |
+| Run time | Fires at |
 | --- | --- |
-| `document_start` | `onPageStarted`，早于页面脚本 |
-| `document_end` | DOMContentLoaded（默认） |
-| `document_idle` | 页面加载完成后 |
+| `document_start` | `onPageStarted`, before page scripts |
+| `document_end` | DOMContentLoaded (default) |
+| `document_idle` | after load |
 
-`hcj.addStyle()`（或旧版 `style.css`）在 document-start 注入页面 CSS，视觉类插件在首帧渲染前生效。**URL 匹配规则**（Chrome 风格 glob 或 `/正则/`）决定插件在哪些页面运行。Chrome 扩展走 MV3 引擎——隐藏 WebView 跑后台 service worker + 动态注册 content script。
+`hcj.addStyle()` (or a legacy `style.css`) injects page CSS at document-start so visual plugins apply before first paint. **URL match rules** (Chrome-style globs or `/regex/`) decide which pages a plugin runs on. Chrome extensions run through the MV3 engine — a hidden WebView for the background service worker plus dynamically registered content scripts.
 
-## 插件入口在哪
+## Where plugins live
 
-每个插件都有**插件宿主面**上的入口，宿主形态由用户按应用（或全局）选择：
+Every plugin gets an entry on the **plugin surface**. The user picks the host style per app (or globally):
 
-- **工具栏** —— 原生工具栏里的插件按钮，点开插件抽屉
-- **悬浮句柄** —— 可拖动的原生悬浮柄，自动收起（工具栏隐藏时也可用）
-- **菜单** —— 收纳进右上角溢出菜单
+- **Toolbar** — a plugins button in the native toolbar; tap to open the plugin drawer
+- **Floating handle** — a draggable native handle that auto-collapses (works with the toolbar hidden)
+- **Menu** — an item inside the overflow menu
 
-`plugin.html` 里有面板内容的插件在用户选定的面板宿主中打开——**底部抽屉**、**悬浮窗**或**全屏**；纯页面插件则触发它的 `hcj.on('action')` 回调。Chrome 扩展的 `action.popup` 页面也托管在同一个面板面。
+A plugin whose `plugin.html` carries panel markup opens it in the user-chosen panel host — **bottom sheet**, **floating window**, or **fullscreen**. A page-only plugin fires its `hcj.on('action')` handler instead. Chrome extension `action.popup` pages are hosted in the same panel surface.
 
-::: warning 准确性说明
-- **油猴 `GM_*` 不受 `@grant` 门控** —— 全部无条件暴露。
-- **Chrome `ISOLATED`/`MAIN` world 并非真隔离** —— Android WebView 只有一个 JS 上下文，隔离是模拟的。
-- **MV3 "后台 service worker" 是一个隐藏 WebView**，不是真的 service worker。
+::: warning Accuracy notes
+- **Userscript `GM_*` functions are not gated by `@grant`** — all are exposed unconditionally.
+- **Chrome `ISOLATED` vs `MAIN` world is not truly isolated** — Android WebView has a single JS context; isolation is simulated.
+- **The MV3 "background service worker" is a hidden WebView**, not a real service worker.
 :::
 
-## 下一步
+## Where to go next
 
-- [HCJ 插件](/zh/extensions/js-module) —— 原生包格式
-- [CSS 插件](/zh/extensions/css-module) —— 纯样式覆盖
-- [油猴脚本](/zh/extensions/userscript) —— `GM_*` / `GM.*` API 参考
-- [Chrome MV3](/zh/extensions/chrome-mv3) —— 支持的 `chrome.*` 能力面
-- [发布到市场](/zh/extensions/publish) —— 与社区分享插件
+- [HCJ Plugins](/zh/extensions/js-module) — the native package format.
+- [CSS Plugins](/zh/extensions/css-module) — pure style overrides.
+- [Userscripts](/zh/extensions/userscript) — the `GM_*` / `GM.*` API reference.
+- [Chrome MV3](/zh/extensions/chrome-mv3) — the supported `chrome.*` surface.
+- [Publish to the Market](/zh/extensions/publish) — share plugins with the community.

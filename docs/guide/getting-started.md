@@ -4,7 +4,7 @@ This walkthrough takes you from a fresh install to your first signed APK. At eac
 
 ## 1. Install and launch
 
-Install the WebToApp builder on a device running **Android 7.0 (API 24) or newer**.
+Install the AXION Web2App builder on a device running **Android 7.0 (API 24) or newer**.
 
 <div class="wta-install">
 
@@ -12,7 +12,7 @@ Install the WebToApp builder on a device running **Android 7.0 (API 24) or newer
 
 <LatestRelease variant="install" />
 
-Get the APK from [GitHub Releases](https://github.com/shiaho777/web-to-app/releases) and install it like any other APK. The button auto-detects the newest version.
+Get the APK from [GitHub Releases](https://github.com/azrielspace852-wq/axion-web2app/releases) and install it like any other APK. The button auto-detects the newest version.
 
 </div>
 
@@ -80,8 +80,8 @@ Open **⋮ → [File Manager](/guide/more-features/file-manager)** from the top-
 Requirements: Android Studio Hedgehog or newer, JDK 17. The Gradle wrapper pins Gradle 9.4.1.
 
 ```bash
-git clone https://github.com/shiaho777/web-to-app.git
-cd web-to-app
+git clone https://github.com/azrielspace852-wq/axion-web2app.git
+cd axion-web2app
 ./gradlew assembleDebug
 ```
 

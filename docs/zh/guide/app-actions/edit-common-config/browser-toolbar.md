@@ -1,34 +1,34 @@
-# 浏览器工具栏
+# Browser Toolbar
 
-控制应用内浏览器工具栏(带后退/前进/刷新/标题/URL 的栏)。
+Controls the in-app browser toolbar (the bar with back/forward/refresh/title/URL).
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器中的 **浏览器工具栏** 卡片。
+**Where:** the **Browser toolbar** card in the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor.
 
-## 选项
+## Options
 
-- **浏览器工具栏** —— 主开关(`browserToolbarEnabled`)。**默认关闭**:页面完全不带工具栏渲染,效果类似全屏。打开后工具栏**所有子项全开**;再从中裁剪单个按钮。再次关闭会把所有子项一并关闭——重新打开总是从全开状态开始。
-- **工具栏项** —— 工具栏启用时,每个按钮有独立开关:
-  - 显示标题(`toolbarShowTitle`)
-  - 显示 URL(`toolbarShowUrl`)
-  - 显示后退(`toolbarShowBack`)
-  - 显示前进(`toolbarShowForward`)
-  - 显示刷新(`toolbarShowRefresh`)
-  - 显示控制台按钮(`toolbarShowConsole`)
-  - 显示页内查找按钮(`toolbarShowFind`)
+- **Browser toolbar** — the master switch (`browserToolbarEnabled`). **Off by default**: the page renders with no toolbar at all, fullscreen-like. Turning it on shows the toolbar with **every item on**; trim individual buttons from there. Turning it off again flips every item off — a re-enable always starts from the all-on slate.
+- **Toolbar items** — while the toolbar is enabled, each button has its own switch:
+  - show title (`toolbarShowTitle`)
+  - show URL (`toolbarShowUrl`)
+  - show back (`toolbarShowBack`)
+  - show forward (`toolbarShowForward`)
+  - show refresh (`toolbarShowRefresh`)
+  - show console button (`toolbarShowConsole`)
+  - show find-in-page button (`toolbarShowFind`)
 
-只保留部分子项的工具栏仍会渲染(例如只剩控制台);宿主预览与导出 APK 共用同一可见性规则,预览裁剪的结果就是导出的结果。
+A toolbar with only some items still renders (e.g. console alone); the preview and the exported APK share the same visibility rule, so what you trim is what ships.
 
-## 运行时工具栏面板
+## Runtime toolbar panels
 
-以下面板**从运行时工具栏打开**(在生成的 APK 或宿主预览内)。它们的工具栏按钮受上方构建期项控制——隐藏对应项,按钮即消失:
+These panels open **from the toolbar at runtime** (inside the generated APK or the host preview). Their toolbar buttons are gated by the build-time items above — hide the item and the button disappears:
 
-- **控制台** —— 工具栏按钮打开控制台面板,显示 `console.log` / 错误输出。便于在运行时调试已加载的页面。
-- **页内查找** —— 工具栏按钮打开原生底部搜索栏,实时匹配计数、上/下跳转,由 WebView 引擎(`findAllAsync`)驱动;搜索栏打开时键盘自动弹起。
+- **Console** — a toolbar button opens a console panel showing `console.log` / error output. Useful for debugging the loaded page at runtime.
+- **Find in page** — a toolbar button opens a native bottom search bar with live match counting and previous/next navigation, powered by the WebView engine (`findAllAsync`). The keyboard is raised automatically when the bar opens.
 
-页面缩放不再是工具栏动作——它已成为[高级设置](/zh/guide/app-actions/edit-common-config/advanced-settings)中的构建期设置。
+Page zoom is no longer a toolbar action — it is a build-time setting under [Advanced Settings](/zh/guide/app-actions/edit-common-config/advanced-settings).
 
-## 说明
+## Notes
 
-- 隐藏系统状态栏/导航栏见[全屏模式](/zh/guide/app-actions/edit-common-config/fullscreen)。
-- 浮动返回按钮可在[特殊设置](/zh/guide/app-actions/edit-common-config/special-settings)中启用——工具栏(及其返回按钮)隐藏时特别有用。
-- 全屏不会关掉这条工具栏。栏是一行，标题和地址并排。多网页抽屉模式的站点菜单也放在这一行，不再另占一条栏。
+- For hiding the system status/navigation bars, see [Fullscreen Mode](/zh/guide/app-actions/edit-common-config/fullscreen). Fullscreen does not hide this toolbar.
+- The bar is one row. The title and the address share it. Multi-web drawer mode puts its site menu on this row instead of adding another bar.
+- A floating back button can be enabled under [Special Settings](/zh/guide/app-actions/edit-common-config/special-settings) — handy when the toolbar (and its back button) is hidden.

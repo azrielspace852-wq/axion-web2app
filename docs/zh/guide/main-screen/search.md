@@ -1,11 +1,11 @@
-# 搜索
+# Search
 
-[我的应用](/zh/guide/main-screen/my-apps)顶栏的放大镜按钮切换出一个内联搜索框。
+The magnifier button in the [My Apps](/zh/guide/main-screen/my-apps) top bar toggles an inline search field.
 
-## 工作方式
+## How it works
 
-- 点击 🔍,标题栏替换为搜索框。
-- 输入以按应用名称或 URL **过滤应用列表** —— 列表随输入实时更新。
-- 点击 ✕ 清除查询并关闭搜索。
+- Tap 🔍 to replace the title bar with a search field.
+- Type to **filter the app list** by app name or URL — the list updates as you type.
+- Tap ✕ to clear the query and close search.
 
-搜索只过滤可见列表;不会修改你的应用。它在当前选中的[分类](/zh/guide/main-screen/categories)内生效。
+Search only filters the visible list; it doesn't modify your apps. It works within the currently selected [category](/zh/guide/main-screen/categories).

@@ -1,38 +1,38 @@
-# 媒体
+# Media
 
-由专门的媒体播放器播放的单图片或单视频应用。
+A single-image or single-video app played by a dedicated media player.
 
-## 适用场景
+## When to use
 
-单图查看器、课程媒体,或循环播放的标牌式视频。
+Single-image viewers, course media, or looping signage-style video.
 
-## 变体
+## Variants
 
-- **图片** —— 全屏显示一张图片。
-- **视频** —— 播放视频,可配置播放选项。
+- **Image** — displays a picture full-screen.
+- **Video** — plays a video with configurable playback.
 
-## 核心配置
+## Core config
 
-由 `MediaConfig` 支撑。
+Backed by `MediaConfig`.
 
-### 来源
+### Source
 
-- **媒体路径**(`mediaPath`)—— 打包进应用的本地媒体文件(可选加密)。
+- **Media path** (`mediaPath`) — a local media file packaged into the app (optionally encrypted).
 
-### 播放
+### Playback
 
-- **自动播放**(`autoPlay`)—— 启动时开始播放。
-- **循环**(`loop`)—— 重复播放。
-- **启用音频**(`enableAudio`)—— 声音开/关。
+- **Auto-play** (`autoPlay`) — start playback on launch.
+- **Loop** (`loop`) — repeat playback.
+- **Enable audio** (`enableAudio`) — sound on/off.
 
-### 显示
+### Display
 
-- **铺满屏幕**(`fillScreen`)—— 裁剪铺满 vs 适应。
-- **方向**(`orientation`)—— 竖屏/横屏。
-- **背景色**(`backgroundColor`)。
-- **保持屏幕常亮**(`keepScreenOn`)。
+- **Fill screen** (`fillScreen`) — crop to fill vs fit.
+- **Orientation** (`orientation`) — portrait/landscape.
+- **Background color** (`backgroundColor`).
+- **Keep screen on** (`keepScreenOn`).
 
-## 说明
+## Notes
 
-- 预览直接启动媒体播放器 activity(而非 WebView)。
-- 媒体*集合*请用[画廊](/zh/guide/app-types/gallery)。
+- Preview launches the media player activity directly (not a WebView).
+- For a *collection* of media, use [Gallery](/zh/guide/app-types/gallery).

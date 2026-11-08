@@ -1,60 +1,60 @@
-# 隐私权政策
+# Privacy Policy
 
-**生效日期：** 2026 年 10 月 8 日
+**Effective date:** October 8, 2026
 
-本政策说明 **WebToApp** 这款 Android 应用如何处理信息。WebToApp 是 **shiaho** 发布的、在手机上打包 APK 的构建器。它只覆盖你从 Google Play 或 GitHub 安装的这一个应用，不覆盖你用它做出来的网站、服务器或 APK。那些作品是你的；如果你要把它们上架，需要另写一份它们自己的隐私权政策。
+This policy describes the **AXION Web2App** Android app, the on-device builder published by **azrielspace852-wq**. It covers the app you install from Google Play or from GitHub. It does not cover a website, server, or APK that you create with AXION Web2App. If you publish one of those, it needs its own privacy policy.
 
-联系方式：[GitHub Issues](https://github.com/shiaho777/web-to-app/issues)
+Contact: [GitHub Issues](https://github.com/azrielspace852-wq/axion-web2app/issues)
 
-## 我们不做什么
+## What we do not do
 
-WebToApp 没有账号系统。我们没有一台用来保存你的项目的服务器，也没有把你如何使用这个构建器上报给我们的统计或广告 SDK。我们不出售个人信息。
+AXION Web2App has no account system. We do not run a server that stores your projects, and we do not ship an analytics or advertising SDK that reports how you use the builder back to us. We do not sell personal information.
 
-## 留在你设备上的内容
+## What stays on your device
 
-除非你自己导出、分享或备份，下列内容只放在应用的私有存储里：
+The following stays in the app's private storage unless you export, share, or back it up yourself:
 
-- 你创建的项目：名称、网址、图标、HTML 和其他项目文件，以及各项设置
-- 你创建的签名密钥，以及你为它设置的密码
-- 你填写的 AI 服务 API 密钥
-- 你在应用里生成的本地备份
+- Projects you create: names, URLs, icons, HTML and other project files, and settings
+- Signing keys and the passwords you set for them
+- AI provider API keys you enter
+- Local backups you create inside the app
 
-在应用里删除项目，或卸载 WebToApp，就会从这台设备上删掉这份副本。卸载不会删除你已经导出或分享出去的文件。
+Delete a project in the app, or uninstall AXION Web2App, to remove that copy from the device. Uninstalling does not delete files you already exported or shared.
 
-## 数据会在什么时候离开设备
+## When data leaves the device
 
-只有你使用某个需要联网的功能时，应用才会把该功能要用的内容发给它正在联系的服务。我们不会在自己的服务器上再留一份。对方如何处理，以对方自己的政策为准。
+A feature sends data only when you use it, and it sends that data to the service that feature talks to. We do not receive a copy on a server we operate. The other service handles it under its own policy.
 
-| 你使用的功能 | 会发送的内容 | 接收方 |
+| You use | What is sent | Who receives it |
 | --- | --- | --- |
-| 检查更新、模块目录，以及默认的运行时下载 | 这次请求本身，包括你的 IP 地址 | GitHub（`api.github.com`、`github.com`），以及该运行时的下载地址 |
-| 预览，或在内置浏览器中打开页面 | 你打开的地址，以及该网站要求浏览器提交的内容 | 那个网站 |
-| 导入或抓取网站 | 你让应用去获取的网址 | 那个网站 |
-| Agent，或 AI 连接测试 | 你提交的文字、该功能附带的项目内容，以及你保存的 API 密钥 | 你配置的 API 地址（例如 OpenAI、Gemini，或你自己的服务器） |
-| 搜索或安装 Chrome 网上应用店扩展 | 搜索或安装请求 | Google（`chromewebstore.google.com`、`clients2.google.com`） |
-| 浏览油猴脚本 | 搜索请求 | GreasyFork（`api.greasyfork.org`） |
-| 在线搜索背景音乐 | 搜索请求 | 该功能使用的音乐接口（`api.cenguigui.cn`） |
-| 网页自动翻译 | 正在翻译的文字 | MyMemory（`api.mymemory.translated.net`） |
-| DNS-over-HTTPS、代理或 TLS 桥 | DNS 查询或经过代理的流量 | 你选择的解析服务或代理 |
-| 更新广告拦截列表 | 获取你启用的那份列表 | 该列表的网址 |
-| 远程激活码 | 你为应用配置的校验请求 | 你填写的 HTTPS 地址 |
-| 推送通知 | 发给某个 Firebase 项目的消息 | Firebase；只有你提供了该项目自己的配置之后才会发生 |
-| 分享或导出 | 你选中的文件 | 你在系统分享界面里选中的应用或文件夹 |
+| Update check, module catalog, and the default runtime downloads | The request itself, including your IP address | GitHub (`api.github.com`, `github.com`) and the download host for that runtime |
+| Preview, or a page you open in the built-in browser | The address you open, and whatever that site asks the browser to send | That website |
+| Import or scrape a site | The URL you ask the app to fetch | That website |
+| Agent, or an AI connection test | The text you submit, any project context that feature attaches, and the API key you saved | The API endpoint you configured (for example OpenAI, Gemini, or a server you run) |
+| Chrome Web Store search or extension install | The search or extension request | Google (`chromewebstore.google.com`, `clients2.google.com`) |
+| Userscript browse | The search request | GreasyFork (`api.greasyfork.org`) |
+| Online background-music search | The search request | The music API used by that feature (`api.cenguigui.cn`) |
+| Webpage auto-translation | The text being translated | MyMemory (`api.mymemory.translated.net`) |
+| DNS-over-HTTPS, a proxy, or the TLS bridge | DNS lookups or proxied traffic | The resolver or proxy you selected |
+| Ad-block list updates | The request for the list you enabled | The list's URL |
+| Remote activation | The check your app is configured to make | The HTTPS endpoint you entered |
+| Push notifications | Messages for a Firebase project | Firebase, and only after you supply that project's own configuration |
+| Share or export | The file you chose | The app or folder you pick in the system share sheet |
 
-任何联网请求都会带上普通的连接信息，例如 IP 地址。我们不用这些信息做广告画像。
+Any network request also carries the usual connection data, such as an IP address. We do not use that data to build an advertising profile.
 
-## 权限
+## Permissions
 
-某个功能需要时，WebToApp 才会申请对应权限，例如网络、通知，或读取照片和文件来做图标和项目。拒绝权限只会关掉那个功能。这些权限不会用来为广告建立用户画像。
+AXION Web2App asks for a permission when a feature needs it, such as network access, notifications, or access to photos and files for icons and projects. Denying a permission turns that feature off. Permissions are not used to profile you for ads.
 
-## 儿童
+## Children
 
-WebToApp 是用来构建应用的工具，并非面向 13 岁以下儿童。
+AXION Web2App is a tool for building apps. It is not directed at children under 13.
 
-## 变更
+## Changes
 
-本政策变更时，页面顶部的生效日期会一起更新。以本页当前文字为准。
+When this policy changes, the effective date at the top of this page changes with it. The current text on this page is the policy that applies.
 
-## 联系
+## Contact
 
-关于本政策的问题：[github.com/shiaho777/web-to-app/issues](https://github.com/shiaho777/web-to-app/issues)
+Questions about this policy: [github.com/azrielspace852-wq/axion-web2app/issues](https://github.com/azrielspace852-wq/axion-web2app/issues)

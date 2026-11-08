@@ -1,37 +1,37 @@
-# 我的应用
+# My Apps
 
-**我的应用** 是 WebToApp 的主页 —— 你创建的每个应用都集中在这里。你可以在此预览、配置、构建和整理应用。
+**My Apps** is the home screen of AXION Web2App — the hub where every app you create lives. From here you preview, configure, build, and organize your apps.
 
-## 布局
+## Layout
 
-界面有四个区域:
+The screen has four regions:
 
 ```
 ┌─────────────────────────────────┐
-│ 我的应用      🌙 🌐 🔍 ⋮          │  ← 顶栏
+│ My Apps      🌙 🌐 🔍 ⋮          │  ← top bar
 ├─────────────────────────────────┤
-│ 全部 │ 工作 │ 演示 │ ＋           │  ← 分类标签
+│ All │ Work │ Demo │ ＋           │  ← category tabs
 ├─────────────────────────────────┤
 │ ┌─────────────────────────────┐ │
-│ │ 🟢 示例   https://…          │ │  ← 应用列表
-│ │    [网页] [去广告]    ⋮       │ │
+│ │ 🟢 Example   https://…      │ │  ← app list
+│ │    [Web] [AdBlock]    ⋮     │ │
 │ └─────────────────────────────┘ │
 │            …                    │
 ├─────────────────────────────────┤
-│            ＋ 创建              │  ← 创建按钮
+│            ＋ Create            │  ← create button
 └─────────────────────────────────┘
 ```
 
-## 顶栏
+## The top bar
 
-从左到右:标题(**我的应用**),然后是[暗亮色](/zh/guide/main-screen/dark-light)、[语言](/zh/guide/main-screen/language)、[搜索](/zh/guide/main-screen/search)和[更多(⋮)](/zh/guide/main-screen/more)。
+From left to right: the title (**My Apps**), then [Dark / Light](/zh/guide/main-screen/dark-light), [Language](/zh/guide/main-screen/language), [Search](/zh/guide/main-screen/search), and [More (⋮)](/zh/guide/main-screen/more).
 
-## 主体
+## The body
 
-- [分类标签](/zh/guide/main-screen/categories)过滤列表。
-- [应用列表](/zh/guide/main-screen/app-list)每个应用一张卡片。
-- [创建按钮](/zh/guide/main-screen/create-app)打开应用类型选择器。
+- [Category tabs](/zh/guide/main-screen/categories) filter the list.
+- The [app list](/zh/guide/main-screen/app-list) shows one card per app.
+- The [Create button](/zh/guide/main-screen/create-app) opens the app-type picker.
 
-## 空状态
+## Empty state
 
-还没有应用时,列表区显示一个空状态,带提示和一个 **创建** 快捷按钮。
+With no apps yet, the list area shows an empty state with a hint and a **Create** shortcut.

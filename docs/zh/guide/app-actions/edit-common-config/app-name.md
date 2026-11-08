@@ -1,13 +1,13 @@
-# 应用名称
+# App Name
 
-应用的显示名称,显示在应用列表中,导出后也在设备启动器上。
+The display name of your app, shown in the app list and on the device launcher after export.
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器顶部的 **基本信息** 卡片。
+**Where:** the **Basic info** card at the top of the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor.
 
-## 选项
+## Options
 
-- **名称** —— 自由文本的应用名称。
+- **Name** — free-text app name.
 
-## 说明
+## Notes
 
-- 导出时,标签被写入 APK manifest。见 [APK导出配置](/zh/guide/app-actions/edit-common-config/apk-export)。
+- At export, the label is written into the APK manifest. See [APK Export Config](/zh/guide/app-actions/edit-common-config/apk-export).

@@ -1,23 +1,23 @@
-# 应用修改器
+# App Modifier
 
-重打包一个*已安装*的应用。从 [⋮ → 应用修改器](/zh/guide/main-screen/more) 打开。
+Repackage an *installed* app. Open it from [⋮ → App Modifier](/zh/guide/main-screen/more).
 
-## 两种模式
+## Two modes
 
-- **快捷方式伪装** —— 创建一个指向现有应用的伪装快捷方式条目。
-- **克隆** —— 带 manifest/资源修改和重签名的真实二进制克隆,产生一个具有新身份的可安装 APK。
+- **Shortcut disguise** — create a disguised shortcut entry pointing at an existing app.
+- **Clone** — a real binary clone with manifest/resource patching and re-signing, producing a new installable APK with a new identity.
 
-## 功能
+## Features
 
-- **应用库** —— 浏览已安装应用(系统 / 用户),按名称或最近排序,带搜索和结果计数。
-- **身份** —— 设置新身份:自定义名称、**自定义图标**,以及(克隆模式下的)**自定义包名**。
-- **输出模式** —— 选择结果如何产生。
-- **预览** —— 构建前预览修改结果。
+- **App library** — browse installed apps (system / user), sorted by name or recent, with search and result counts.
+- **Identity** — set a new identity: custom name, **custom icon**, and (in clone mode) a **custom package name**.
+- **Output mode** — choose how the result is produced.
+- **Preview** — preview the modified result before building.
 
-## 说明
+## Notes
 
-- 克隆模式可能需要原始图标,且默认不应用增强。
-- 克隆必须使用一个尚未安装的包名;编辑器会预填一个唯一包名,并拒绝已被占用的包名。
-- 克隆的桌面标签会写入二进制 manifest,因此即使原标签来自 Activity、字面量或本地化资源,新名字也会生效。
-- 修改后的 APK 在二进制层面(AXML/ARSC)被打补丁并重签名。
-- 用于图标/名称/包名实验和重打包研究 —— 请在拥有相应权利的前提下使用。
+- Clone mode may require the original icon and applies no enhancements by default.
+- A clone must use a package name that is not installed; the editor pre-fills a unique one and rejects a package that is already in use.
+- The clone's launcher label is written into the binary manifest, so the new name is used even when the original label came from an Activity, a literal, or a localized resource.
+- The modified APK is patched at the binary level (AXML/ARSC) and re-signed.
+- Intended for icon/name/package experiments and repackaging research — use only with appropriate rights.

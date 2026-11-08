@@ -1,55 +1,55 @@
-# APK导出配置
+# APK Export Config
 
-生成 APK 的打包与身份设置。这是编辑器中的导出抽屉。
+Packaging and identity settings for the generated APK. This is the export drawer in the editor.
 
-**位置:**[编辑通用配置](/zh/guide/app-actions/edit-common-config/)编辑器中的 **APK导出配置** 抽屉(由 `ApkExportConfig` 支撑)。
+**Where:** the **APK export config** drawer in the [Edit Common Config](/zh/guide/app-actions/edit-common-config/) editor (backed by `ApkExportConfig`).
 
-## 身份
+## Identity
 
-- **自定义包名** —— APK 的 application id(按包名模式校验)。
-- **版本号 / 版本名** —— APK 版本。
-- **自动提升版本号** —— 当设备已安装同包名且 versionCode 更高的应用时,构建器自动提升版本以便覆盖安装。默认开启;关闭后始终使用上方填写的版本(降级安装可能因此失败)。
-- **引擎类型** —— 导出应用使用系统 WebView 或 GeckoView。
-- **自定义 minSdk** —— 把 `minSdkVersion` 提高到 shell 模板的 23 以上(可选 23/24/26/28/31/33/34/35/36,且不能高于当前 targetSdk)。关闭时保持 23。打包运行时按 API 23 编译,不能再往下。
-- **自定义 targetSdk** —— 为生成的 APK 固定其他 `targetSdkVersion`(可选 28/31/33/34/35/36);关闭时保持 shell 模板的 35。服务端运行时类型仍固定 28。发布 Play 时 AAB 导出仍会强制 Play 要求的级别。
+- **Custom package name** — the APK's application id (validated against a package-name pattern).
+- **Version code / version name** — the APK version.
+- **Auto-bump version** — when this package is already installed with a higher versionCode, the builder raises the version so the update can install. On by default; turn it off to always keep the version set above (a downgrade install may then fail).
+- **Engine type** — System WebView or GeckoView for the exported app.
+- **Override minSdk** — raise `minSdkVersion` above the shell template's 23 (choices 23/24/26/28/31/33/34/35/36, never above the current targetSdk). Off keeps 23. The packed runtime is compiled for API 23, so the floor cannot go lower.
+- **Override targetSdk** — pin a different `targetSdkVersion` for the generated APK (choices 28/31/33/34/35/36); off keeps the shell template's 35. Server-runtime types stay pinned at 28. For Play distribution the AAB export still forces the Play-required level.
 
-## 签名
+## Signing
 
-- **密钥库** —— 创建/导入/管理签名密钥(PKCS12/PFX/JKS/BKS)。
-- **签名方案** —— V1/V2/V3 独立,旧证书自动回退,可自定义 V1 签名者文件名。
+- **Keystore** — create/import/manage the signing key (PKCS12/PFX/JKS/BKS).
+- **Signature schemes** — V1/V2/V3 independently, with legacy auto-fallback and a custom V1 signer filename.
 
-## 运行时权限
+## Runtime permissions
 
-这一栏按 Android 官方里**第三方应用能声明、能申请**的权限来填，从最低版本 API 23 到 Android 17。每一行是一条清单权限，标了引入它的 API；废弃的会标废弃版本，过了那个版本不再弹窗。签名级、系统内部、角色专用和厂商私有权限不在这里。
+This list is the official set a **third-party app can declare and request**, from API 23 through Android 17. Each row is one manifest permission, marked with the API that added it. Deprecated rows stay marked, and are not requested past that API. Signature, internal, role-only, and OEM-private permissions are not listed.
 
-- 以前保存的开关仍按原来的组合导出。例如打开相机仍会带上 `CAMERA` 和 `FOREGROUND_SERVICE_CAMERA`。在这一栏里单独关掉某一行，只影响这一条。
-- 功能仍会自动勾上自己需要的权限（`RuntimePermissionSync`）。导出时会裁掉模板里用不到的权限。
-- **前台服务类型**跟着留下来的服务走。`DATA_SYNC` 只属于宿主。生成的应用只为自己保留的服务声明 `specialUse`，媒体会话打开时才声明 `mediaPlayback`。
-- **局域网**（`ACCESS_LOCAL_NETWORK`）在应用需要网络时默认写入，避免 Android 16/17 访问局域网失败。可以单独关掉。纯 file、没有网络的 HTML 不会带上 `INTERNET`、`ACCESS_NETWORK_STATE` 和这条。
-- **读取应用列表**（`QUERY_ALL_PACKAGES`）默认没有。勾上才会写进生成的 APK，Play 可能拒审。宿主 GitHub 渠道自己的清单里已有这条，和生成 APK 无关。
-- 短信、通话记录、外拨电话、所有文件访问、使用情况、安装未知应用、精确闹钟这类 Play 会卡的权限各自成行，并标了受限。打开会写进清单；危险权限会在首次启动时弹系统框。网页里没有对应的 JS API。
-- 蓝牙不再顺带「附近的 Wi-Fi 设备」。读取图片不再顺带「用户选择的照片和视频」。这两条要单独打开。后台位置单独成行，打开时会同时打开大致位置和精确位置。
+- Older saved switches still export as the same bundle. Camera still declares `CAMERA` and `FOREGROUND_SERVICE_CAMERA`. Turning one row off in this list affects only that permission.
+- Features still auto-check the permissions they need (`RuntimePermissionSync`). Export prunes template permissions the app does not use.
+- **Foreground service types** follow the services that remain. `DATA_SYNC` is host-only. A generated app declares `specialUse` only for the services it keeps, and `mediaPlayback` only when media session is on.
+- **Local network** (`ACCESS_LOCAL_NETWORK`) is declared when the app needs the network, so Android 16/17 LAN loads do not fail. You can turn that row off. File HTML with no network omits `INTERNET`, `ACCESS_NETWORK_STATE`, and this permission.
+- **Installed app list** (`QUERY_ALL_PACKAGES`) is off by default. It is written into the generated APK only when checked, and Play may reject it. The GitHub host flavor already declares it for the builder; that does not apply to generated APKs.
+- SMS, call log, outgoing-call processing, all-files access, usage access, unknown-app install, and exact alarms are each their own row and marked Play-restricted. Turning one on writes it into the manifest. Dangerous permissions prompt on first launch. Page JS has no matching API.
+- Bluetooth no longer pulls in nearby Wi-Fi devices. Reading images no longer pulls in user-selected photos and videos. Those are separate rows. Background location is its own row; turning it on also turns on approximate and precise location.
 
-## 静态 SAEP 策略
+## Static SAEP policy
 
-导出抽屉和构建 APK 页面中的可选 **静态 SAEP 策略** 开关按应用保存 (`ApkExportConfig.saepEnabled`)。默认 **关闭**，旧配置也保持关闭：关闭只省略 SAEP 元数据，并非声明拒绝策略。开启通过静态策略元数据声明 **无额外限制**，不会授予 Android 权限、绕过授权，也不保证智能体支持 SAEP。
+The optional **Static SAEP policy** switch is saved per app (`ApkExportConfig.saepEnabled`) in the export drawer and Build APK screen. It defaults to **OFF**, including for older saved configurations: OFF omits SAEP metadata, rather than declaring a deny policy. ON declares **no additional restrictions** through static policy metadata. It does not grant Android permissions, bypass authorization, or guarantee that an agent supports SAEP.
 
-此功能只作用于生成的 APK，不修改构建器宿主的策略。导出时以真实 Android 资源引用写入 `com.obric.agentrobots.POLICY_JSON`，策略绑定最终包名，在开启资源加密后仍可被系统读取。切换开关会触发完整重建。需要重新构建壳模板；旧模板缺少策略资源时，启用 SAEP 将明确报错，而非输出无效声明。系统及智能体是否支持、自动化操作能否成功，仍须在兼容设备上验证。参见[官方 SAEP 示例](https://github.com/bytedance/SAEP-demo)。
+This applies only to generated APKs, not the builder host. Export writes `com.obric.agentrobots.POLICY_JSON` as an Android resource reference, binds the policy to the final package name, and keeps it readable even with resource encryption enabled. Changing the switch forces a full rebuild. A newly built shell template is required; enabling SAEP with an older template fails explicitly instead of emitting a broken declaration. System/agent support and successful automation must still be verified on a compatible device. See the [official SAEP demo](https://github.com/bytedance/SAEP-demo).
 
-## 网络信任
+## Network trust
 
-- **客户端证书认证 (mTLS)** —— 当服务器请求客户端证书时，生成的应用会打开 Android 系统证书选择器，并使用设备上已安装的身份凭据。这与信任服务器 CA 是两项不同的设置。选定的身份会在后续连接同一服务器时自动复用。
+- **Client Certificate Authentication (mTLS)** — when a server requests a client certificate, the generated app opens Android's system certificate picker and uses the selected device-installed identity. This is separate from trusting a server CA. The selected identity is reused for later connections to the same server.
 
-## 构建时选项(在构建对话框中)
+## Build-time options (in the Build dialog)
 
-这些在你[构建 APK](/zh/guide/app-actions/build-apk) 时选择:
+These are chosen when you [Build APK](/zh/guide/app-actions/build-apk):
 
-- **资源加密** —— PBKDF2 + AES-256-GCM,可选自定义密码。加密的 HTML 站点以密文留在 APK 里,每次请求在内存中解密。无效的 AdMob 应用 ID 会在导出前被拒绝,包括空 ID,以及把广告单元 ID 填进应用 ID。
-- **隔离** —— 按应用隔离存储/WebRTC/Canvas/Audio/WebGL/字体/头部/IP。指纹以手机身份出现,请求的 User-Agent 与客户端提示一致。已保存的桌面指纹会在下次启动时换掉。自定义 User-Agent、桌面模式和桌面内核风味保持你的设置。
-- **后台运行** —— 保持服务存活(`backgroundRunConfig`)。
-- **通知** —— 定时/持久通知和轮询(`notificationConfig`)。
-- **强制全量重建** —— 跳过增量缓存。
+- **Resource encryption** — PBKDF2 + AES-256-GCM, with an optional custom password. An encrypted HTML site stays ciphertext in the APK and is decrypted in memory for each request. An invalid AdMob app id is refused before export, including an empty id or an ad-unit id in the app-id field.
+- **Isolation** — per-app isolation of storage/WebRTC/Canvas/Audio/WebGL/fonts/headers/IP. Fingerprints identify as a phone, and the request User-Agent matches the client hints. A saved desktop fingerprint is replaced on the next launch. A custom User-Agent, desktop mode, and a desktop kernel flavor stay as you set them.
+- **Background run** — keep a service alive (`backgroundRunConfig`).
+- **Notifications** — scheduled/persistent notifications and polling (`notificationConfig`).
+- **Force full rebuild** — skip incremental caching.
 
-## 说明
+## Notes
 
-- 要发布到 Play 商店,从 [Google Play](/zh/guide/more-features/google-play) 导出 AAB,它会把 `targetSdk` 重写到 Play 要求的级别。
+- For Play Store distribution, export an AAB from [Google Play](/zh/guide/more-features/google-play), which rewrites `targetSdk` to the Play-required level.

@@ -1,38 +1,38 @@
-# 构建 APK
+# Build APK
 
-从应用构建并签名一个可安装的 APK。点击应用卡片上的 ⋮,再点 **构建 APK**。
+Builds and signs an installable APK from the app. Tap ⋮ on an app card, then **Build APK**.
 
-## 构建对话框
+## The build dialog
 
-- **浏览器引擎** —— 系统 WebView 或 GeckoView(GeckoView 首次使用下载)。
-- **资源加密** —— 对打包的配置/HTML/媒体/BGM 使用 PBKDF2 + AES-256-GCM,可选自定义密码。启用它会激活运行时加固(反调试、反 Frida、DEX 篡改),并总是强制全量重建。加密的 HTML 站点以密文留在 APK 里,每次请求在内存中解密,不保留明文站点目录。
-- **隔离** —— 按应用隔离存储、WebRTC、Canvas、Audio、WebGL、字体、头部和 IP。生成的指纹以手机身份出现(Android Chrome、Edge、Firefox、三星浏览器或 iPhone Safari),请求的 User-Agent 与客户端提示一致。已保存的桌面指纹会在下次启动时换掉。自定义 User-Agent、桌面模式和桌面内核风味保持你的设置。
-- **后台运行** —— 让应用的服务在后台保持存活。
-- **通知** —— 定时/持久通知、URL 轮询前台服务、深度链接。
-- **强制全量重建** —— 跳过增量缓存。
-- **版本号** —— 当包名已安装且 versionCode 更高时,自动提升到可安装的版本号。在编辑器 APK 导出配置中关闭**自动提升版本号**可固定所填版本。
+- **Browser engine** — System WebView or GeckoView (GeckoView downloads on first use).
+- **Resource encryption** — PBKDF2 + AES-256-GCM for packaged config/HTML/media/BGM, with an optional custom password. Enabling it activates runtime hardening (anti-debug, anti-Frida, DEX-tamper) and always forces a full rebuild. An encrypted HTML site stays ciphertext in the APK and is decrypted in memory for each request, so the plaintext site folder is not kept.
+- **Isolation** — per-app isolation of storage, WebRTC, Canvas, Audio, WebGL, fonts, headers, and IP. Generated fingerprints identify as a phone (Android Chrome, Edge, Firefox, Samsung Internet, or iPhone Safari), and the request User-Agent matches the client hints. A saved desktop fingerprint is replaced on the next launch. A custom User-Agent, desktop mode, and a desktop kernel flavor stay as you set them.
+- **Background run** — keep the app's service alive in the background.
+- **Notifications** — scheduled/persistent notifications, URL-polling foreground service, deep links.
+- **Force full rebuild** — skip incremental caching.
+- **Version code** — bumps to the next installable version code when the package is already installed with a higher one. Turn off **Auto-bump version** in the editor's APK export config to pin the configured version.
 
-**预检** 会先运行,报告阻塞性错误。构建成功后,摘要里可以[导出源码](/zh/guide/app-actions/export-apk),也可以跳到 [AAB 导出](/zh/guide/more-features/google-play)。
+A **preflight check** runs first and reports blocking errors. After a successful build the summary offers [Export source](/zh/guide/app-actions/export-apk), and you can jump to [AAB export](/zh/guide/more-features/google-play).
 
-这个包已经安装时,**启动** 会出现在 AAB 和主构建/安装按钮之间,页头卡片也会打开同一个包。从系统安装器返回后,这个操作会重新出现。没有桌面图标的包会弹出提示,而不是没有任何反应。
+When this package is already installed, **Launch** sits between AAB and the main build/install button, and the header card opens the same package. The action appears again when you return from the system installer. A package with no launcher icon shows a toast instead of doing nothing.
 
-## 发生什么
+## What happens
 
-WebToApp 修改 shell 模板、嵌入你的配置与内容、裁剪未用权限并签名(V1/V2/V3)。
+AXION Web2App patches the shell template, embeds your config and content, prunes unused permissions, and signs the result (V1/V2/V3).
 
-## 增量重建
+## Incremental rebuilds
 
-| 模式 | 适用时机 |
+| Mode | When |
 | --- | --- |
-| `FULL` | 模板或身份变化;加密构建恒用 |
-| `CONTENT_OVERLAY` | 仅应用内容变化 |
-| `REUSE_UNSIGNED` | 对先前构建的未签名 APK 重新签名 |
+| `FULL` | Template or identity changed; always for encrypted builds |
+| `CONTENT_OVERLAY` | Only app content changed |
+| `REUSE_UNSIGNED` | Re-sign a previously built unsigned APK |
 
-缓存键是内容哈希,绝不用时间戳。切勿把已签名/已改名的 APK 当作模板喂回。
+Cache keys are content hashes, never timestamps. Never feed a signed/renamed APK back as a template.
 
-## 签名
+## Signing
 
-- **密钥库** —— 创建/导入/管理密钥(PKCS12/PFX/JKS/BKS)。
-- **方案** —— V1/V2/V3 独立控制,旧证书自动回退,可自定义 V1 签名者文件名。
+- **Keystore** — create/import/manage keys (PKCS12/PFX/JKS/BKS).
+- **Schemes** — V1/V2/V3 independently controlled, with legacy auto-fallback and a custom V1 signer filename.
 
-产物落在[文件管理](/zh/guide/more-features/file-manager)中。
+Outputs land in the [File Manager](/zh/guide/more-features/file-manager).

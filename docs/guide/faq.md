@@ -4,9 +4,9 @@ Practical questions, organized by topic. For full detail, follow the links.
 
 ## Basics
 
-### Is WebToApp free?
+### Is AXION Web2App free?
 
-Yes. WebToApp is open source under [The Unlicense](https://github.com/shiaho777/web-to-app/blob/main/LICENSE).
+Yes. AXION Web2App is open source under [The Unlicense](https://github.com/azrielspace852-wq/axion-web2app/blob/main/LICENSE).
 
 ### What Android version do I need?
 
@@ -14,11 +14,11 @@ Android 7.0 (API 24) or newer.
 
 ### Do I need a PC to build apps?
 
-No. The entire build — binary patching, signing, and AAB export — happens on-device. A PC is only needed if you want to build WebToApp itself from source.
+No. The entire build — binary patching, signing, and AAB export — happens on-device. A PC is only needed if you want to build AXION Web2App itself from source.
 
 ### How is this different from a URL-wrapper app?
 
-A URL wrapper just opens a website in a WebView. WebToApp additionally runs **real server runtimes on-device** (Node.js, PHP, Python, Go, WordPress via fork+exec), ships a hardened network stack (DoH, TLS fingerprint, ECH), patches and signs APKs at the binary level, and supports modules/userscripts/MV3 extensions — all without a PC or remote build server.
+A URL wrapper just opens a website in a WebView. AXION Web2App additionally runs **real server runtimes on-device** (Node.js, PHP, Python, Go, WordPress via fork+exec), ships a hardened network stack (DoH, TLS fingerprint, ECH), patches and signs APKs at the binary level, and supports modules/userscripts/MV3 extensions — all without a PC or remote build server.
 
 ### What app types can I create?
 
@@ -105,7 +105,7 @@ See [Custom DNS](/guide/app-actions/edit-common-config/custom-dns) — choose a 
 
 ### What's the difference between modules, userscripts, and MV3 extensions?
 
-- **JS/CSS modules** — WebToApp's native format with a config UI and panel. See [JS Modules](/extensions/js-module).
+- **JS/CSS modules** — AXION Web2App's native format with a config UI and panel. See [JS Modules](/extensions/js-module).
 - **Userscripts** — Tampermonkey/Greasemonkey-style `.user.js` with `GM_*` APIs. See [Userscripts](/extensions/userscript).
 - **MV3 extensions** — Chrome Manifest V3 extensions with `chrome.*` APIs. See [Chrome MV3](/extensions/chrome-mv3).
 
@@ -143,6 +143,6 @@ Use [Data Backup](/guide/more-features/data-backup) (home ⋮ menu) to move the 
 
 ### Where do I get help?
 
-- GitHub: [github.com/shiaho777/web-to-app](https://github.com/shiaho777/web-to-app)
-- Telegram: [t.me/webtoapp777](https://t.me/webtoapp777)
-- X (Twitter): [@shiaho777](https://x.com/shiaho777)
+- GitHub: [github.com/azrielspace852-wq/axion-web2app](https://github.com/azrielspace852-wq/axion-web2app)
+- Telegram: -
+- X (Twitter): -
